@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
 		92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9C31DAEC304005D743F /* AppDelegate.swift */; };
 		92A0B9C91DAEC304005D743F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9C71DAEC304005D743F /* Main.storyboard */; };
 		92A0B9CB1DAEC304005D743F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9CA1DAEC304005D743F /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 		92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */; };
 		92A0B9E71DAEC68C005D743F /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E61DAEC68C005D743F /* Board.swift */; };
 		92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */; };
+		92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9EA1DAEC7B5005D743F /* Facade.swift */; };
+		92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9EC1DAEC8B1005D743F /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
+		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
 		92A0B9C01DAEC304005D743F /* TheChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A0B9C31DAEC304005D743F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A0B9C81DAEC304005D743F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsTableViewController.swift; sourceTree = "<group>"; };
 		92A0B9E61DAEC68C005D743F /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsGroup.swift; sourceTree = "<group>"; };
+		92A0B9EA1DAEC7B5005D743F /* Facade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facade.swift; sourceTree = "<group>"; };
+		92A0B9EC1DAEC8B1005D743F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		BE570531390E34C301000CA6 /* Pods_TheChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +69,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22CF7B6D60F75F158B34D850 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */,
+				2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D00F2426E98A29F7534D1F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE570531390E34C301000CA6 /* Pods_TheChan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92A0B9B71DAEC304005D743F = {
 			isa = PBXGroup;
 			children = (
+				92A0B9EC1DAEC8B1005D743F /* Podfile */,
 				92A0B9C21DAEC304005D743F /* TheChan */,
 				92A0B9D71DAEC304005D743F /* TheChanTests */,
 				92A0B9C11DAEC304005D743F /* Products */,
+				22CF7B6D60F75F158B34D850 /* Pods */,
+				6D00F2426E98A29F7534D1F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +117,7 @@
 				92A0B9CC1DAEC304005D743F /* LaunchScreen.storyboard */,
 				92A0B9CF1DAEC304005D743F /* Info.plist */,
 				92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */,
+				92A0B9EA1DAEC7B5005D743F /* Facade.swift */,
 			);
 			path = TheChan;
 			sourceTree = "<group>";
@@ -117,9 +147,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92A0B9DD1DAEC304005D743F /* Build configuration list for PBXNativeTarget "TheChan" */;
 			buildPhases = (
+				7D9D70FA9DA04E602AF4FF44 /* [CP] Check Pods Manifest.lock */,
 				92A0B9BC1DAEC304005D743F /* Sources */,
 				92A0B9BD1DAEC304005D743F /* Frameworks */,
 				92A0B9BE1DAEC304005D743F /* Resources */,
+				1BC4F84CF4E2B91320683307 /* [CP] Embed Pods Frameworks */,
+				C93E475CDED2DFAADD9FB835 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,6 +228,7 @@
 			files = (
 				92A0B9CE1DAEC304005D743F /* LaunchScreen.storyboard in Resources */,
 				92A0B9CB1DAEC304005D743F /* Assets.xcassets in Resources */,
+				92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */,
 				92A0B9C91DAEC304005D743F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,12 +242,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BC4F84CF4E2B91320683307 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheChan/Pods-TheChan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D9D70FA9DA04E602AF4FF44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C93E475CDED2DFAADD9FB835 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheChan/Pods-TheChan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		92A0B9BC1DAEC304005D743F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
+				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
@@ -276,6 +359,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -326,6 +410,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -353,7 +438,9 @@
 		};
 		92A0B9DE1DAEC304005D743F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,7 +452,9 @@
 		};
 		92A0B9DF1DAEC304005D743F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -422,6 +511,7 @@
 				92A0B9DF1DAEC304005D743F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92A0B9E01DAEC304005D743F /* Build configuration list for PBXNativeTarget "TheChanTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +520,7 @@
 				92A0B9E21DAEC304005D743F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
