@@ -13,6 +13,8 @@
 		92A0B9CE1DAEC304005D743F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9CC1DAEC304005D743F /* LaunchScreen.storyboard */; };
 		92A0B9D91DAEC304005D743F /* TheChanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9D81DAEC304005D743F /* TheChanTests.swift */; };
 		92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */; };
+		92A0B9E71DAEC68C005D743F /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E61DAEC68C005D743F /* Board.swift */; };
+		92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		92A0B9D81DAEC304005D743F /* TheChanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheChanTests.swift; sourceTree = "<group>"; };
 		92A0B9DA1DAEC304005D743F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsTableViewController.swift; sourceTree = "<group>"; };
+		92A0B9E61DAEC68C005D743F /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		92A0B9C21DAEC304005D743F /* TheChan */ = {
 			isa = PBXGroup;
 			children = (
+				92A0B9E51DAEC673005D743F /* Models */,
 				92A0B9C31DAEC304005D743F /* AppDelegate.swift */,
 				92A0B9C71DAEC304005D743F /* Main.storyboard */,
 				92A0B9CA1DAEC304005D743F /* Assets.xcassets */,
@@ -94,6 +99,15 @@
 				92A0B9DA1DAEC304005D743F /* Info.plist */,
 			);
 			path = TheChanTests;
+			sourceTree = "<group>";
+		};
+		92A0B9E51DAEC673005D743F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				92A0B9E61DAEC68C005D743F /* Board.swift */,
+				92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
+				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
