@@ -20,10 +20,16 @@ class BoardsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityView.center = view.center
+        activityView.startAnimating()
+        self.view.addSubview(activityView)
         Facade.loadBoards { boards in
             if let boards = boards {
                 self.boards = boards
                 self.tableView.reloadData()
+                activityView.stopAnimating()
             }
         }
     }
