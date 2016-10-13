@@ -14,6 +14,11 @@ class Board {
         self.id = id
     }
     
+    var description: String {
+        return "Board(\(id), '\(name)')"
+    }
+    
     var id: String
     var name: String
+    
 }

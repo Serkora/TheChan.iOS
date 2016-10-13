@@ -10,6 +10,8 @@ import UIKit
 
 class BoardsTableViewController: UITableViewController {
 
+    var boards = [BoardsGroup]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,12 @@ class BoardsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        Facade.loadBoards { boards in
+            if let boards = boards {
+                self.boards = boards
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +37,28 @@ class BoardsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return boards.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return boards[section].name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return section < boards.count ? boards[section].boards.count : 0;
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath) as! BoardTableViewCell
 
-        // Configure the cell...
+        let board = boards[indexPath.section].boards[indexPath.row]
+        cell.idLabel.text = board.id
+        cell.nameLabel.text = board.name
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
