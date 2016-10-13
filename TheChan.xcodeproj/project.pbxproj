@@ -19,6 +19,7 @@
 		92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9EA1DAEC7B5005D743F /* Facade.swift */; };
 		92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9EC1DAEC8B1005D743F /* Podfile */; };
 		92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */; };
+		92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		92A0B9EA1DAEC7B5005D743F /* Facade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facade.swift; sourceTree = "<group>"; };
 		92A0B9EC1DAEC8B1005D743F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsTableViewController.swift; sourceTree = "<group>"; };
 		BE570531390E34C301000CA6 /* Pods_TheChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,13 +114,13 @@
 		92A0B9C21DAEC304005D743F /* TheChan */ = {
 			isa = PBXGroup;
 			children = (
+				92A0B9F21DB02091005D743F /* Controllers */,
 				92A0B9E51DAEC673005D743F /* Models */,
 				92A0B9C31DAEC304005D743F /* AppDelegate.swift */,
 				92A0B9C71DAEC304005D743F /* Main.storyboard */,
 				92A0B9CA1DAEC304005D743F /* Assets.xcassets */,
 				92A0B9CC1DAEC304005D743F /* LaunchScreen.storyboard */,
 				92A0B9CF1DAEC304005D743F /* Info.plist */,
-				92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */,
 				92A0B9EA1DAEC7B5005D743F /* Facade.swift */,
 				92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */,
 			);
@@ -141,6 +143,15 @@
 				92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		92A0B9F21DB02091005D743F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */,
+				92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +312,7 @@
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
+				92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,

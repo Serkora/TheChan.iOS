@@ -1,16 +1,20 @@
 //
-//  BoardsTableViewController.swift
+//  ThreadsTableViewController.swift
 //  TheChan
 //
-//  Created by Вадим Новосельцев on 12.10.16.
+//  Created by Вадим Новосельцев on 13.10.16.
 //  Copyright © 2016 ACEDENED Software. All rights reserved.
 //
 
 import UIKit
 
-class BoardsTableViewController: UITableViewController {
+class ThreadsTableViewController: UITableViewController {
 
-    var groups = [BoardsGroup]()
+    var board: Board = Board(id: "board", name: "Undefined board") {
+        didSet {
+            self.title = "/\(board.id)/ - \(board.name)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +25,6 @@ class BoardsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityView.center = view.center
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
-        Facade.loadBoards { groups in
-            if let groups = groups {
-                self.groups = groups
-                self.tableView.reloadData()
-                activityView.stopAnimating()
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,28 +36,23 @@ class BoardsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return groups.count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groups[section].name
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return section < groups.count ? groups[section].boards.count : 0;
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath) as! BoardTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        let board = groups[indexPath.section].boards[indexPath.row]
-        cell.idLabel.text = board.id
-        cell.nameLabel.text = board.name
+        // Configure the cell...
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -101,16 +89,14 @@ class BoardsTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "OpenBoard" {
-            let threadsTableViewController = segue.destination as! ThreadsTableViewController
-            let selectedBoardPath = tableView.indexPathForSelectedRow!
-            let selectedBoard = groups[selectedBoardPath.section].boards[selectedBoardPath.row]
-            threadsTableViewController.board = selectedBoard
-        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
+    */
 
 }

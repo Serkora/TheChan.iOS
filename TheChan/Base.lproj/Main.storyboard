@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bow-fP-ph6" id="48A-QF-DeI">
-                                    <frame key="frameInset" width="375" height="59"/>
+                                    <frame key="frameInset" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Gb-e6i">
@@ -51,6 +51,7 @@
                                 <connections>
                                     <outlet property="idLabel" destination="Z2S-d8-bPR" id="Ovj-Q6-6ce"/>
                                     <outlet property="nameLabel" destination="bMb-fj-Njo" id="QgP-ep-bzT"/>
+                                    <segue destination="fbP-am-zFk" kind="show" identifier="OpenBoard" id="bSk-Hh-igw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -64,6 +65,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vcm-nq-SvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1250.4000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Board-->
+        <scene sceneID="Klg-kD-4vz">
+            <objects>
+                <tableViewController id="fbP-am-zFk" customClass="ThreadsTableViewController" customModule="TheChan" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="IRM-Ff-ESz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YTE-DC-USd">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTE-DC-USd" id="yab-nz-L3a">
+                                    <frame key="frameInset" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fbP-am-zFk" id="nCq-fu-IWP"/>
+                            <outlet property="delegate" destination="fbP-am-zFk" id="ST7-dv-aBK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Board" id="3gh-sq-1mm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w7H-Wx-AJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3112.8000000000002" y="138.98050974512745"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Q1W-al-eQN">
@@ -140,6 +170,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLT-60-GVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="311" y="900"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GtW-dm-lfY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OpG-A1-sL5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pyH-2S-OSa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lVS-Gq-zB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2173.5999999999999" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
