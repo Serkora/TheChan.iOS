@@ -20,6 +20,9 @@
 		92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9EC1DAEC8B1005D743F /* Podfile */; };
 		92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */; };
 		92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */; };
+		92E9E16D1DB149F600FA0380 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16C1DB149F600FA0380 /* Post.swift */; };
+		92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16E1DB14AA600FA0380 /* Thread.swift */; };
+		92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E1701DB14AD300FA0380 /* Attachment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		92A0B9EC1DAEC8B1005D743F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsTableViewController.swift; sourceTree = "<group>"; };
+		92E9E16C1DB149F600FA0380 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		92E9E16E1DB14AA600FA0380 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		92E9E1701DB14AD300FA0380 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		BE570531390E34C301000CA6 /* Pods_TheChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +147,9 @@
 			children = (
 				92A0B9E61DAEC68C005D743F /* Board.swift */,
 				92A0B9E81DAEC71D005D743F /* BoardsGroup.swift */,
+				92E9E16C1DB149F600FA0380 /* Post.swift */,
+				92E9E16E1DB14AA600FA0380 /* Thread.swift */,
+				92E9E1701DB14AD300FA0380 /* Attachment.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -312,9 +321,12 @@
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
+				92E9E16D1DB149F600FA0380 /* Post.swift in Sources */,
+				92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */,
 				92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
+				92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
