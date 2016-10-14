@@ -26,6 +26,8 @@ class ThreadsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -49,15 +51,16 @@ class ThreadsTableViewController: UITableViewController {
         return threads.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadTableViewCell", for: indexPath) as! ThreadTableViewCell
 
-        // Configure the cell...
+        let thread = threads[indexPath.row]
+        cell.numberLabel.text = String(thread.opPost.number)
+        cell.subjectLabel.text = thread.opPost.subject
+        cell.postTextLabel.text = thread.opPost.text
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

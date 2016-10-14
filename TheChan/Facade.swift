@@ -63,7 +63,9 @@ class EntityMapper {
     static func map(post raw: [String:AnyObject]) -> Post {
         let post = Post()
         post.text = raw["comment"] as? String ?? ""
+        post.subject = String(htmlEncodedString: raw["subject"] as? String ?? "")
         post.name = raw["name"] as? String ?? ""
+        post.number = Int(raw["num"] as? String ?? "0")!
         let timestamp = (raw["timestamp"] as? NSNumber)?.int64Value ?? 0
         post.date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         return post

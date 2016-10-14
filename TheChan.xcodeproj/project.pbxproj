@@ -20,6 +20,8 @@
 		92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9EC1DAEC8B1005D743F /* Podfile */; };
 		92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */; };
 		92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */; };
+		92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533361DB163300075277E /* ThreadTableViewCell.swift */; };
+		92C533391DB171220075277E /* HTMLEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533381DB171220075277E /* HTMLEntities.swift */; };
 		92E9E16D1DB149F600FA0380 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16C1DB149F600FA0380 /* Post.swift */; };
 		92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16E1DB14AA600FA0380 /* Thread.swift */; };
 		92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E1701DB14AD300FA0380 /* Attachment.swift */; };
@@ -54,6 +56,8 @@
 		92A0B9EC1DAEC8B1005D743F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsTableViewController.swift; sourceTree = "<group>"; };
+		92C533361DB163300075277E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
+		92C533381DB171220075277E /* HTMLEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLEntities.swift; sourceTree = "<group>"; };
 		92E9E16C1DB149F600FA0380 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		92E9E16E1DB14AA600FA0380 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		92E9E1701DB14AD300FA0380 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 		92A0B9C21DAEC304005D743F /* TheChan */ = {
 			isa = PBXGroup;
 			children = (
+				92C533351DB163100075277E /* Cells */,
 				92A0B9F21DB02091005D743F /* Controllers */,
 				92A0B9E51DAEC673005D743F /* Models */,
 				92A0B9C31DAEC304005D743F /* AppDelegate.swift */,
@@ -128,7 +133,7 @@
 				92A0B9CC1DAEC304005D743F /* LaunchScreen.storyboard */,
 				92A0B9CF1DAEC304005D743F /* Info.plist */,
 				92A0B9EA1DAEC7B5005D743F /* Facade.swift */,
-				92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */,
+				92C533381DB171220075277E /* HTMLEntities.swift */,
 			);
 			path = TheChan;
 			sourceTree = "<group>";
@@ -161,6 +166,15 @@
 				92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		92C533351DB163100075277E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */,
+				92C533361DB163300075277E /* ThreadTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,10 +335,12 @@
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
+				92C533391DB171220075277E /* HTMLEntities.swift in Sources */,
 				92E9E16D1DB149F600FA0380 /* Post.swift in Sources */,
 				92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */,
 				92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
+				92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
 				92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
