@@ -18,7 +18,7 @@ class ThreadsTableViewController: UITableViewController {
             Facade.loadThreads(boardId: board.id, page: 0) { threads in
                 if let threads = threads {
                     self.threads = threads
-                    tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
