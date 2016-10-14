@@ -20,6 +20,19 @@ class Facade {
             }
         }
     }
+    
+    static func loadThreads(boardId: String, page: Int, onComplete: @escaping ([Thread]?) -> Void) {
+        let pageStr = page == 0 ? "index" : String(page)
+        Alamofire.request("https://2ch.hk/\(boardId)/\(pageStr).json").responseJSON { response in
+            if let rawPage = response.result.value as? [String:AnyObject],
+            let rawThreads = rawPage["threads"] as? [[String:AnyObject]]{
+                let threads = EntityMapper.map(threads: rawThreads)
+                onComplete(threads)
+            } else {
+                onComplete(nil)
+            }
+        }
+    }
 }
 
 class EntityMapper {
@@ -32,5 +45,27 @@ class EntityMapper {
     
     static func map(board: [String: AnyObject]) -> Board {
         return Board(id: board["id"] as! String, name: board["name"] as! String)
+    }
+    
+    static func map(threads: [[String: AnyObject]]) -> [Thread] {
+        return threads.map { thread in
+            let result = Thread()
+            result.omittedPosts = thread["posts_count"] as? Int ?? 0
+            result.omittedFiles = thread["files_count"] as? Int ?? 0
+            if let opPost = (thread["posts"] as? [[String: AnyObject]])?[0] {
+                result.opPost = map(post: opPost)
+            }
+            
+            return result
+        }
+    }
+    
+    static func map(post raw: [String:AnyObject]) -> Post {
+        let post = Post()
+        post.text = raw["comment"] as? String ?? ""
+        post.name = raw["name"] as? String ?? ""
+        let timestamp = (raw["timestamp"] as? NSNumber)?.int64Value ?? 0
+        post.date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return post
     }
 }

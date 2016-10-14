@@ -10,9 +10,17 @@ import UIKit
 
 class ThreadsTableViewController: UITableViewController {
 
+    private var threads = [Thread]()
+    
     var board: Board = Board(id: "board", name: "Undefined board") {
         didSet {
             self.title = "/\(board.id)/ - \(board.name)"
+            Facade.loadThreads(boardId: board.id, page: 0) { threads in
+                if let threads = threads {
+                    self.threads = threads
+                    tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -34,13 +42,11 @@ class ThreadsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return threads.count
     }
 
     /*
