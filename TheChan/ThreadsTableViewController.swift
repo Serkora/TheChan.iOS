@@ -12,11 +12,8 @@ class ThreadsTableViewController: UITableViewController {
 
     private var threads = [Thread]()
     private var currentPage = 0
-    private var isLoading = false {
-        didSet {
-            
-        }
-    }
+    private var isLoading = false
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var board: Board = Board(id: "board", name: "Undefined board") {
         didSet {
@@ -30,21 +27,23 @@ class ThreadsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        tableView.tableFooterView?.isHidden = true
     }
+    
+    func refresh() { }
     
     func loadPage(_ number: Int) {
         self.isLoading = true
+        tableView.tableFooterView?.isHidden = false
+        activityIndicator.startAnimating()
         Facade.loadThreads(boardId: board.id, page: number) { threads in
             if let threads = threads {
                 self.updateThreads(threads)
                 self.tableView.reloadData()
                 self.isLoading = false
+                self.tableView.tableFooterView?.isHidden = true
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -90,15 +89,6 @@ class ThreadsTableViewController: UITableViewController {
 
         return cell
     }
-    
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let nextPage = self.threads.count - 5
-//        if indexPath.row == nextPage && !self.isLoading {
-//            self.isLoading = true
-//            currentPage += 1
-//            loadPage(currentPage)
-//        }
-//    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y

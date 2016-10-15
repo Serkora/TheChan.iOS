@@ -113,6 +113,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Bbu-SF-uSj">
+                            <rect key="frame" x="0.0" y="225" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HnG-F1-z9S"/>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="HnG-F1-z9S" firstAttribute="leading" secondItem="Bbu-SF-uSj" secondAttribute="leading" id="EJt-C0-BxI"/>
+                                <constraint firstAttribute="bottom" secondItem="HnG-F1-z9S" secondAttribute="bottom" id="Had-as-7sP"/>
+                                <constraint firstItem="HnG-F1-z9S" firstAttribute="top" secondItem="Bbu-SF-uSj" secondAttribute="top" id="akd-mW-M7F"/>
+                                <constraint firstAttribute="trailing" secondItem="HnG-F1-z9S" secondAttribute="trailing" id="rex-Me-amC"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThreadTableViewCell" id="YTE-DC-USd" customClass="ThreadTableViewCell" customModule="TheChan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="133"/>
@@ -177,8 +191,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Board" id="3gh-sq-1mm"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="HnG-F1-z9S" id="lXv-0n-Vmn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7H-Wx-AJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="6Uy-5I-ye0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </objects>
             <point key="canvasLocation" x="4208.8000000000002" y="138.98050974512745"/>
         </scene>
