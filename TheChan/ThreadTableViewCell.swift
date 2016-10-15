@@ -13,6 +13,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var postTextLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

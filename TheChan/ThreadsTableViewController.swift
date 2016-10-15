@@ -11,16 +11,18 @@ import UIKit
 class ThreadsTableViewController: UITableViewController {
 
     private var threads = [Thread]()
+    private var currentPage = 0
+    private var isLoading = false {
+        didSet {
+            
+        }
+    }
     
     var board: Board = Board(id: "board", name: "Undefined board") {
         didSet {
             self.title = "/\(board.id)/ - \(board.name)"
-            Facade.loadThreads(boardId: board.id, page: 0) { threads in
-                if let threads = threads {
-                    self.threads = threads
-                    self.tableView.reloadData()
-                }
-            }
+            self.currentPage = 0
+            self.loadPage(currentPage)
         }
     }
     
@@ -34,6 +36,32 @@ class ThreadsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+    }
+    
+    func loadPage(_ number: Int) {
+        self.isLoading = true
+        Facade.loadThreads(boardId: board.id, page: number) { threads in
+            if let threads = threads {
+                self.updateThreads(threads)
+                self.tableView.reloadData()
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func updateThreads(_ threads: [Thread]) {
+        var newThreads = [Thread]()
+        for thread in threads {
+            let existingThread = self.threads.first { $0.opPost.number == thread.opPost.number }
+            if existingThread != nil {
+                existingThread!.omittedPosts = thread.omittedPosts
+                existingThread!.omittedFiles = thread.omittedFiles
+            } else {
+                newThreads.append(thread)
+            }
+        }
+        
+        self.threads += newThreads
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,8 +86,29 @@ class ThreadsTableViewController: UITableViewController {
         cell.numberLabel.text = String(thread.opPost.number)
         cell.subjectLabel.text = thread.opPost.subject
         cell.postTextLabel.text = thread.opPost.text
+        cell.nameLabel.text = thread.opPost.name
 
         return cell
+    }
+    
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let nextPage = self.threads.count - 5
+//        if indexPath.row == nextPage && !self.isLoading {
+//            self.isLoading = true
+//            currentPage += 1
+//            loadPage(currentPage)
+//        }
+//    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 && !self.isLoading {
+            currentPage += 1
+            loadPage(currentPage)
+        }
     }
 
     /*
