@@ -17,6 +17,9 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var omittedPostsLabel: UILabel!
     @IBOutlet weak var omittedFilesLabel: UILabel!
+    @IBOutlet weak var opPostImageView: UIImageView!
+    @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageSpacingConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()

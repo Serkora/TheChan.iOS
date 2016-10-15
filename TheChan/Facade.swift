@@ -26,7 +26,7 @@ class Facade {
         Alamofire.request("https://2ch.hk/\(boardId)/\(pageStr).json").responseJSON { response in
             if let rawPage = response.result.value as? [String:AnyObject],
             let rawThreads = rawPage["threads"] as? [[String:AnyObject]]{
-                let threads = EntityMapper.map(threads: rawThreads)
+                let threads = EntityMapper.map(boardId: boardId, threads: rawThreads)
                 onComplete(threads)
             } else {
                 onComplete(nil)
@@ -47,27 +47,54 @@ class EntityMapper {
         return Board(id: board["id"] as! String, name: board["name"] as! String)
     }
     
-    static func map(threads: [[String: AnyObject]]) -> [Thread] {
+    static func map(boardId: String, threads: [[String: AnyObject]]) -> [Thread] {
         return threads.map { thread in
             let result = Thread()
             result.omittedPosts = thread["posts_count"] as? Int ?? 0
             result.omittedFiles = thread["files_count"] as? Int ?? 0
             if let opPost = (thread["posts"] as? [[String: AnyObject]])?[0] {
-                result.opPost = map(post: opPost)
+                result.opPost = map(boardId: boardId, post: opPost)
             }
             
             return result
         }
     }
     
-    static func map(post raw: [String:AnyObject]) -> Post {
+    static func map(boardId: String, post raw: [String: AnyObject]) -> Post {
         let post = Post()
         post.text = raw["comment"] as? String ?? ""
         post.subject = String(htmlEncodedString: raw["subject"] as? String ?? "")
         post.name = raw["name"] as? String ?? ""
         post.number = Int(raw["num"] as? String ?? "0")!
+        
+        if let files = raw["files"] as? [[String: AnyObject]] {
+            post.attachments = files.map { file in map(boardId: boardId, attachment: file) }
+        }
+        
         let timestamp = (raw["timestamp"] as? NSNumber)?.int64Value ?? 0
         post.date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         return post
+    }
+    
+    static func map(boardId: String, attachment raw: [String: AnyObject]) -> Attachment {
+        let url = "https://2ch.hk/\(boardId)/\(raw["path"] as? String ?? "")"
+        let thumbUrl = "https://2ch.hk/\(boardId)/\(raw["thumbnail"] as? String ?? "")"
+        let size = (
+            raw["width"] as? Int ?? 0,
+            raw["height"] as? Int ?? 0
+        )
+        
+        let thSize = (
+            raw["th_width"] as? Int ?? 0,
+            raw["th_height"] as? Int ?? 0
+        )
+        
+        let fileExt = url.components(separatedBy: ".").last ?? "png"
+        var type = AttachmentType.image
+        if fileExt == "webm" {
+            type = .video
+        }
+        
+        return Attachment(url: url, thumbUrl: thumbUrl, size: size, thumbSize: thSize, type: type)
     }
 }

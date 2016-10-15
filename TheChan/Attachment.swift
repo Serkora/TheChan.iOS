@@ -14,9 +14,9 @@ enum AttachmentType {
 
 class Attachment {
     
-    init(url: URL, thumbUrl: URL, size: (Int, Int), thumbSize: (Int, Int), type: AttachmentType) {
-        self.url = url
-        self.thumbnailUrl = thumbUrl
+    init(url: String, thumbUrl: String, size: (Int, Int), thumbSize: (Int, Int), type: AttachmentType) {
+        self.url = URL(string: url)!
+        self.thumbnailUrl = URL(string: thumbUrl)!
         self.size = size
         self.thumbnailSize = thumbSize
         self.type = type

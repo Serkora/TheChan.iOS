@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ThreadsTableViewController: UITableViewController {
 
     private var threads = [Thread]()
     private var currentPage = 0
     private var isLoading = false
+    private var imageProcessor = RoundCornerImageProcessor(cornerRadius: 10)
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var board: Board = Board(id: "board", name: "Undefined board") {
@@ -89,12 +91,29 @@ class ThreadsTableViewController: UITableViewController {
         cell.omittedPostsLabel.text = String(thread.omittedPosts)
         cell.omittedFilesLabel.text = String(thread.omittedFiles)
         
+        if thread.opPost.attachments.count > 0 {
+            
+            cell.opPostImageView.kf.setImage(with: thread.opPost.attachments[0].thumbnailUrl, options: [.transition(.fade(0.2)), .processor(imageProcessor)])
+        } else {
+            cell.imageWidthConstraint.constant = 0
+            cell.imageSpacingConstraint.constant = 0
+        }
+        
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         cell.dateLabel.text = formatter.string(from: thread.opPost.date)
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! ThreadTableViewCell
+        let thread = threads[indexPath.row]
+        
+        if thread.opPost.attachments.count > 0 {
+            cell.opPostImageView.kf.cancelDownloadTask()
+        }
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
