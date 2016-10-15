@@ -12,15 +12,15 @@
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6MY-nc-bow" customClass="BoardsTableViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Lk-Nn-brF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="BoardTableViewCell" rowHeight="60" id="Bow-fP-ph6" customClass="BoardTableViewCell" customModule="TheChan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bow-fP-ph6" id="48A-QF-DeI">
-                                    <frame key="frameInset" width="375" height="59"/>
+                                    <frame key="frameInset" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Gb-e6i">
@@ -76,7 +76,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Eum-Td-FVn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27h-Ec-GgE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -95,7 +95,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3sU-Wq-bPp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ut1-Ke-csJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -110,11 +110,11 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="fbP-am-zFk" customClass="ThreadsTableViewController" customModule="TheChan" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="220" sectionHeaderHeight="28" sectionFooterHeight="28" id="IRM-Ff-ESz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Bbu-SF-uSj">
-                            <rect key="frame" x="0.0" y="312" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="312" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HnG-F1-z9S"/>
@@ -129,10 +129,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThreadTableViewCell" rowHeight="220" id="YTE-DC-USd" customClass="ThreadTableViewCell" customModule="TheChan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="220"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTE-DC-USd" id="yab-nz-L3a">
-                                    <frame key="frameInset" width="375" height="219"/>
+                                    <frame key="frameInset" width="320" height="219"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="252" horizontalCompressionResistancePriority="735" text="Subject" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oag-5v-DNr">
@@ -252,6 +252,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Board" id="3gh-sq-1mm"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7yr-Zz-MBz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="activityIndicator" destination="HnG-F1-z9S" id="lXv-0n-Vmn"/>
                     </connections>

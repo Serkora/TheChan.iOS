@@ -15,6 +15,7 @@ class ThreadsTableViewController: UITableViewController {
     private var currentPage = 0
     private var isLoading = false
     private var imageProcessor = RoundCornerImageProcessor(cornerRadius: 10)
+    private var isRefreshing = false
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var board: Board = Board(id: "board", name: "Undefined board") {
@@ -30,23 +31,42 @@ class ThreadsTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        refreshControl?.addTarget(self, action: #selector(ThreadsTableViewController.refresh(refreshControl:)), for: .valueChanged)
+        
         tableView.tableFooterView?.isHidden = true
     }
     
-    func refresh() { }
+    func refresh(refreshControl: UIRefreshControl) {
+        if isLoading { return }
+        isRefreshing = true
+        
+        threads.removeAll()
+        tableView.reloadData()
+        currentPage = 0
+        loadPage(currentPage) {
+            refreshControl.endRefreshing()
+            self.isRefreshing = false
+        }
+    }
     
-    func loadPage(_ number: Int) {
+    func loadPage(_ number: Int, completed: @escaping () -> Void = {}) {
         self.isLoading = true
-        tableView.tableFooterView?.isHidden = false
-        activityIndicator.startAnimating()
+        
+        if !isRefreshing {
+            tableView.tableFooterView?.isHidden = false
+            activityIndicator.startAnimating()
+        }
+        
         Facade.loadThreads(boardId: board.id, page: number) { threads in
             if let threads = threads {
                 self.updateThreads(threads)
                 self.tableView.reloadData()
-                self.isLoading = false
-                self.tableView.tableFooterView?.isHidden = true
-                self.activityIndicator.stopAnimating()
             }
+            
+            self.isLoading = false
+            self.tableView.tableFooterView?.isHidden = true
+            self.activityIndicator.stopAnimating()
+            completed()
         }
     }
     
@@ -109,6 +129,10 @@ class ThreadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! ThreadTableViewCell
+        if indexPath.row >= threads.count {
+            return
+        }
+        
         let thread = threads[indexPath.row]
         
         if thread.opPost.attachments.count > 0 {
