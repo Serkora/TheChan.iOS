@@ -86,6 +86,13 @@ class ThreadsTableViewController: UITableViewController {
         cell.subjectLabel.text = thread.opPost.subject
         cell.postTextLabel.text = thread.opPost.text
         cell.nameLabel.text = thread.opPost.name
+        cell.omittedPostsLabel.text = String(thread.omittedPosts)
+        cell.omittedFilesLabel.text = String(thread.omittedFiles)
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        cell.dateLabel.text = formatter.string(from: thread.opPost.date)
 
         return cell
     }

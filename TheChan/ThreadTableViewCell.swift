@@ -14,6 +14,9 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var postTextLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var omittedPostsLabel: UILabel!
+    @IBOutlet weak var omittedFilesLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
