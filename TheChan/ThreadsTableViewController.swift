@@ -191,15 +191,16 @@ class ThreadsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "OpenThread" {
+            let threadView = segue.destination as! ThreadTableViewController
+            let thread = threads[tableView.indexPathForSelectedRow!.row]
+            threadView.info = (boardId: board.id, threadNumber: thread.opPost.number)
+        }
     }
-    */
 
     @IBAction func titleTouched(_ sender: UIButton) {
         let indexPath = IndexPath(row: 0, section: 0)

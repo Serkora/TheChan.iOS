@@ -33,6 +33,19 @@ class Facade {
             }
         }
     }
+    
+    static func loadThread(boardId: String, number: Int, from: Int = 0, onComplete: @escaping ([Post]?) -> Void) {
+        let url = "https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=\(boardId)&thread=\(number)&post=\(from)"
+        
+        Alamofire.request(url).responseJSON { response in
+            if let rawPosts = response.result.value as? [[String: AnyObject]] {
+                let posts = rawPosts.map { post in EntityMapper.map(boardId: boardId, post: post) }
+                onComplete(posts)
+            } else {
+                onComplete(nil)
+            }
+        }
+    }
 }
 
 class EntityMapper {
