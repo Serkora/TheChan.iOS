@@ -254,13 +254,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="3gh-sq-1mm">
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="beY-y0-Frw">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="beY-y0-Frw">
                             <rect key="frame" x="96" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Board">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
+                            <connections>
+                                <action selector="titleTouched:" destination="fbP-am-zFk" eventType="touchUpInside" id="I9p-MM-UQh"/>
+                            </connections>
                         </button>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7yr-Zz-MBz">
@@ -269,6 +272,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="activityIndicator" destination="HnG-F1-z9S" id="lXv-0n-Vmn"/>
+                        <outlet property="titleButton" destination="beY-y0-Frw" id="C02-8X-usF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7H-Wx-AJe" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -17,10 +17,11 @@ class ThreadsTableViewController: UITableViewController {
     private var imageProcessor = RoundCornerImageProcessor(cornerRadius: 10)
     private var isRefreshing = false
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var titleButton: UIButton!
     
     var board: Board = Board(id: "board", name: "Undefined board") {
         didSet {
-            self.title = "/\(board.id)/ - \(board.name)"
+            self.titleButton.setTitle("/\(board.id)/ - \(board.name)", for: .normal)
             self.currentPage = 0
             self.loadPage(currentPage)
         }
@@ -200,4 +201,8 @@ class ThreadsTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func titleTouched(_ sender: UIButton) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
 }
