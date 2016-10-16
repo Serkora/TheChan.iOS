@@ -109,7 +109,11 @@ class ThreadsTableViewController: UITableViewController {
         cell.postTextLabel.text = thread.opPost.text
         cell.nameLabel.text = thread.opPost.name
         cell.omittedPostsLabel.text = String(thread.omittedPosts)
+        cell.omittedPostsNounLabel.text = NSString.localizedStringWithFormat(
+            NSLocalizedString("%d posts", comment: "") as NSString, thread.omittedPosts) as String
         cell.omittedFilesLabel.text = String(thread.omittedFiles)
+        cell.omittedFilesNounLabel.text = NSString.localizedStringWithFormat(
+            NSLocalizedString("%d files", comment: "") as NSString, thread.omittedFiles) as String
         
         if thread.opPost.attachments.count > 0 {
             

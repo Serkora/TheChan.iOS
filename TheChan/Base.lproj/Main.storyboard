@@ -105,7 +105,7 @@
             </objects>
             <point key="canvasLocation" x="3129" y="1635"/>
         </scene>
-        <!--Board-->
+        <!--Threads Table View Controller-->
         <scene sceneID="Klg-kD-4vz">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="fbP-am-zFk" customClass="ThreadsTableViewController" customModule="TheChan" sceneMemberID="viewController">
@@ -162,7 +162,7 @@
                                                 <constraint firstAttribute="width" constant="1" id="tEk-6d-5T5"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OMITTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qu-z3-9xj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POSTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qu-z3-9xj">
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -239,7 +239,9 @@
                                     <outlet property="nameLabel" destination="qVd-DD-DPN" id="PIX-Yc-86M"/>
                                     <outlet property="numberLabel" destination="Zmn-FQ-Y9B" id="GkC-ZE-zXV"/>
                                     <outlet property="omittedFilesLabel" destination="Kih-4b-eSD" id="dL9-kD-l17"/>
+                                    <outlet property="omittedFilesNounLabel" destination="G0V-Fe-bKh" id="FNI-KP-WSk"/>
                                     <outlet property="omittedPostsLabel" destination="gJ7-g6-p54" id="x9U-HX-B5O"/>
+                                    <outlet property="omittedPostsNounLabel" destination="6qu-z3-9xj" id="ayZ-XB-cZQ"/>
                                     <outlet property="opPostImageView" destination="Rt7-4B-RFM" id="n1o-lP-qft"/>
                                     <outlet property="postTextLabel" destination="ppU-kR-xyA" id="13C-OW-zhx"/>
                                     <outlet property="subjectLabel" destination="Oag-5v-DNr" id="gWq-DG-4Ch"/>
@@ -251,8 +253,18 @@
                             <outlet property="delegate" destination="fbP-am-zFk" id="ST7-dv-aBK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Board" id="3gh-sq-1mm"/>
+                    <navigationItem key="navigationItem" id="3gh-sq-1mm">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="beY-y0-Frw">
+                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <state key="normal" title="Board">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                        </button>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7yr-Zz-MBz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
