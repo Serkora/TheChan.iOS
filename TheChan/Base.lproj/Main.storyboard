@@ -292,6 +292,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="syF-nV-8w4">
+                            <rect key="frame" x="0.0" y="254" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="50E-EV-cfo"/>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="50E-EV-cfo" secondAttribute="trailing" id="9lQ-4t-mVN"/>
+                                <constraint firstAttribute="bottom" secondItem="50E-EV-cfo" secondAttribute="bottom" id="Pzx-YO-5aZ"/>
+                                <constraint firstItem="50E-EV-cfo" firstAttribute="top" secondItem="syF-nV-8w4" secondAttribute="top" id="cje-hY-oSi"/>
+                                <constraint firstItem="50E-EV-cfo" firstAttribute="leading" secondItem="syF-nV-8w4" secondAttribute="leading" id="q12-bM-6uO"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="162" id="kk5-eU-lFz" customClass="PostTableViewCell" customModule="TheChan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="162"/>
@@ -373,6 +387,7 @@
                         </button>
                     </navigationItem>
                     <connections>
+                        <outlet property="progressIndicator" destination="50E-EV-cfo" id="swq-ht-Ss0"/>
                         <outlet property="titleButton" destination="hUW-1p-SnM" id="tFf-7x-7by"/>
                     </connections>
                 </tableViewController>

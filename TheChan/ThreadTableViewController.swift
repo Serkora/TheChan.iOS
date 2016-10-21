@@ -11,6 +11,8 @@ import UIKit
 class ThreadTableViewController: UITableViewController {
     
     @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    
     var info: (boardId: String, threadNumber: Int) = ("", 0)
     var posts = [Post]()
     let dateFormatter = DateFormatter()
@@ -25,14 +27,19 @@ class ThreadTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        startLoading(indicator: progressIndicator)
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
             if let posts = posts {
                 self.titleButton.setTitle(posts.first!.subject, for: .normal)
                 self.posts += posts
-                self.tableView.reloadData()
             }
+            
+            self.stopLoading(indicator: self.progressIndicator)
+            self.tableView.reloadData()
         }
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

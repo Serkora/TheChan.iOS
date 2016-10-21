@@ -54,8 +54,7 @@ class ThreadsTableViewController: UITableViewController {
         self.isLoading = true
         
         if !isRefreshing {
-            tableView.tableFooterView?.isHidden = false
-            activityIndicator.startAnimating()
+            self.stopLoading(indicator: activityIndicator)
         }
         
         Facade.loadThreads(boardId: board.id, page: number) { threads in
@@ -64,12 +63,11 @@ class ThreadsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
             
-            self.isLoading = false
-            self.tableView.tableFooterView?.isHidden = true
-            self.activityIndicator.stopAnimating()
+            self.stopLoading(indicator: self.activityIndicator)
             completed()
         }
     }
+    
     
     func updateThreads(_ threads: [Thread]) {
         var newThreads = [Thread]()
