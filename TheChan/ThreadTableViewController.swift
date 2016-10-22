@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CCBottomRefreshControl
 
 class ThreadTableViewController: UITableViewController {
     
@@ -27,6 +28,7 @@ class ThreadTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        
         startLoading(indicator: progressIndicator)
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
             if let posts = posts {
@@ -38,8 +40,20 @@ class ThreadTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+
+    func loadPosts(from: Int, onComplete: () -> Void) {
+    }
     
+    func update(onComplete: () -> Void) {
+        loadPosts(from: posts.count, onComplete: onComplete)
+    }
     
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        refreshControl.beginRefreshing()
+        update() {
+            
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -119,4 +133,8 @@ class ThreadTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func titleTouched(_ sender: AnyObject) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
 }

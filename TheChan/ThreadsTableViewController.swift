@@ -16,14 +16,12 @@ class ThreadsTableViewController: UITableViewController {
     private var isLoading = false
     private var imageProcessor = RoundCornerImageProcessor(cornerRadius: 10)
     private var isRefreshing = false
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var board: Board = Board(id: "board", name: "Undefined board") {
         didSet {
             self.titleButton.setTitle("/\(board.id)/ - \(board.name)", for: .normal)
-            self.currentPage = 0
-            self.loadPage(currentPage)
         }
     }
     
@@ -34,7 +32,7 @@ class ThreadsTableViewController: UITableViewController {
         
         refreshControl?.addTarget(self, action: #selector(ThreadsTableViewController.refresh(refreshControl:)), for: .valueChanged)
         
-        tableView.tableFooterView?.isHidden = true
+        loadPage(currentPage)
     }
     
     func refresh(refreshControl: UIRefreshControl) {
@@ -54,7 +52,7 @@ class ThreadsTableViewController: UITableViewController {
         self.isLoading = true
         
         if !isRefreshing {
-            self.stopLoading(indicator: activityIndicator)
+            self.startLoading(indicator: activityIndicator)
         }
         
         Facade.loadThreads(boardId: board.id, page: number) { threads in
