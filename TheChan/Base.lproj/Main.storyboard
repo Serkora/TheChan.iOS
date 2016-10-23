@@ -376,8 +376,15 @@
                             <outlet property="delegate" destination="Cgm-wW-qMz" id="xyd-nu-m6h"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Cl7-Gb-stp"/>
+                        <barButtonItem systemItem="compose" id="Rag-c5-ST8"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zyS-rr-jL8"/>
+                        <barButtonItem image="goDownIcon" id="C3e-i5-3jD"/>
+                        <barButtonItem systemItem="flexibleSpace" id="NRd-Uq-q9T"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="QDp-Ye-05L">
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hUW-1p-SnM">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="hUW-1p-SnM">
                             <rect key="frame" x="124" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -388,7 +395,9 @@
                                 <action selector="titleTouched:" destination="Cgm-wW-qMz" eventType="touchUpInside" id="RWM-cr-Lbv"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="sg6-UO-8up"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="progressIndicator" destination="50E-EV-cfo" id="swq-ht-Ss0"/>
                         <outlet property="titleButton" destination="hUW-1p-SnM" id="tFf-7x-7by"/>
@@ -481,5 +490,6 @@
     </scenes>
     <resources>
         <image name="boardsIcon" width="25" height="25"/>
+        <image name="goDownIcon" width="25" height="25"/>
     </resources>
 </document>

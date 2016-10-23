@@ -20,7 +20,9 @@ class ThreadTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationController?.setToolbarHidden(false, animated: true)
+        
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         tableView.allowsSelection = false
@@ -29,16 +31,35 @@ class ThreadTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 100
         
         
+        self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
             if let posts = posts {
-                self.titleButton.setTitle(posts.first!.subject, for: .normal)
+                self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
             }
             
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
         }
+    }
+    
+    func getTitleFrom(post: Post) -> String {
+        if post.subject.isEmpty {
+            let offset = post.text.characters.count >= 50 ? 50 : post.text.characters.count
+            let subject = post.text.substring(to: post.text.index(post.text.startIndex, offsetBy: offset))
+            return String(htmlEncodedString: subject)
+        }
+        
+        return post.subject
+    }
+    
+    func getTitleFrom(boardId: String, threadNumber: Int) -> String {
+        return "/\(boardId)/ - \(threadNumber)"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func loadPosts(from: Int, onComplete: () -> Void) {
