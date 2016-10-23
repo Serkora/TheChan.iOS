@@ -105,6 +105,11 @@ class ThreadTableViewController: UITableViewController {
         cell.numberLabel.text = String(post.number)
         cell.dateLabel.text = dateFormatter.string(from: post.date)
         cell.postContentLabel.text = post.text
+        cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
+        let previewsSource = FilesPreviewsCollectionViewDataSource(attachments: post.attachments)
+        cell.previewsSource = previewsSource
+        cell.filesPreviewsCollectionView.dataSource = previewsSource
+        cell.filesPreviewsCollectionView.reloadData()
 
         return cell
     }
