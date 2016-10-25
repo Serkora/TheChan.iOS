@@ -11,4 +11,5 @@ import UIKit
 class PostFilesPreviewsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var previewImage: UIImageView!
+    var attachment: Attachment?
 }

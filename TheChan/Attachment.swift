@@ -12,7 +12,7 @@ enum AttachmentType {
     case image, video
 }
 
-class Attachment {
+class Attachment : Equatable {
     
     init(url: String, thumbUrl: String, size: (Int, Int), thumbSize: (Int, Int), type: AttachmentType) {
         self.url = URL(string: url)!
@@ -27,4 +27,8 @@ class Attachment {
     var size: (Int, Int)
     var thumbnailSize: (Int, Int)
     var type: AttachmentType
+    
+    static func ==(left: Attachment, right: Attachment) -> Bool {
+        return left.url == right.url
+    }
 }

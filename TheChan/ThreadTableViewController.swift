@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import CCBottomRefreshControl
+import MWPhotoBrowser
 
-class ThreadTableViewController: UITableViewController {
+class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
     @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
@@ -17,6 +17,9 @@ class ThreadTableViewController: UITableViewController {
     var info: (boardId: String, threadNumber: Int) = ("", 0)
     var posts = [Post]()
     let dateFormatter = DateFormatter()
+    
+    private var allFiles = [MWPhoto]()
+    private var allAttachments = [Attachment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +32,6 @@ class ThreadTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        
         
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
@@ -106,12 +108,33 @@ class ThreadTableViewController: UITableViewController {
         cell.dateLabel.text = dateFormatter.string(from: post.date)
         cell.postContentLabel.text = post.text
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
-        let previewsSource = FilesPreviewsCollectionViewDataSource(attachments: post.attachments)
+        let previewsSource = FilesPreviewsCollectionViewDataSource(attachments: post.attachments, onAttachmentSelected: onAttachmentSelected)
         cell.previewsSource = previewsSource
         cell.filesPreviewsCollectionView.dataSource = previewsSource
+        cell.filesPreviewsCollectionView.delegate = previewsSource
         cell.filesPreviewsCollectionView.reloadData()
 
         return cell
+    }
+    
+    func onAttachmentSelected(attachment: Attachment) {
+        allAttachments = posts.flatMap { post in post.attachments }
+        allFiles = allAttachments.map { attachment in
+            attachment.type == .image ? MWPhoto(url: attachment.url) : MWPhoto(videoURL: attachment.url)
+        }
+        
+        let browser = MWPhotoBrowser(delegate: self)!
+        browser.setCurrentPhotoIndex(UInt(allAttachments.index(of: attachment)!))
+        browser.displayNavArrows = true
+        navigationController?.pushViewController(browser, animated: true)
+    }
+    
+    func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(allFiles.count)
+    }
+    
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
+        return allFiles[Int(index)]
     }
 
     /*
@@ -149,15 +172,12 @@ class ThreadTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
 
     @IBAction func titleTouched(_ sender: AnyObject) {
         let indexPath = IndexPath(row: 0, section: 0)
