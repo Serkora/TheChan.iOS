@@ -108,13 +108,16 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.dateLabel.text = dateFormatter.string(from: post.date)
         cell.postContentLabel.text = post.text
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
-        let previewsSource = FilesPreviewsCollectionViewDataSource(attachments: post.attachments, onAttachmentSelected: onAttachmentSelected)
-        cell.previewsSource = previewsSource
-        cell.filesPreviewsCollectionView.dataSource = previewsSource
-        cell.filesPreviewsCollectionView.delegate = previewsSource
-        cell.filesPreviewsCollectionView.reloadData()
+        cell.attachments = post.attachments
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! PostTableViewCell
+        cell.filesPreviewsCollectionView.dataSource = cell
+        cell.filesPreviewsCollectionView.delegate = cell
+        cell.filesPreviewsCollectionView.reloadData()
     }
     
     func onAttachmentSelected(attachment: Attachment) {

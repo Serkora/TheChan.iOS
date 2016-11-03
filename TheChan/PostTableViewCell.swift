@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -17,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postContentLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var filesPreviewsCollectionView: UICollectionView!
-    var previewsSource: UICollectionViewDataSource? = nil
+    var attachments = [Attachment]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +30,21 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostFilePreviewsCollectionViewCell", for: indexPath) as! PostFilesPreviewsCollectionViewCell
+        let attachment = attachments[indexPath.item]
+        
+        cell.attachment = attachment
+        cell.previewImage.kf.setImage(with: attachment.thumbnailUrl)
+        
+        return cell
+    }
 }
