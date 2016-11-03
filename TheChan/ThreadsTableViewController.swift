@@ -28,7 +28,7 @@ class ThreadsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 250
         
         refreshControl?.addTarget(self, action: #selector(ThreadsTableViewController.refresh(refreshControl:)), for: .valueChanged)
         
@@ -62,6 +62,7 @@ class ThreadsTableViewController: UITableViewController {
             }
             
             self.stopLoading(indicator: self.activityIndicator)
+            self.isLoading = false
             completed()
         }
     }
@@ -113,8 +114,8 @@ class ThreadsTableViewController: UITableViewController {
             NSLocalizedString("%d files", comment: "") as NSString, thread.omittedFiles) as String
         
         if thread.opPost.attachments.count > 0 {
-            
-            cell.opPostImageView.kf.setImage(with: thread.opPost.attachments[0].thumbnailUrl, options: [.transition(.fade(0.2)), .processor(imageProcessor)])
+            let firstImage = thread.opPost.attachments[0].thumbnailUrl
+            cell.opPostImageView.kf.setImage(with: firstImage, options: [.transition(.fade(0.2)), .processor(imageProcessor)])
         } else {
             cell.imageWidthConstraint.constant = 0
             cell.imageSpacingConstraint.constant = 0
@@ -124,6 +125,8 @@ class ThreadsTableViewController: UITableViewController {
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         cell.dateLabel.text = formatter.string(from: thread.opPost.date)
+        
+        cell.layoutIfNeeded()
 
         return cell
     }
