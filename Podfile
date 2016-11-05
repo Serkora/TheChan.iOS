@@ -5,4 +5,5 @@ target 'TheChan' do
     pod 'Alamofire', '~> 4.0'
     pod 'Kingfisher'
     pod 'MWPhotoBrowser'
+    pod 'Kanna'
 end

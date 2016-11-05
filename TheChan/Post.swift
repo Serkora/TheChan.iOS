@@ -16,5 +16,6 @@ class Post {
     var trip = ""
     var date = Date()
     var text = ""
+    var attributedString = NSAttributedString()
     var attachments = [Attachment]()
 }

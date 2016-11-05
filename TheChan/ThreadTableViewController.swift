@@ -106,7 +106,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.nameLabel.text = post.name
         cell.numberLabel.text = String(post.number)
         cell.dateLabel.text = dateFormatter.string(from: post.date)
-        cell.postContentLabel.text = post.text
+        cell.postContentView.attributedText = post.attributedString
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
         cell.attachments = post.attachments
         cell.onAttachmentSelected = onAttachmentSelected

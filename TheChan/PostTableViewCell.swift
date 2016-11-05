@@ -15,14 +15,19 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var postContentLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var filesPreviewsCollectionView: UICollectionView!
+    @IBOutlet weak var postContentView: UITextView!
     var attachments = [Attachment]()
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        postContentView.textContainerInset = UIEdgeInsetsMake(
+            0,
+            -postContentView.textContainer.lineFragmentPadding,
+            0,
+            -postContentView.textContainer.lineFragmentPadding)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

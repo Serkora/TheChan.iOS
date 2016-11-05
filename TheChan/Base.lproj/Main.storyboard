@@ -143,7 +143,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTE-DC-USd" id="yab-nz-L3a">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="252" horizontalCompressionResistancePriority="735" text="Subject" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oag-5v-DNr">
@@ -339,20 +339,20 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="222"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kk5-eU-lFz" id="bBT-NE-Fop">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fzv-Bg-ZL7">
                                             <rect key="frame" x="14" y="14" width="347" height="193.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS4-Fr-WQm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="19.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="12.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="700" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="PSy-LJ-Jhq">
-                                                    <rect key="frame" x="0.0" y="29.5" width="347" height="18"/>
+                                                    <rect key="frame" x="0.0" y="22.5" width="347" height="18"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5h-ms-uYw">
                                                             <rect key="frame" x="0.0" y="0.0" width="7.5" height="18"/>
@@ -381,7 +381,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="600" verticalCompressionResistancePriority="250" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="97d-vd-eRG">
-                                                    <rect key="frame" x="0.0" y="57.5" width="347" height="100"/>
+                                                    <rect key="frame" x="0.0" y="50.5" width="347" height="100"/>
                                                     <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="jMl-Jy-pPZ"/>
@@ -417,12 +417,12 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0O3-o2-aDz">
-                                                    <rect key="frame" x="0.0" y="167.5" width="347" height="26"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" scrollEnabled="NO" editable="NO" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JgZ-Nq-VYF">
+                                                    <rect key="frame" x="0.0" y="160.5" width="347" height="33"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -441,7 +441,7 @@
                                     <outlet property="nameLabel" destination="rGC-rg-ieb" id="tlR-4d-Rtk"/>
                                     <outlet property="numberLabel" destination="jjs-Xr-AJn" id="ppI-fW-o63"/>
                                     <outlet property="positionLabel" destination="n5h-ms-uYw" id="cbV-cI-zyi"/>
-                                    <outlet property="postContentLabel" destination="0O3-o2-aDz" id="kVN-Af-vQC"/>
+                                    <outlet property="postContentView" destination="JgZ-Nq-VYF" id="DB4-Kn-CUP"/>
                                     <outlet property="subjectLabel" destination="eS4-Fr-WQm" id="CXr-xe-Q76"/>
                                 </connections>
                             </tableViewCell>
