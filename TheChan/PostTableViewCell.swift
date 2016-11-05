@@ -19,6 +19,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var filesPreviewsCollectionView: UICollectionView!
     var attachments = [Attachment]()
+    var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,5 +47,10 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         cell.previewImage.kf.setImage(with: attachment.thumbnailUrl)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedAttachment = attachments[indexPath.item]
+        onAttachmentSelected(selectedAttachment)
     }
 }

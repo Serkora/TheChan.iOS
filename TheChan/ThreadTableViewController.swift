@@ -109,6 +109,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.postContentLabel.text = post.text
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
         cell.attachments = post.attachments
+        cell.onAttachmentSelected = onAttachmentSelected
 
         return cell
     }
@@ -185,5 +186,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     @IBAction func titleTouched(_ sender: AnyObject) {
         let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    @IBAction func goDownButtonTapped(_ sender: Any) {
+        let indexPath = IndexPath(row: posts.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }

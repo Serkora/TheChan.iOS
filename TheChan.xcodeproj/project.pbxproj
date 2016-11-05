@@ -12,7 +12,6 @@
 		92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */; };
 		92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */; };
 		925E94651DBAA3330009932E /* UITableViewLoadingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E94641DBAA3330009932E /* UITableViewLoadingExtension.swift */; };
-		92874ACC1DBCF79900CF8068 /* FilesPreviewsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92874ACB1DBCF79900CF8068 /* FilesPreviewsCollectionViewDataSource.swift */; };
 		92874ACE1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */; };
 		92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9C31DAEC304005D743F /* AppDelegate.swift */; };
 		92A0B9C91DAEC304005D743F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9C71DAEC304005D743F /* Main.storyboard */; };
@@ -51,7 +50,6 @@
 		92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
 		92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		925E94641DBAA3330009932E /* UITableViewLoadingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewLoadingExtension.swift; sourceTree = "<group>"; };
-		92874ACB1DBCF79900CF8068 /* FilesPreviewsCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesPreviewsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilesPreviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		92A0B9C01DAEC304005D743F /* TheChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A0B9C31DAEC304005D743F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,14 +113,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92874ACA1DBCF76A00CF8068 /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-				92874ACB1DBCF79900CF8068 /* FilesPreviewsCollectionViewDataSource.swift */,
-			);
-			name = DataSources;
-			sourceTree = "<group>";
-		};
 		92A0B9B71DAEC304005D743F = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +137,6 @@
 		92A0B9C21DAEC304005D743F /* TheChan */ = {
 			isa = PBXGroup;
 			children = (
-				92874ACA1DBCF76A00CF8068 /* DataSources */,
 				92C533351DB163100075277E /* Cells */,
 				92A0B9F21DB02091005D743F /* Controllers */,
 				92A0B9E51DAEC673005D743F /* Models */,
@@ -254,7 +243,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "ACEDENED Software";
 				TargetAttributes = {
 					92A0B9BF1DAEC304005D743F = {
@@ -363,7 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92874ACC1DBCF79900CF8068 /* FilesPreviewsCollectionViewDataSource.swift in Sources */,
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
@@ -533,7 +521,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -547,7 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
