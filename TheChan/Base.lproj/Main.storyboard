@@ -492,6 +492,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JbK-Zd-IUc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="qNn-uH-UQi"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="RSK-WB-ZiI">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>

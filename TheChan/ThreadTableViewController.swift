@@ -21,10 +21,16 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private var allFiles = [MWPhoto]()
     private var allAttachments = [Attachment]()
     
+    override var prefersStatusBarHidden: Bool {
+        return navigationController?.isNavigationBarHidden == true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.setToolbarHidden(false, animated: true)
         
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
@@ -44,6 +50,15 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.setToolbarHidden(false, animated: false)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = false
     }
     
     func getTitleFrom(post: Post) -> String {
