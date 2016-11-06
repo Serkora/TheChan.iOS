@@ -181,7 +181,10 @@ class Markup {
         let nodeClass = node["class"]
         
         if nodeClass == "spoiler" {
-            return [NSBackgroundColorAttributeName: UIColor.lightGray]
+            return [
+                NSBackgroundColorAttributeName: UIColor.lightGray,
+                NSForegroundColorAttributeName: UIColor.black
+            ]
         }
         
         if nodeClass == "unkfunc" {
