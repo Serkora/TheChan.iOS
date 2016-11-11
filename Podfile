@@ -6,4 +6,5 @@ target 'TheChan' do
     pod 'Kingfisher'
     pod 'MWPhotoBrowser'
     pod 'Kanna'
+    pod 'RealmSwift'
 end
