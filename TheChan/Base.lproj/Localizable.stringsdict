@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>%d new posts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@posts@</string>
+		<key>posts</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>No new posts</string>
+			<key>other</key>
+			<string>%d new posts</string>
+			<key>one</key>
+			<string>%d new post</string>
+		</dict>
+	</dict>
 	<key>%d files</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

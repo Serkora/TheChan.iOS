@@ -2,6 +2,9 @@
   Localizable.strings
   TheChan
 
-  Created by Вадим Новосельцев on 15.10.16.
+  Created by Вадим Новосельцев on 11.11.16.
   Copyright © 2016 ACEDENED Software. All rights reserved.
 */
+
+THREAD_LAST_UPDATE="Обновлен в ";
+THREAD_REFRESHING="Обновление";

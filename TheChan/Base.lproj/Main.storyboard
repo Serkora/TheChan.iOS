@@ -143,7 +143,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTE-DC-USd" id="yab-nz-L3a">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="252" horizontalCompressionResistancePriority="735" text="Subject" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oag-5v-DNr">
@@ -279,7 +279,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="3gh-sq-1mm">
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="beY-y0-Frw">
-                            <rect key="frame" x="124" y="7" width="128" height="30"/>
+                            <rect key="frame" x="123.5" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Board">
@@ -452,7 +452,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="F81-vD-0mp"/>
+                        <barButtonItem width="200" style="plain" systemItem="fixedSpace" id="dcg-ib-mA1"/>
                         <barButtonItem systemItem="compose" id="OSh-6A-Wcc"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tti-MI-mTp"/>
                         <barButtonItem image="goDownIcon" id="KRl-bc-ghS">
@@ -464,7 +464,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="QDp-Ye-05L">
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="hUW-1p-SnM">
-                            <rect key="frame" x="124" y="7" width="128" height="30"/>
+                            <rect key="frame" x="123.5" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Button">
@@ -474,7 +474,11 @@
                                 <action selector="titleTouched:" destination="Cgm-wW-qMz" eventType="touchUpInside" id="RWM-cr-Lbv"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="sg6-UO-8up"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="sg6-UO-8up">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="Cgm-wW-qMz" id="ZRg-LC-qO6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>

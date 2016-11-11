@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
+		92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */; };
+		92269B4E1DCF4EAC001235E9 /* ThreadStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */; };
 		92289B521DB2BABB00F5BE09 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 92289B541DB2BABB00F5BE09 /* Localizable.stringsdict */; };
 		92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */; };
 		92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */; };
@@ -27,6 +29,7 @@
 		92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */; };
 		92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533361DB163300075277E /* ThreadTableViewCell.swift */; };
 		92C533391DB171220075277E /* HTMLEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533381DB171220075277E /* HTMLEntities.swift */; };
+		92CC49421DD6101E00FF5B85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC49441DD6101E00FF5B85 /* Localizable.strings */; };
 		92E9E16D1DB149F600FA0380 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16C1DB149F600FA0380 /* Post.swift */; };
 		92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16E1DB14AA600FA0380 /* Thread.swift */; };
 		92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E1701DB14AD300FA0380 /* Attachment.swift */; };
@@ -45,6 +48,8 @@
 /* Begin PBXFileReference section */
 		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
 		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
+		92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadStateViewController.swift; sourceTree = "<group>"; };
+		92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadStateViewController.xib; sourceTree = "<group>"; };
 		92289B531DB2BABB00F5BE09 /* Base */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		92289B551DB2BAC300F5BE09 /* ru */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +74,8 @@
 		92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsTableViewController.swift; sourceTree = "<group>"; };
 		92C533361DB163300075277E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		92C533381DB171220075277E /* HTMLEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLEntities.swift; sourceTree = "<group>"; };
+		92CC49431DD6101E00FF5B85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		92CC49451DD6101F00FF5B85 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92CF03F31DB2A9C900AA8073 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		92CF03F41DB2A9C900AA8073 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		92E9E16C1DB149F600FA0380 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -113,6 +120,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92269B4A1DCF4E93001235E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */,
+				92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		92A0B9B71DAEC304005D743F = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +153,7 @@
 		92A0B9C21DAEC304005D743F /* TheChan */ = {
 			isa = PBXGroup;
 			children = (
+				92269B4A1DCF4E93001235E9 /* Views */,
 				92C533351DB163100075277E /* Cells */,
 				92A0B9F21DB02091005D743F /* Controllers */,
 				92A0B9E51DAEC673005D743F /* Models */,
@@ -149,6 +166,7 @@
 				92C533381DB171220075277E /* HTMLEntities.swift */,
 				92289B541DB2BABB00F5BE09 /* Localizable.stringsdict */,
 				925E94641DBAA3330009932E /* UITableViewLoadingExtension.swift */,
+				92CC49441DD6101E00FF5B85 /* Localizable.strings */,
 			);
 			path = TheChan;
 			sourceTree = "<group>";
@@ -284,6 +302,8 @@
 			files = (
 				92A0B9CE1DAEC304005D743F /* LaunchScreen.storyboard in Resources */,
 				92A0B9CB1DAEC304005D743F /* Assets.xcassets in Resources */,
+				92269B4E1DCF4EAC001235E9 /* ThreadStateViewController.xib in Resources */,
+				92CC49421DD6101E00FF5B85 /* Localizable.strings in Resources */,
 				92A0B9ED1DAEC8B1005D743F /* Podfile in Resources */,
 				92289B521DB2BABB00F5BE09 /* Localizable.stringsdict in Resources */,
 				92A0B9C91DAEC304005D743F /* Main.storyboard in Resources */,
@@ -364,6 +384,7 @@
 				92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
 				92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */,
+				92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
 				92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */,
 				92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */,
@@ -415,6 +436,15 @@
 				92CF03F41DB2A9C900AA8073 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		92CC49441DD6101E00FF5B85 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92CC49431DD6101E00FF5B85 /* Base */,
+				92CC49451DD6101F00FF5B85 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -188,7 +188,7 @@ class Markup {
         }
         
         if nodeClass == "unkfunc" {
-            return [NSForegroundColorAttributeName: UIColor(red: 121 / 255.0, green: 152 /  255.0, blue: 45 / 255.0, alpha: 1.0)]
+            return [NSForegroundColorAttributeName: UIColor(red: 76 / 255.0, green: 217 /  255.0, blue: 100 / 255.0, alpha: 1.0)]
         }
         
         if node.name == "sub" {

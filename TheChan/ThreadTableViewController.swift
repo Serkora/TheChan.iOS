@@ -11,6 +11,10 @@ import MWPhotoBrowser
 
 class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
+    private enum ThreadRefreshingResult {
+        case success, failure
+    }
+    
     @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
@@ -18,8 +22,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     var posts = [Post]()
     let dateFormatter = DateFormatter()
     
+    private var unreadPosts = 0
     private var allFiles = [MWPhoto]()
     private var allAttachments = [Attachment]()
+    private let stateController = ThreadStateViewController()
     
     override var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden == true
@@ -39,6 +45,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        configureStateController()
+        
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
@@ -52,13 +60,26 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
     
+    func configureStateController() {
+        guard let toolbar = navigationController?.toolbar else { return }
+        guard let stateView = stateController.view else { return }
+        
+        for view in toolbar.subviews {
+            view.removeFromSuperview()
+        }
+        
+        stateController.primaryState = getUnreadPostsString()
+        stateController.secondaryState = NSLocalizedString("THREAD_LAST_UPDATE", comment: "Last update time") + "14:88"
+        
+        toolbar.addSubview(stateView)
+        
+        stateView.center.y = toolbar.frame.size.height / 2
+        stateView.center.x += 10
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.setToolbarHidden(false, animated: false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.hidesBarsOnSwipe = false
     }
     
     func getTitleFrom(post: Post) -> String {
@@ -76,23 +97,55 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
-    func loadPosts(from: Int, onComplete: () -> Void) {
-    }
-    
-    func update(onComplete: () -> Void) {
-        loadPosts(from: posts.count, onComplete: onComplete)
-    }
-    
-    func handleRefresh(refreshControl: UIRefreshControl) {
-        refreshControl.beginRefreshing()
-        update() {
-            
+    func loadPosts(from: Int, onComplete: @escaping ([Post]?) -> Void) {
+        Facade.loadThread(boardId: info.boardId, number: info.threadNumber, from: from) { posts in
+            onComplete(posts)
         }
     }
-
+    
+    func update(onComplete: @escaping ([Post]?) -> Void) {
+        loadPosts(from: posts.count + 1) { posts in
+            if posts != nil {
+                self.posts += posts!
+            }
+            
+            onComplete(posts)
+        }
+    }
+    
+    @IBAction private func refreshButtonTapped(_ sender: UIBarButtonItem) {
+        stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
+        update { newPosts in
+            guard let posts = newPosts else {
+                self.updateThreadState(refreshingResult: .failure)
+                return
+            }
+            
+            self.unreadPosts += posts.count
+            self.updateThreadState(refreshingResult: .success)
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func updateThreadState(refreshingResult: ThreadRefreshingResult) {
+        switch refreshingResult {
+        case .failure:
+            stateController.endLoading(with: "Error") // TODO: Localize
+        default:
+            stateController.endLoading(with: getUnreadPostsString())
+        }
+    }
+    
+    private func getUnreadPostsString() -> String {
+        return NSString.localizedStringWithFormat(
+            NSLocalizedString("%d new posts", comment: "Count of new posts") as NSString, unreadPosts)
+            as String
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -134,6 +187,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.filesPreviewsCollectionView.dataSource = cell
         cell.filesPreviewsCollectionView.delegate = cell
         cell.filesPreviewsCollectionView.reloadData()
+        let index = indexPath.row
+        if index == posts.count - unreadPosts {
+            cell.backgroundColor = UIColor(red: 255/255.0, green: 149/255.0, blue: 0.0, alpha: 0.2)
+        }
     }
     
     func onAttachmentSelected(attachment: Attachment) {

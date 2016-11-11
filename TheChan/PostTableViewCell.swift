@@ -35,6 +35,10 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
 
         // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        backgroundColor = UIColor.clear
+    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
