@@ -8,6 +8,7 @@
 
 import UIKit
 import MWPhotoBrowser
+import RealmSwift
 
 class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
@@ -17,6 +18,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
     @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     var info: (boardId: String, threadNumber: Int) = ("", 0)
     var posts = [Post]()
@@ -26,6 +28,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private var allFiles = [MWPhoto]()
     private var allAttachments = [Attachment]()
     private let stateController = ThreadStateViewController()
+    private let uiRealm: Realm = RealmInstance.ui
+    private var isInFavorites = false {
+        didSet {
+            favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
+        }
+    }
     
     override var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden == true
@@ -46,6 +54,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         tableView.estimatedRowHeight = 100
         
         configureStateController()
+        configureFavoritesState()
         
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
@@ -75,6 +84,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         
         stateView.center.y = toolbar.frame.size.height / 2
         stateView.center.x += 10
+    }
+    
+    func configureFavoritesState() {
+        isInFavorites = uiRealm.objects(FavoriteThread.self).filter("board == %@ AND number == %@", info.boardId, info.threadNumber).count > 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -263,5 +276,21 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     @IBAction func goDownButtonTapped(_ sender: Any) {
         let indexPath = IndexPath(row: posts.count - 1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
+         do {
+            try uiRealm.write {
+                if isInFavorites {
+                    uiRealm.delete(uiRealm.objects(FavoriteThread.self).filter("board == %@ AND number == %@", info.boardId, info.threadNumber))
+                    
+                    isInFavorites = !isInFavorites
+                } else if posts.count > 0 {
+                    uiRealm.add(FavoriteThread.create(boardId: info.boardId, threadNumber: info.threadNumber, opPost: posts.first!, postsCount: posts.count))
+                    
+                    isInFavorites = !isInFavorites
+                }
+            }
+        } catch {}
     }
 }
