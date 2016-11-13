@@ -9,6 +9,8 @@
 import UIKit
 import Kingfisher
 
+private let previewReuseIdentifier = "PostFilePreviewsCollectionViewCell"
+
 class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var subjectLabel: UILabel!
@@ -49,7 +51,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostFilePreviewsCollectionViewCell", for: indexPath) as! PostFilesPreviewsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewReuseIdentifier, for: indexPath) as! PostFilesPreviewsCollectionViewCell
         let attachment = attachments[indexPath.item]
         
         cell.attachment = attachment

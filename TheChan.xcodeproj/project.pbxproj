@@ -17,6 +17,8 @@
 		92874ACE1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */; };
 		92908A0F1DD6627200B89A7F /* FavoriteThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92908A0E1DD6627200B89A7F /* FavoriteThread.swift */; };
 		92908A131DD724A300B89A7F /* RealmInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92908A121DD724A300B89A7F /* RealmInstance.swift */; };
+		92908A151DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92908A141DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift */; };
+		92908A171DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92908A161DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift */; };
 		92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9C31DAEC304005D743F /* AppDelegate.swift */; };
 		92A0B9C91DAEC304005D743F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9C71DAEC304005D743F /* Main.storyboard */; };
 		92A0B9CB1DAEC304005D743F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92A0B9CA1DAEC304005D743F /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilesPreviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		92908A0E1DD6627200B89A7F /* FavoriteThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteThread.swift; sourceTree = "<group>"; };
 		92908A121DD724A300B89A7F /* RealmInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmInstance.swift; sourceTree = "<group>"; };
+		92908A141DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteThreadCollectionViewCell.swift; sourceTree = "<group>"; };
+		92908A161DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteThreadsCollectionViewController.swift; sourceTree = "<group>"; };
 		92A0B9C01DAEC304005D743F /* TheChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A0B9C31DAEC304005D743F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A0B9C81DAEC304005D743F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */,
 				92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */,
 				92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */,
+				92908A161DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				92C533361DB163300075277E /* ThreadTableViewCell.swift */,
 				92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */,
 				92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */,
+				92908A141DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 				92874ACE1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift in Sources */,
 				92E9E16D1DB149F600FA0380 /* Post.swift in Sources */,
 				92E9E1711DB14AD300FA0380 /* Attachment.swift in Sources */,
+				92908A171DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift in Sources */,
 				92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */,
 				925E94651DBAA3330009932E /* UITableViewLoadingExtension.swift in Sources */,
 				92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */,
@@ -394,6 +401,7 @@
 				92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */,
 				92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
+				92908A151DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift in Sources */,
 				92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */,
 				92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
