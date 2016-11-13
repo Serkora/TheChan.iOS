@@ -65,6 +65,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
                 self.updateFavoriteState(initialLoad: true)
+                self.updateThreadState(refreshingResult: .success)
             }
             
             self.stopLoading(indicator: self.progressIndicator)

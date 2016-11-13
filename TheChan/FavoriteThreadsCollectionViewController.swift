@@ -55,15 +55,19 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "OpenThread" {
+            guard let threadController = segue.destination as? ThreadTableViewController else { return }
+            guard let cell = sender as? UICollectionViewCell else { return }
+            guard let indexPath = self.collectionView?.indexPath(for: cell) else { return }
+            guard let thread = uiRealm?.objects(FavoriteThread.self)[indexPath.item] else { return }
+            threadController.info = (boardId: thread.board, threadNumber: thread.number)
+        }
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
