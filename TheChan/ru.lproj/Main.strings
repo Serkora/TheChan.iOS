@@ -41,8 +41,38 @@
 /* Class = "UILabel"; text = "Name"; ObjectID = "qVd-DD-DPN"; */
 "qVd-DD-DPN.text" = "Имя";
 
-/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "zCM-qs-bxe"; */
-"zCM-qs-bxe.title" = "Избранное";
-
 /* Class = "UIButton"; normalTitle = "Board"; ObjectID = "beY-y0-Frw"; */
 "beY-y0-Frw.normalTitle" = "Доска";
+
+/* Class = "UITextView"; text = "Post markup"; ObjectID = "JgZ-Nq-VYF"; */
+"JgZ-Nq-VYF.text" = "";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Lqd-MR-qHd"; */
+"Lqd-MR-qHd.title" = "Избранное";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "OM2-Xd-nYu"; */
+"OM2-Xd-nYu.text" = "";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "eS4-Fr-WQm"; */
+"eS4-Fr-WQm.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hUW-1p-SnM"; */
+"hUW-1p-SnM.normalTitle" = "";
+
+/* Class = "UILabel"; text = "000000"; ObjectID = "jjs-Xr-AJn"; */
+"jjs-Xr-AJn.text" = "";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "n5h-ms-uYw"; */
+"n5h-ms-uYw.text" = "";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "qXM-Dk-G8N"; */
+"qXM-Dk-G8N.text" = "";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "rGC-rg-ieb"; */
+"rGC-rg-ieb.text" = "";
+
+/* Class = "UILabel"; text = "Thread"; ObjectID = "rVn-dc-kvm"; */
+"rVn-dc-kvm.text" = "";
+
+/* Class = "UILabel"; text = "board"; ObjectID = "t4B-en-qD8"; */
+"t4B-en-qD8.text" = "";
