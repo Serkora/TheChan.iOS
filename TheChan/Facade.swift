@@ -40,7 +40,7 @@ class Facade {
         
         Alamofire.request(url).responseJSON { response in
             if let rawPosts = response.result.value as? [[String: AnyObject]] {
-                let posts = rawPosts.map { post in EntityMapper.map(boardId: boardId, post: post) }
+                let posts = rawPosts.map { post in EntityMapper.map(post: post) }
                 onComplete(posts)
             } else {
                 onComplete(nil)
@@ -67,14 +67,14 @@ class EntityMapper {
             result.omittedPosts = thread["posts_count"] as? Int ?? 0
             result.omittedFiles = thread["files_count"] as? Int ?? 0
             if let opPost = (thread["posts"] as? [[String: AnyObject]])?[0] {
-                result.opPost = map(boardId: boardId, post: opPost)
+                result.opPost = map(post: opPost)
             }
             
             return result
         }
     }
     
-    static func map(boardId: String, post raw: [String: AnyObject]) -> Post {
+    static func map(post raw: [String: AnyObject]) -> Post {
         let post = Post()
         post.text = raw["comment"] as? String ?? ""
         let markup = Markup(from: post.text)
@@ -87,7 +87,7 @@ class EntityMapper {
         post.number = Int(raw["num"] as? String ?? "0")!
         
         if let files = raw["files"] as? [[String: AnyObject]] {
-            post.attachments = files.map { file in map(boardId: boardId, attachment: file) }
+            post.attachments = files.map { file in map(attachment: file) }
         }
         
         let timestamp = (raw["timestamp"] as? NSNumber)?.int64Value ?? 0
@@ -95,9 +95,9 @@ class EntityMapper {
         return post
     }
     
-    static func map(boardId: String, attachment raw: [String: AnyObject]) -> Attachment {
-        let url = "https://2ch.hk/\(boardId)/\(raw["path"] as? String ?? "")"
-        let thumbUrl = "https://2ch.hk/\(boardId)/\(raw["thumbnail"] as? String ?? "")"
+    static func map(attachment raw: [String: AnyObject]) -> Attachment {
+        let url = "https://2ch.hk\(raw["path"] as? String ?? "")"
+        let thumbUrl = "https://2ch.hk\(raw["thumbnail"] as? String ?? "")"
         let size = (
             raw["width"] as? Int ?? 0,
             raw["height"] as? Int ?? 0
