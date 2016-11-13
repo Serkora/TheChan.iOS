@@ -29,6 +29,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private var allAttachments = [Attachment]()
     private let stateController = ThreadStateViewController()
     private let uiRealm: Realm = RealmInstance.ui
+    private var favoriteThread: FavoriteThread? = nil
+    
     private var isInFavorites = false {
         didSet {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
@@ -62,6 +64,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
+                self.updateFavoriteState(initialLoad: true)
             }
             
             self.stopLoading(indicator: self.progressIndicator)
@@ -87,7 +90,37 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     func configureFavoritesState() {
-        isInFavorites = uiRealm.objects(FavoriteThread.self).filter("board == %@ AND number == %@", info.boardId, info.threadNumber).count > 0
+        let favoriteThread = uiRealm.objects(FavoriteThread.self).filter("board == %@ AND number == %@", info.boardId, info.threadNumber).first
+        if favoriteThread != nil {
+            self.favoriteThread = favoriteThread
+        }
+        
+        isInFavorites = favoriteThread != nil
+    }
+    
+    func updateFavoriteState(initialLoad: Bool) {
+        guard let thread = favoriteThread else { return }
+        let newLastLoadedPosts = posts.count
+        var newLastReadedPost = 0
+        if initialLoad {
+            if posts.count > thread.lastReadedPost {
+                unreadPosts = posts.count - thread.lastReadedPost
+                newLastReadedPost = posts.count - unreadPosts
+            } else {
+                unreadPosts = 0
+                newLastReadedPost = posts.count
+            }
+        } else {
+            newLastReadedPost = posts.count - unreadPosts
+        }
+        
+        do {
+            try uiRealm.write {
+                thread.unreadPosts = unreadPosts
+                thread.lastReadedPost = newLastReadedPost
+                thread.lastLoadedPost = newLastLoadedPosts
+            }
+        } catch {}
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -140,6 +173,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             
             self.unreadPosts += posts.count
             self.updateThreadState(refreshingResult: .success)
+            self.updateFavoriteState(initialLoad: false)
             self.tableView.reloadData()
         }
     }
