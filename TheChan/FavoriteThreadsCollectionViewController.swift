@@ -16,6 +16,7 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
 
     private var uiRealm: Realm? = nil
     private var notificationToken: NotificationToken? = nil
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +108,43 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
         let numberOfItemsCanFit = floor(availableWidth / minItemWidthWithSpacing)
         let itemWidth = (availableWidth - spacing * (numberOfItemsCanFit - 1)) / numberOfItemsCanFit
         return CGSize(width: itemWidth, height: 100)
+    }
+    
+    @IBAction func refreshButtonTapped(_ sender: UIBarButtonItem) {
+        guard let realm = uiRealm else { return }
+        
+        let dispatchGroup = DispatchGroup()
+        
+        activityIndicator.startAnimating()
+        sender.isEnabled = false
+        
+        for thread in realm.objects(FavoriteThread.self) {
+            dispatchGroup.enter()
+            update(thread: thread) {
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.activityIndicator.stopAnimating()
+            sender.isEnabled = true
+        }
+    }
+    
+    func update(thread: FavoriteThread, onFinished: @escaping () -> Void) {
+        guard let realm = uiRealm else { return }
+        Facade.loadThread(boardId: thread.board, number: thread.number, from: thread.lastLoadedPost + 1) { posts in
+            if let posts = posts {
+                do {
+                    try realm.write {
+                        thread.lastLoadedPost += posts.count
+                        thread.unreadPosts += posts.count
+                    }
+                } catch {}
+            }
+            
+            onFinished()
+        }
     }
 
     // MARK: UICollectionViewDelegate
