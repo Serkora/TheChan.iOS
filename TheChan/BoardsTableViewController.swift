@@ -14,7 +14,7 @@ class BoardsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        clearsSelectionOnViewWillAppear = false         // this done manually
+        clearsSelectionOnViewWillAppear = false         // this is done manually
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

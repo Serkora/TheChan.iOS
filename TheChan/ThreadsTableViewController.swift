@@ -27,7 +27,7 @@ class ThreadsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        clearsSelectionOnViewWillAppear = false         // this done manually
+        clearsSelectionOnViewWillAppear = false         // this is done manually
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 250
         
