@@ -226,15 +226,16 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
         cell.attachments = post.attachments
         cell.onAttachmentSelected = onAttachmentSelected
-
+        
+        cell.filesPreviewsCollectionView.dataSource = cell
+        cell.filesPreviewsCollectionView.delegate = cell
+        cell.filesPreviewsCollectionView.reloadData()
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! PostTableViewCell
-        cell.filesPreviewsCollectionView.dataSource = cell
-        cell.filesPreviewsCollectionView.delegate = cell
-        cell.filesPreviewsCollectionView.reloadData()
         let index = indexPath.row
         if index == posts.count - unreadPosts {
             cell.backgroundColor = UIColor(red: 255/255.0, green: 149/255.0, blue: 0.0, alpha: 0.2)
