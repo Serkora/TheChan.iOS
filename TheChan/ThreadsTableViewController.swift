@@ -40,13 +40,13 @@ class ThreadsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         let selection = tableView.indexPathForSelectedRow
-        if (selection != nil){
+        if (selection != nil) {
             tableView.deselectRow(at: selection!, animated: true)
-            transitionCoordinator?.notifyWhenInteractionEnds({(context) in
-                if (context.isCancelled){
-                    self.tableView.selectRow(at: selection, animated: false, scrollPosition: UITableViewScrollPosition.none)
+            transitionCoordinator?.notifyWhenInteractionEnds { context in
+                if (context.isCancelled) {
+                    self.tableView.selectRow(at: selection, animated: false, scrollPosition: .none)
                 }
-            })
+            }
         }
     }
     
