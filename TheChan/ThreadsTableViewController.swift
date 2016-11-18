@@ -27,12 +27,27 @@ class ThreadsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearsSelectionOnViewWillAppear = false         // this is done manually
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 250
         
         refreshControl?.addTarget(self, action: #selector(ThreadsTableViewController.refresh(refreshControl:)), for: .valueChanged)
         
         loadPage(currentPage)
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        
+        let selection = tableView.indexPathForSelectedRow
+        if (selection != nil){
+            tableView.deselectRow(at: selection!, animated: true)
+            transitionCoordinator?.notifyWhenInteractionEnds({(context) in
+                if (context.isCancelled){
+                    self.tableView.selectRow(at: selection, animated: false, scrollPosition: UITableViewScrollPosition.none)
+                }
+            })
+        }
     }
     
     func refresh(refreshControl: UIRefreshControl) {

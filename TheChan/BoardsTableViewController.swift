@@ -14,6 +14,7 @@ class BoardsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearsSelectionOnViewWillAppear = false         // this is done manually
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,6 +32,20 @@ class BoardsTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 activityView.stopAnimating()
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        
+        let selection = tableView.indexPathForSelectedRow
+        if (selection != nil){
+            tableView.deselectRow(at: selection!, animated: true)
+            transitionCoordinator?.notifyWhenInteractionEnds({(context) in
+                if (context.isCancelled){
+                    self.tableView.selectRow(at: selection, animated: false, scrollPosition: UITableViewScrollPosition.none)
+                }
+            })
         }
     }
 
