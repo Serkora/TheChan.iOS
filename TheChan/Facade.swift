@@ -69,6 +69,28 @@ class Facade {
             onComplete(captcha)
         }
     }
+    
+    static func send(post: PostingData, onComplete: @escaping (Bool) -> Void) {
+        let data = EntityMapper.map(postingData: post)
+        let url = "https://2ch.hk/makaba/posting.fcgi"
+        Alamofire.upload(multipartFormData: { formData in
+            for (key, value) in data {
+                formData.append(value.data(using: .utf8)!, withName: key)
+            }
+            
+        }, to: url) { encodingResult in
+            switch encodingResult {
+            case .success(let request, _, _):
+                request.responseJSON { response in
+                    if let result = response.result.value as? [String: Any] {
+                        onComplete(true)
+                    }
+                }
+            default:
+                onComplete(false)
+            }
+        }
+    }
 }
 
 class EntityMapper {
@@ -137,6 +159,24 @@ class EntityMapper {
         }
         
         return Attachment(url: url, thumbUrl: thumbUrl, size: size, thumbSize: thSize, type: type)
+    }
+    
+    static func map(postingData post: PostingData) -> [String: String] {
+        var dict: [String: String] = [
+            "json": String(1),
+            "task": "post",
+            "board": post.boardId,
+            "thread": String(post.threadNumber),
+            "comment": post.text
+        ]
+        
+        if post.captchaResult != nil {
+            dict["captcha_type"] = "2chaptcha"
+            dict["2chaptcha_id"] = post.captchaResult!.key
+            dict["2chaptcha_value"] = post.captchaResult!.input
+        }
+        
+        return dict
     }
 }
 

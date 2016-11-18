@@ -27,6 +27,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var captchaImageView: UIImageView!
     
     var boardId: String = ""
+    var captcha: Captcha?
     var mode: PostingMode = .newThread
     
     override func viewDidLoad() {
@@ -44,6 +45,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
                 Facade.getCaptcha { captcha in
                     self.captchaView.isHidden = false
                     guard let imageCaptcha = captcha as? ImageCaptcha else { return }
+                    self.captcha = imageCaptcha
                     guard let url = imageCaptcha.imageURL else { return }
                     self.captchaImageView.kf.setImage(with: url)
                 }
@@ -79,9 +81,20 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         let postingData = PostingData()
         postingData.text = postTextView.text
         postingData.boardId = boardId
+        if captcha != nil {
+            let captchaResult = CaptchaResult()
+            captchaResult.key = captcha!.key
+            captchaResult.input = captchaField.text ?? ""
+            postingData.captchaResult = captchaResult
+        }
+        
         if case .reply(let threadNumber) = mode {
             postingData.boardId = boardId
             postingData.threadNumber = threadNumber
+        }
+        
+        Facade.send(post: postingData) { isSuccessful in
+            sender.isEnabled = true
         }
         
         postTextView.resignFirstResponder()

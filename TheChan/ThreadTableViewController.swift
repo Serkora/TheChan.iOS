@@ -302,6 +302,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Reply" {
+            guard let controller = segue.destination as? PostingViewController else { return }
+            controller.boardId = info.boardId
+            controller.mode = .reply(threadNumber: info.threadNumber)
+        }
     }
 
     @IBAction func titleTouched(_ sender: AnyObject) {
