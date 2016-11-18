@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UITabBar.appearance().tintColor = UIColor(red: 255/255.0, green: 149/255.0, blue: 0.0, alpha: 1.0)
         let _ = RealmInstance.initialize()
+        IQKeyboardManager.sharedManager().enable = true
         return true
     }
 

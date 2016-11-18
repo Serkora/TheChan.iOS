@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum PostingMode {
-    case reply(boardId: String, threadNumber: Int)
-    case newThread(boardId: String)
+    case reply(threadNumber: Int)
+    case newThread
 }
 
 class PostingViewController: UIViewController, UITextFieldDelegate {
@@ -20,19 +21,45 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var subjectField: UITextField!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var captchaField: UITextField!
+    @IBOutlet weak var captchaView: UIView!
+    @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var captchaImageView: UIImageView!
     
-    var mode: PostingMode = .newThread(boardId: "board")
+    var boardId: String = ""
+    var mode: PostingMode = .newThread
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fields: [UITextField] = [subjectField, nameField, emailField]
+        setupFields()
+        setupCaptcha()
+    }
+    
+    func setupCaptcha() {
+        captchaImageView.kf.indicatorType = .activity
+        
+        Facade.isCaptchaEnabled(in: boardId) { isCaptchaEnabled in
+            self.captchaActivityIndicator.stopAnimating()
+            if isCaptchaEnabled {
+                Facade.getCaptcha { captcha in
+                    self.captchaView.isHidden = false
+                    guard let imageCaptcha = captcha as? ImageCaptcha else { return }
+                    guard let url = imageCaptcha.imageURL else { return }
+                    self.captchaImageView.kf.setImage(with: url)
+                }
+            }
+        }
+    }
+    
+    func setupFields() {
+        let fields: [UITextField] = [subjectField, nameField, emailField, captchaField]
         for field in fields {
             field.layer.borderWidth = 1.0
             field.layer.borderColor = UIColor.darkGray.cgColor
             field.layer.cornerRadius = 5.0
             field.attributedPlaceholder = NSAttributedString(string: field.placeholder ?? "", attributes: [
                 NSForegroundColorAttributeName: UIColor.lightText
-            ])
+                ])
             field.delegate = self
         }
     }
@@ -51,11 +78,10 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         sender.isEnabled = false
         let postingData = PostingData()
         postingData.text = postTextView.text
-        if case .reply(let boardId, let threadNumber) = mode {
+        postingData.boardId = boardId
+        if case .reply(let threadNumber) = mode {
             postingData.boardId = boardId
             postingData.threadNumber = threadNumber
-        } else if case .newThread(let boardId) = mode {
-            postingData.boardId = boardId
         }
         
         postTextView.resignFirstResponder()

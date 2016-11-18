@@ -7,4 +7,5 @@ target 'TheChan' do
     pod 'MWPhotoBrowser'
     pod 'Kanna'
     pod 'RealmSwift'
+    pod 'IQKeyboardManagerSwift'
 end

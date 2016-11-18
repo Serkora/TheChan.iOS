@@ -47,6 +47,28 @@ class Facade {
             }
         }
     }
+    
+    static func isCaptchaEnabled(in board: String, onComplete: @escaping (Bool) -> Void) {
+        let url = "https://2ch.hk/api/captcha/settings/\(board)"
+        Alamofire.request(url).responseJSON { response in
+            guard let result = response.result.value as? [String: AnyObject] else { onComplete(true); return }
+            let isEnabled = result["enabled"] as? Bool ?? true
+            onComplete(isEnabled)
+        }
+    }
+    
+    static func getCaptcha(onComplete: @escaping (Captcha?) -> Void) {
+        let url = "https://2ch.hk/api/captcha/2chaptcha/service_id"
+        Alamofire.request(url).responseJSON { response in
+            guard let result = response.result.value as? [String: AnyObject] else { onComplete(nil); return }
+            guard let key = result["id"] else { onComplete(nil); return }
+            let url = URL(string: "https://2ch.hk/api/captcha/2chaptcha/image/\(key)")
+            let captcha = ImageCaptcha()
+            captcha.key = key as? String ?? ""
+            captcha.imageURL = url
+            onComplete(captcha)
+        }
+    }
 }
 
 class EntityMapper {
