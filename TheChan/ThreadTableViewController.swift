@@ -154,29 +154,24 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
     
-    func update(onComplete: @escaping ([Post]?) -> Void) {
-        loadPosts(from: posts.count + 1) { posts in
-            if posts != nil {
-                self.posts += posts!
-            }
-            
-            onComplete(posts)
-        }
-    }
-    
-    @IBAction private func refreshButtonTapped(_ sender: UIBarButtonItem) {
-        stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
-        update { newPosts in
+    func refresh() {
+        loadPosts(from: posts.count + 1) { newPosts in
             guard let posts = newPosts else {
                 self.updateThreadState(refreshingResult: .failure)
                 return
             }
             
+            self.posts += posts
             self.unreadPosts += posts.count
             self.updateThreadState(refreshingResult: .success)
             self.updateFavoriteState(initialLoad: false)
             self.tableView.reloadData()
         }
+    }
+    
+    @IBAction private func refreshButtonTapped(_ sender: UIBarButtonItem) {
+        stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
+        refresh()
     }
     
     private func updateThreadState(refreshingResult: ThreadRefreshingResult) {
@@ -333,5 +328,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
                 }
             }
         } catch {}
+    }
+    
+    @IBAction func unwindToThread(segue: UIStoryboardSegue) {
+        if segue.source is PostingViewController {
+            refresh()
+        }
     }
 }

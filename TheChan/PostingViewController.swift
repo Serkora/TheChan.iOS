@@ -94,19 +94,21 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         }
         
         Facade.send(post: postingData) { isSuccessful, error in
-            sender.isEnabled = true
             if !isSuccessful {
                 let error = error ?? NSLocalizedString("UNKNOWN_ERROR", comment: "Unknown error")
                 let alert = UIAlertController(title: NSLocalizedString("POSTING_ERROR", comment: "Error"), message: error, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
+                sender.isEnabled = true
+            } else {
+                self.performSegue(withIdentifier: "UnwindToThread", sender: self)
             }
         }
         
         postTextView.resignFirstResponder()
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -114,6 +116,4 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
 }
