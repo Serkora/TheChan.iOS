@@ -9,7 +9,6 @@
 import UIKit
 import MWPhotoBrowser
 import RealmSwift
-import OGVKit
 
 class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     

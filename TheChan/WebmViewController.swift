@@ -85,7 +85,7 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
         if (self.autoplay!){
             self.hideControls()
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.autoplay = false               // So that controls are auto-hidden only the first time video plays
+            self.autoplay = false               // So that controls are auto-hidden only the first time the video plays
         }
     }
     
