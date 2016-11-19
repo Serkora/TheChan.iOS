@@ -733,11 +733,9 @@
                         <outlet property="nameField" destination="XXN-iq-xaL" id="6Gh-Py-UpK"/>
                         <outlet property="postTextView" destination="WWS-9j-lnf" id="16E-7p-Vyb"/>
                         <outlet property="subjectField" destination="qgf-FG-DCf" id="ujY-of-jSL"/>
-                        <segue destination="sMX-8E-rJc" kind="unwind" identifier="UnwindToThread" unwindAction="unwindToThreadWithSegue:" id="sGQ-qt-y7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t72-9w-7BE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sMX-8E-rJc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6200.625" y="137.32394366197184"/>
         </scene>
