@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369DB251DE0CA6F00139F07 /* WebmViewController.swift */; };
 		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
 		92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */; };
 		92269B4E1DCF4EAC001235E9 /* ThreadStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
+		6369DB251DE0CA6F00139F07 /* WebmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebmViewController.swift; sourceTree = "<group>"; };
 		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
 		92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadStateViewController.swift; sourceTree = "<group>"; };
 		92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadStateViewController.xib; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */,
 				92908A161DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift */,
 				92ED146B1DDB83150009D8EC /* PostingViewController.swift */,
+				6369DB251DE0CA6F00139F07 /* WebmViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -290,7 +293,7 @@
 				TargetAttributes = {
 					92A0B9BF1DAEC304005D743F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = QQNTMQ5VM7;
+						DevelopmentTeam = DR3K59SZNX;
 						ProvisioningStyle = Automatic;
 					};
 					92A0B9D31DAEC304005D743F = {
@@ -398,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92304F271DDE140500240505 /* ImageCaptcha.swift in Sources */,
+				6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */,
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92908A0F1DD6627200B89A7F /* FavoriteThread.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
@@ -510,6 +514,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -526,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -563,6 +568,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -573,7 +579,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -590,10 +596,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QQNTMQ5VM7;
+				DEVELOPMENT_TEAM = DR3K59SZNX;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.acedened.TheChan;
+				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -607,10 +613,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QQNTMQ5VM7;
+				DEVELOPMENT_TEAM = DR3K59SZNX;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.acedened.TheChan;
+				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
