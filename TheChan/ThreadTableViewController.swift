@@ -9,6 +9,7 @@
 import UIKit
 import MWPhotoBrowser
 import RealmSwift
+import OGVKit
 
 class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
@@ -238,6 +239,14 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     func onAttachmentSelected(attachment: Attachment) {
+        if (attachment.type == .video){
+            let videoController = WebmViewController(url: attachment.url)
+//            videoController.setVideo(attachment.url)
+
+            self.navigationController!.pushViewController(videoController, animated: true)
+            return
+        }
+        
         allAttachments = posts.flatMap { post in post.attachments }
         allFiles = allAttachments.map { attachment in
             attachment.type == .image ? MWPhoto(url: attachment.url) : MWPhoto(videoURL: attachment.url)
