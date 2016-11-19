@@ -76,3 +76,18 @@
 
 /* Class = "UILabel"; text = "board"; ObjectID = "t4B-en-qD8"; */
 "t4B-en-qD8.text" = "";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "XXN-iq-xaL"; */
+"XXN-iq-xaL.placeholder" = "Имя";
+
+/* Class = "UINavigationItem"; title = "Reply"; ObjectID = "ery-fL-kz2"; */
+"ery-fL-kz2.title" = "Ответить";
+
+/* Class = "UITextField"; placeholder = "E-Mail"; ObjectID = "mF1-H3-Ifz"; */
+"mF1-H3-Ifz.placeholder" = "E-Mail";
+
+/* Class = "UITextField"; placeholder = "Subject"; ObjectID = "qgf-FG-DCf"; */
+"qgf-FG-DCf.placeholder" = "Тема";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "tGK-jo-KXQ"; */
+"tGK-jo-KXQ.normalTitle" = "";
