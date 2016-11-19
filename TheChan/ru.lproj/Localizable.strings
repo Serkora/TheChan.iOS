@@ -8,3 +8,5 @@
 
 THREAD_LAST_UPDATE="Обновлен в ";
 THREAD_REFRESHING="Обновление";
+UNKNOWN_ERROR="Неизвестная ошибка";
+POSTING_ERROR="Ошибка";

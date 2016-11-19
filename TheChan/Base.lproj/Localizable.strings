@@ -8,3 +8,5 @@
 
 THREAD_LAST_UPDATE="Last updated on ";
 THREAD_REFRESHING="Refreshing";
+UNKNOWN_ERROR="Unknown error";
+POSTING_ERROR="Error";

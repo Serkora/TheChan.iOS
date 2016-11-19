@@ -70,7 +70,7 @@ class Facade {
         }
     }
     
-    static func send(post: PostingData, onComplete: @escaping (Bool) -> Void) {
+    static func send(post: PostingData, onComplete: @escaping (Bool, String?) -> Void) {
         let data = EntityMapper.map(postingData: post)
         let url = "https://2ch.hk/makaba/posting.fcgi"
         Alamofire.upload(multipartFormData: { formData in
@@ -83,11 +83,18 @@ class Facade {
             case .success(let request, _, _):
                 request.responseJSON { response in
                     if let result = response.result.value as? [String: Any] {
-                        onComplete(true)
+                        let error = result["Reason"] as? String
+                        if error != nil {
+                            onComplete(false, error)
+                        } else {
+                            onComplete(true, nil)
+                        }
+                    } else {
+                        onComplete(false, String(response.response?.statusCode ?? 404))
                     }
                 }
             default:
-                onComplete(false)
+                onComplete(false, nil)
             }
         }
     }
