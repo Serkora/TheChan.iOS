@@ -13,4 +13,19 @@ class FavoriteThreadCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var threadNameLabel: UILabel!
     @IBOutlet weak var unreadPostsLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOpacity = 0.25
+        layer.shadowPath = shadowPath.cgPath
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.shadowPath = shadowPath.cgPath
+    }
 }
