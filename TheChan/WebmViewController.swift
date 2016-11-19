@@ -56,11 +56,6 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
         
         super.viewWillTransition(to: size, with: coordinator)
     }
-
-    func setVideo(_ url: URL, _ autoplay: Bool = false){
-        videoUrl = url
-        self.autoplay = autoplay
-    }
     
     func hideControls(){
         // copy-paste of a method stupidly made private
@@ -91,6 +86,7 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
     
     func ogvPlayerDidEnd(_ sender: OGVPlayerView!) {
         // workaround to replay the video without closing the view/controller
+        // this still however reloads the video, not bandwidth-friendly.
         self.autoplay = self.loop
         player.sourceURL = videoUrl
     }

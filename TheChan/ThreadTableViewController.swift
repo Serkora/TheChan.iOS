@@ -240,8 +240,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     func onAttachmentSelected(attachment: Attachment) {
         if (attachment.type == .video){
             let videoController = WebmViewController(url: attachment.url)
-//            videoController.setVideo(attachment.url)
-
+            
             self.navigationController!.pushViewController(videoController, animated: true)
             return
         }
