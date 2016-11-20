@@ -56,11 +56,14 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
         
         super.viewWillTransition(to: size, with: coordinator)
     }
+<<<<<<< HEAD
 
     func setVideo(_ url: URL, _ autoplay: Bool = false){
         videoUrl = url
         self.autoplay = autoplay
     }
+=======
+>>>>>>> webm_pr
     
     func hideControls(){
         // copy-paste of a method stupidly made private
@@ -85,12 +88,20 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
         if (self.autoplay!){
             self.hideControls()
             self.navigationController?.setNavigationBarHidden(true, animated: true)
+<<<<<<< HEAD
             self.autoplay = false               // So that controls are auto-hidden only the first time video plays
+=======
+            self.autoplay = false               // So that controls are auto-hidden only the first time the video plays
+>>>>>>> webm_pr
         }
     }
     
     func ogvPlayerDidEnd(_ sender: OGVPlayerView!) {
         // workaround to replay the video without closing the view/controller
+<<<<<<< HEAD
+=======
+        // this still however reloads the video, not bandwidth-friendly.
+>>>>>>> webm_pr
         self.autoplay = self.loop
         player.sourceURL = videoUrl
     }
