@@ -15,6 +15,8 @@ class FavoriteThreadCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     override func awakeFromNib() {
+        contentView.layer.cornerRadius = 5.0
+        contentView.layer.masksToBounds = true
         let shadowPath = UIBezierPath(rect: bounds)
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
