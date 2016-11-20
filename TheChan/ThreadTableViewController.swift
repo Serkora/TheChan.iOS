@@ -73,6 +73,18 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
     
+    func fixStatusBarScroll(view: UIView){
+        for subview in view.subviews {
+            if let scrollView = subview as? UIScrollView {
+                scrollView.scrollsToTop = false
+            }
+            if (subview.subviews.count > 0) {
+                fixStatusBarScroll(view: subview)
+            }
+        }
+        self.tableView.scrollsToTop = true
+    }
+    
     func configureStateController() {
         guard let toolbar = navigationController?.toolbar else { return }
         guard let stateView = stateController.view else { return }
@@ -127,6 +139,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.setToolbarHidden(false, animated: false)
+        fixStatusBarScroll(view: self.view)
     }
     
     func getTitleFrom(post: Post) -> String {
@@ -226,6 +239,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.filesPreviewsCollectionView.delegate = cell
         cell.filesPreviewsCollectionView.reloadData()
         
+        for view in cell.subviews {
+            if let scrollView = view as? UIScrollView {
+                scrollView.scrollsToTop = false
+            }
+        }
+        
         return cell
     }
     
@@ -312,8 +331,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
 
     @IBAction func titleTouched(_ sender: AnyObject) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        tableView.setContentOffset(CGPoint.init(x: 0, y: 0 - tableView.contentInset.top), animated: true)
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
