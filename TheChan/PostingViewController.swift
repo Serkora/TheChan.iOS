@@ -25,6 +25,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var captchaView: UIView!
     @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var captchaImageView: UIImageView!
+    @IBOutlet weak var attachButton: UIButton!
     
     var boardId: String = ""
     var captcha: Captcha?
@@ -34,6 +35,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setupFields()
         setupCaptcha()
+        attachButton.layer.borderColor = view.tintColor.cgColor
     }
     
     func setupCaptcha() {
