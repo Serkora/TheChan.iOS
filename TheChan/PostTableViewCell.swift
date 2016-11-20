@@ -25,6 +25,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         postContentView.textContainerInset = UIEdgeInsetsMake(
             0,
             -postContentView.textContainer.lineFragmentPadding,

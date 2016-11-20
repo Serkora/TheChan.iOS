@@ -14,7 +14,7 @@ enum PostingMode {
     case newThread
 }
 
-class PostingViewController: UIViewController, UITextFieldDelegate {
+class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var postTextView: UITextView!
@@ -25,15 +25,21 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var captchaView: UIView!
     @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var captchaImageView: UIImageView!
+    @IBOutlet weak var attachButton: UIButton!
+    @IBOutlet weak var attachmentsCollectionView: UICollectionView!
     
     var boardId: String = ""
     var captcha: Captcha?
     var mode: PostingMode = .newThread
+    private var attachments = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFields()
         setupCaptcha()
+        attachButton.layer.borderColor = view.tintColor.cgColor
+        attachmentsCollectionView.dataSource = self
+        attachmentsCollectionView.reloadData()
     }
     
     func setupCaptcha() {
@@ -94,19 +100,38 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         }
         
         Facade.send(post: postingData) { isSuccessful, error in
-            sender.isEnabled = true
             if !isSuccessful {
                 let error = error ?? NSLocalizedString("UNKNOWN_ERROR", comment: "Unknown error")
                 let alert = UIAlertController(title: NSLocalizedString("POSTING_ERROR", comment: "Error"), message: error, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
+                sender.isEnabled = true
+            } else {
+                self.performSegue(withIdentifier: "UnwindToThread", sender: self)
             }
         }
         
         postTextView.resignFirstResponder()
     }
-
-    /*
+    
+    @IBAction func attachButtonTapped(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        attachments.append(image)
+        attachmentsCollectionView.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -114,6 +139,20 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    // MARK: - UICollectionViewDataSource for attachments
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttachmentCollectionViewCell", for: indexPath) as! AttachmentCollectionViewCell
+        let image = attachments[indexPath.item]
+        cell.previewImageView.image = image
+        return cell
+    }
 }

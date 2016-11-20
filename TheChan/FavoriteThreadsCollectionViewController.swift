@@ -88,9 +88,11 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
         cell.boardLabel.text = thread.board
         cell.threadNameLabel.text = thread.name
         cell.unreadPostsLabel.text = "\(thread.unreadPosts)"
+        if thread.unreadPosts > 0 {
+            cell.unreadPostsLabel.textColor = collectionView.tintColor
+        }
+        
         cell.thumbnailImageView.kf.setImage(with: URL(string: thread.thumbnailUrl))
-        cell.contentView.layer.cornerRadius = 5.0
-        cell.contentView.layer.masksToBounds = true
     
         return cell
     }

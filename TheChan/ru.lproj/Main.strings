@@ -89,5 +89,3 @@
 /* Class = "UITextField"; placeholder = "Subject"; ObjectID = "qgf-FG-DCf"; */
 "qgf-FG-DCf.placeholder" = "Тема";
 
-/* Class = "UIButton"; normalTitle = ">"; ObjectID = "tGK-jo-KXQ"; */
-"tGK-jo-KXQ.normalTitle" = "";
