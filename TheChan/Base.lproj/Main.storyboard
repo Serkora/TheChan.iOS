@@ -368,7 +368,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="999" constant="100" id="jer-Ns-U0Q"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="m6G-gh-Lkm">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="m6G-gh-Lkm">
                                                         <size key="itemSize" width="100" height="100"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -791,7 +791,7 @@
                     <tabBarItem key="tabBarItem" title="Boards" image="boardsIcon" id="9Oy-op-xsZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Dl7-ng-ysS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Dl7-ng-ysS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -815,7 +815,7 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Ajo-q9-Iu9"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Qnw-MD-zpG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Qnw-MD-zpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -948,7 +948,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="whV-dW-GcX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="recents" id="wz1-CF-L2p"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zLb-eT-Ib9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zLb-eT-Ib9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
