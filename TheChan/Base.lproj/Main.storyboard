@@ -999,7 +999,7 @@
         <image name="goDownIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="f6r-G1-OBA"/>
+        <segue reference="8Pa-XH-aCe"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
