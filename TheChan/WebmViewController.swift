@@ -42,29 +42,29 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (self.autoplay!){
+        if self.autoplay! {
             player.play()
             self.hideControls()
         }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: nil, completion: {_ in
+        coordinator.animate(alongsideTransition: nil) { _ in
             let rect = CGRect.init(origin: CGPoint.init(x: 0, y: 0), size: size)
             self.player.frameView.frame = rect
-        })
+        }
         
         super.viewWillTransition(to: size, with: coordinator)
     }
     
-    func hideControls(){
+    func hideControls() {
         // copy-paste of a method stupidly made private
         UIView.animate(withDuration: 0.5, animations: {
             self.player.controlBar.alpha = 0
         })
     }
     
-    func showControls(){
+    func showControls() {
         // copy-paste of a method stupidly made private
         UIView.animate(withDuration: 0.5, animations: {
             self.player.controlBar.alpha = 1
@@ -77,7 +77,7 @@ class WebmViewController: UIViewController, OGVPlayerDelegate {
     }
     
     func ogvPlayerDidPlay(_ sender: OGVPlayerView!) {
-        if (self.autoplay!){
+        if self.autoplay! {
             self.hideControls()
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.autoplay = false               // So that controls are auto-hidden only the first time the video plays
