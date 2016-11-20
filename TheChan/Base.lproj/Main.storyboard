@@ -624,6 +624,7 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="759" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="seU-Wb-ahF">
                                                                         <rect key="frame" x="0.0" y="18" width="51" height="31"/>
+                                                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="onTintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </switch>
                                                                 </subviews>
@@ -639,6 +640,7 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-zf-uq5">
                                                                         <rect key="frame" x="0.0" y="18" width="51" height="31"/>
+                                                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="onTintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </switch>
                                                                 </subviews>
@@ -681,7 +683,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fsH-7u-Lhp">
-                                                <rect key="frame" x="238" y="0.0" width="50" height="108"/>
+                                                <rect key="frame" x="238" y="0.0" width="50" height="264"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ln-NN-cUu">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -699,9 +701,12 @@
                                                                 <integer key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="attachButtonTapped:" destination="ScS-x9-wRx" eventType="touchUpInside" id="Usx-DO-v4e"/>
+                                                        </connections>
                                                     </button>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jMQ-lI-qIH">
-                                                        <rect key="frame" x="0.0" y="58" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="58" width="50" height="206"/>
                                                         <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vq9-4w-c4o">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -710,19 +715,44 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="X8r-Hv-2Bx">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AttachmentCollectionViewCell" id="X8r-Hv-2Bx" customClass="AttachmentCollectionViewCell" customModule="TheChan" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ozD-TI-r78">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        </imageView>
+                                                                    </subviews>
                                                                 </view>
+                                                                <constraints>
+                                                                    <constraint firstItem="ozD-TI-r78" firstAttribute="top" secondItem="X8r-Hv-2Bx" secondAttribute="top" id="5me-0l-Zy5"/>
+                                                                    <constraint firstItem="ozD-TI-r78" firstAttribute="leading" secondItem="X8r-Hv-2Bx" secondAttribute="leading" id="Va9-Q7-B0N"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ozD-TI-r78" secondAttribute="bottom" id="Yj0-PN-KuB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ozD-TI-r78" secondAttribute="trailing" id="yzt-LE-J2X"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="previewImageView" destination="ozD-TI-r78" id="iHQ-qi-ZcB"/>
+                                                                </connections>
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="jMQ-lI-qIH" secondAttribute="bottom" id="Wj3-2e-N8Z"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fsH-7u-Lhp" secondAttribute="bottom" id="G64-4F-7BK"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -744,6 +774,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="attachButton" destination="6Ln-NN-cUu" id="Pmf-Tu-fve"/>
+                        <outlet property="attachmentsCollectionView" destination="jMQ-lI-qIH" id="zpg-X5-cFW"/>
                         <outlet property="buttonsView" destination="k1T-uT-X04" id="Exr-3f-iUD"/>
                         <outlet property="captchaActivityIndicator" destination="mr9-hZ-g0K" id="odW-MP-U6e"/>
                         <outlet property="captchaField" destination="6XQ-2J-VcI" id="z1u-wi-yCh"/>
@@ -759,7 +790,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t72-9w-7BE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sMX-8E-rJc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6200.625" y="137.32394366197184"/>
+            <point key="canvasLocation" x="6199.1999999999998" y="137.18140929535232"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="d1d-0w-L54">
@@ -791,7 +822,7 @@
                     <tabBarItem key="tabBarItem" title="Boards" image="boardsIcon" id="9Oy-op-xsZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Dl7-ng-ysS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Dl7-ng-ysS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -815,7 +846,7 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Ajo-q9-Iu9"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Qnw-MD-zpG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Qnw-MD-zpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -948,7 +979,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="whV-dW-GcX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="recents" id="wz1-CF-L2p"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zLb-eT-Ib9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zLb-eT-Ib9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -14,7 +14,7 @@ enum PostingMode {
     case newThread
 }
 
-class PostingViewController: UIViewController, UITextFieldDelegate {
+class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var postTextView: UITextView!
@@ -26,16 +26,20 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var captchaImageView: UIImageView!
     @IBOutlet weak var attachButton: UIButton!
+    @IBOutlet weak var attachmentsCollectionView: UICollectionView!
     
     var boardId: String = ""
     var captcha: Captcha?
     var mode: PostingMode = .newThread
+    private var attachments = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFields()
         setupCaptcha()
         attachButton.layer.borderColor = view.tintColor.cgColor
+        attachmentsCollectionView.dataSource = self
+        attachmentsCollectionView.reloadData()
     }
     
     func setupCaptcha() {
@@ -109,7 +113,24 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
         
         postTextView.resignFirstResponder()
     }
-
+    
+    @IBAction func attachButtonTapped(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        attachments.append(image)
+        attachmentsCollectionView.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - Navigation
 
@@ -117,5 +138,21 @@ class PostingViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    }
+    
+    // MARK: - UICollectionViewDataSource for attachments
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return attachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttachmentCollectionViewCell", for: indexPath) as! AttachmentCollectionViewCell
+        let image = attachments[indexPath.item]
+        cell.previewImageView.image = image
+        return cell
     }
 }

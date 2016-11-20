@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369DB251DE0CA6F00139F07 /* WebmViewController.swift */; };
 		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
+		921E3D851DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */; };
 		92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */; };
 		92269B4E1DCF4EAC001235E9 /* ThreadStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */; };
 		92289B521DB2BABB00F5BE09 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 92289B541DB2BABB00F5BE09 /* Localizable.stringsdict */; };
@@ -58,6 +59,7 @@
 		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
 		6369DB251DE0CA6F00139F07 /* WebmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebmViewController.swift; sourceTree = "<group>"; };
 		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
+		921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadStateViewController.swift; sourceTree = "<group>"; };
 		92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadStateViewController.xib; sourceTree = "<group>"; };
 		92289B531DB2BABB00F5BE09 /* Base */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */,
 				92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */,
 				92908A141DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift */,
+				921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -293,7 +296,7 @@
 				TargetAttributes = {
 					92A0B9BF1DAEC304005D743F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = DR3K59SZNX;
+						DevelopmentTeam = QQNTMQ5VM7;
 						ProvisioningStyle = Automatic;
 					};
 					92A0B9D31DAEC304005D743F = {
@@ -426,6 +429,7 @@
 				92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */,
 				92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */,
 				92A0B9E71DAEC68C005D743F /* Board.swift in Sources */,
+				921E3D851DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +600,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DR3K59SZNX;
+				DEVELOPMENT_TEAM = QQNTMQ5VM7;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
@@ -613,7 +617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DR3K59SZNX;
+				DEVELOPMENT_TEAM = QQNTMQ5VM7;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
