@@ -18,4 +18,6 @@ class Post {
     var text = ""
     var attributedString = NSAttributedString()
     var attachments = [Attachment]()
+    var repliedTo = [Int]()
+    var replies = [Int]()
 }

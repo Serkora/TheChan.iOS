@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		63555D451DE30A0B0024954A /* RepliesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63555D441DE30A0B0024954A /* RepliesTableViewController.swift */; };
+		63555D491DE328820024954A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63555D481DE328820024954A /* PostTableViewCell.swift */; };
+		63555D4B1DE329500024954A /* RepliesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63555D4A1DE329500024954A /* RepliesCollectionViewCell.swift */; };
 		6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369DB251DE0CA6F00139F07 /* WebmViewController.swift */; };
 		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
 		921E3D851DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */; };
@@ -15,7 +17,6 @@
 		92269B4E1DCF4EAC001235E9 /* ThreadStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */; };
 		92289B521DB2BABB00F5BE09 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 92289B541DB2BABB00F5BE09 /* Localizable.stringsdict */; };
 		92289B5D1DB369CB00F5BE09 /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */; };
-		92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */; };
 		92304F231DDCA67D00240505 /* PostingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F221DDCA67D00240505 /* PostingData.swift */; };
 		92304F251DDE133D00240505 /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F241DDE133D00240505 /* Captcha.swift */; };
 		92304F271DDE140500240505 /* ImageCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F261DDE140500240505 /* ImageCaptcha.swift */; };
@@ -59,6 +60,8 @@
 /* Begin PBXFileReference section */
 		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
 		63555D441DE30A0B0024954A /* RepliesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepliesTableViewController.swift; sourceTree = "<group>"; };
+		63555D481DE328820024954A /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		63555D4A1DE329500024954A /* RepliesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepliesCollectionViewCell.swift; sourceTree = "<group>"; };
 		6369DB251DE0CA6F00139F07 /* WebmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebmViewController.swift; sourceTree = "<group>"; };
 		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
 		921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -67,7 +70,6 @@
 		92289B531DB2BABB00F5BE09 /* Base */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		92289B551DB2BAC300F5BE09 /* ru */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
-		92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		92304F221DDCA67D00240505 /* PostingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingData.swift; sourceTree = "<group>"; };
 		92304F241DDE133D00240505 /* Captcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Captcha.swift; sourceTree = "<group>"; };
 		92304F261DDE140500240505 /* ImageCaptcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCaptcha.swift; sourceTree = "<group>"; };
@@ -238,8 +240,9 @@
 			children = (
 				92A0B9F01DAFF5E5005D743F /* BoardTableViewCell.swift */,
 				92C533361DB163300075277E /* ThreadTableViewCell.swift */,
-				92289B5E1DB37F7C00F5BE09 /* PostTableViewCell.swift */,
+				63555D481DE328820024954A /* PostTableViewCell.swift */,
 				92874ACD1DBCF88300CF8068 /* PostFilesPreviewsCollectionViewCell.swift */,
+				63555D4A1DE329500024954A /* RepliesCollectionViewCell.swift */,
 				92908A141DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift */,
 				921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */,
 			);
@@ -299,7 +302,7 @@
 				TargetAttributes = {
 					92A0B9BF1DAEC304005D743F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = QQNTMQ5VM7;
+						DevelopmentTeam = DR3K59SZNX;
 						ProvisioningStyle = Automatic;
 					};
 					92A0B9D31DAEC304005D743F = {
@@ -409,10 +412,12 @@
 				92304F271DDE140500240505 /* ImageCaptcha.swift in Sources */,
 				6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */,
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
+				63555D4B1DE329500024954A /* RepliesCollectionViewCell.swift in Sources */,
 				92908A0F1DD6627200B89A7F /* FavoriteThread.swift in Sources */,
 				63555D451DE30A0B0024954A /* RepliesTableViewController.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92ED146C1DDB83150009D8EC /* PostingViewController.swift in Sources */,
+				63555D491DE328820024954A /* PostTableViewCell.swift in Sources */,
 				92304F251DDE133D00240505 /* Captcha.swift in Sources */,
 				92A0B9E41DAEC573005D743F /* BoardsTableViewController.swift in Sources */,
 				92C533391DB171220075277E /* HTMLEntities.swift in Sources */,
@@ -423,7 +428,6 @@
 				92908A171DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift in Sources */,
 				92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */,
 				925E94651DBAA3330009932E /* UITableViewLoadingExtension.swift in Sources */,
-				92289B5F1DB37F7C00F5BE09 /* PostTableViewCell.swift in Sources */,
 				92908A131DD724A300B89A7F /* RealmInstance.swift in Sources */,
 				92A0B9C41DAEC304005D743F /* AppDelegate.swift in Sources */,
 				92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */,
@@ -604,7 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QQNTMQ5VM7;
+				DEVELOPMENT_TEAM = DR3K59SZNX;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
@@ -621,7 +625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QQNTMQ5VM7;
+				DEVELOPMENT_TEAM = DR3K59SZNX;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;

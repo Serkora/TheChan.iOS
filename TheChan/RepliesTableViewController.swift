@@ -10,7 +10,7 @@ import UIKit
 import MWPhotoBrowser
 import RealmSwift
 
-class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
+class RepliesTableViewController: UITableViewController, MWPhotoBrowserDelegate, UITextViewDelegate, UICollectionViewDelegate {
     
     private enum ThreadRefreshingResult {
         case success, failure
@@ -28,7 +28,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private var allFiles = [MWPhoto]()
     private var allAttachments = [Attachment]()
     private let stateController = ThreadStateViewController()
-    private let uiRealm: Realm = RealmInstance.ui
+//    private let uiRealm: Realm = RealmInstance.ui
+    private var uiRealm: Realm!
     private var favoriteThread: FavoriteThread? = nil
     
     private var isInFavorites = false {
@@ -36,6 +37,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
         }
     }
+    
+    private var preparedPosts = [Post]()
     
     override var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden == true
@@ -55,11 +58,16 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        configureStateController()
-        configureFavoritesState()
-        
-        self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
+        self.stopLoading(indicator: self.progressIndicator)
+        
+        generatePosts()
+        
+//        configureStateController()
+//        configureFavoritesState()
+        
+//        self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
+//        startLoading(indicator: progressIndicator)
 //        Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
 //            if let posts = posts {
 //                self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
@@ -72,16 +80,130 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 //            self.tableView.reloadData()
 //        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        posts = [Post]()
+        posts.append(preparedPosts[2])
+        self.tableView.reloadData()
+    }
 
+    func generatePosts() {
+        var post: Post!
+        var str: NSMutableAttributedString
+        
+        post = Post()
+        post.number = 1
+        post.text = "post text?"
+        str = NSMutableAttributedString.init(string: "This is the OP-post")
+        post.attributedString = NSAttributedString.init(attributedString: str)
+//        post.attributedString = NSMutableAttributedString.init(string: "OP-post")
+        post.date = Date(timeIntervalSince1970: TimeInterval(1479729568))
+        post.replies = [2,3]
+        preparedPosts.append(post)
+        
+        post = Post()
+        post.number = 2
+        str = NSMutableAttributedString.init(string: ">>1\nThis is the second post and it's a reply to the OP-post")
+        str.addAttribute(NSLinkAttributeName, value: "re://1", range: NSMakeRange(0,3))
+        str.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 20), range: NSMakeRange(0,3))
+        post.attributedString = NSAttributedString.init(attributedString: str)
+        //        post.attributedString = NSMutableAttributedString.init(string: "OP-post")
+        post.date = Date(timeIntervalSince1970: TimeInterval(1479729568))
+        post.repliedTo = [1]
+        post.replies = [4]
+        preparedPosts.append(post)
+        
+        post = Post()
+        post.number = 3
+        str = NSMutableAttributedString.init(string: ">>1\nThis is the third post and it's a reply to the OP-post")
+        str.addAttribute(NSLinkAttributeName, value: "re://1", range: NSMakeRange(0,3))
+        str.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 20), range: NSMakeRange(0,3))
+        post.attributedString = NSAttributedString.init(attributedString: str)
+        //        post.attributedString = NSMutableAttributedString.init(string: "OP-post")
+        post.date = Date(timeIntervalSince1970: TimeInterval(1479729568))
+        post.repliedTo = [1]
+//        post.replies = [5]
+        preparedPosts.append(post)
+        
+        post = Post()
+        post.number = 4
+        str = NSMutableAttributedString.init(string: ">>2\nThis is the fourth post and it's a reply to the second post")
+        str.addAttribute(NSLinkAttributeName, value: "re://2", range: NSMakeRange(0,3))
+        str.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 20), range: NSMakeRange(0,3))
+        post.attributedString = NSAttributedString.init(attributedString: str)
+        //        post.attributedString = NSMutableAttributedString.init(string: "OP-post")
+        post.date = Date(timeIntervalSince1970: TimeInterval(1479729568))
+        post.repliedTo = [2]
+        post.replies = [5]
+        preparedPosts.append(post)
+        
+        post = Post()
+        post.number = 5
+        str = NSMutableAttributedString.init(string: ">>4\nThis is the fifth post and it's a reply to the fourth post")
+        str.addAttribute(NSLinkAttributeName, value: "re://4", range: NSMakeRange(0,3))
+        str.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 20), range: NSMakeRange(0,3))
+        post.attributedString = NSAttributedString.init(attributedString: str)
+        //        post.attributedString = NSMutableAttributedString.init(string: "OP-post")
+        post.date = Date(timeIntervalSince1970: TimeInterval(1479729568))
+        post.repliedTo = [4]
+        preparedPosts.append(post)
+    }
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        var str = URL.absoluteString
+        str = str.substring(from: str.index(str.startIndex, offsetBy: 5))
+        NSLog("some URL clicked. Absolute: %@, scheme: %@; repliedTo: %@", URL.absoluteString, URL.scheme!, str)
+//        NSLog("%@", textView)
+//        NSLog("%@", textView.superview!)
+//        NSLog("%@", textView.superview!.superview!)
+//        NSLog("%@", textView.superview!.superview!.superview!)
+        let postView = textView.superview?.superview?.superview as! PostTableViewCell
+        let thisPostNumber = Int(postView.numberLabel.text!)
+        let replyPostNumber = Int(str)
+        while posts.first!.number != thisPostNumber {
+            posts.removeFirst()
+        }
+        let replyPostIdx = preparedPosts.index(where: {$0.number == replyPostNumber})!
+        posts.insert(preparedPosts[replyPostIdx], at: 0)
+        tableView.reloadData()
+        return false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! RepliesCollectionViewCell
+        NSLog("RepliesTableViewController, reply label clicked, indexPath.item: %d, postNum: %d, replyNum: %d", indexPath.item, cell.thisPostNumber, cell.replyPostNumber)
+        
+        if let thisPostIdx = posts.index(where: {$0.number == cell.thisPostNumber}) {
+            NSLog("idx of element = %d", thisPostIdx)
+            
+//            if (posts.count - 1) > thisPostIdx && posts[thisPostIdx+1].number != cell.replyPostNumber {
+//                NSLog("posts count: %d, thisPostIdx: %d, posts[this+1].number = %d, posts.last!.number: %d", posts.count, thisPostIdx, posts[thisPostIdx+1].number, posts.last!.number)
+//                while posts.last!.number != cell.thisPostNumber {
+//                    NSLog("posts.last!.number = %d", posts.last!.number)
+//                    posts.removeLast()
+//                }
+//            }
+            while posts.last!.number != cell.thisPostNumber {
+                posts.removeLast()
+            }
+            let replyPostIdx = preparedPosts.index(where: {$0.number == cell.replyPostNumber})!
+            posts.append(preparedPosts[replyPostIdx])
+            
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
-        navigationController?.setToolbarHidden(false, animated: false)
+//        navigationController?.setToolbarHidden(false, animated: false)
         fixStatusBarScroll(view: self.view)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = false
-        navigationController?.setToolbarHidden(true, animated: true)
+//        navigationController?.setToolbarHidden(true, animated: true)
         if (navigationController?.isNavigationBarHidden == true) {
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
@@ -186,8 +308,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     @IBAction private func refreshButtonTapped(_ sender: UIBarButtonItem) {
-        stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
-        refresh()
+//        stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
+//        refresh()
+        self.tabBarController?.selectedIndex = 0
     }
     
     private func updateThreadState(refreshingResult: ThreadRefreshingResult) {
@@ -247,6 +370,14 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
                 scrollView.scrollsToTop = false
             }
         }
+        
+        cell.replies = post.replies
+        cell.repliesCollectionView.dataSource = cell
+        cell.repliesCollectionView.delegate = self
+        cell.repliesCollectionView.reloadData()
+        cell.postContentView.isEditable = false
+        cell.postContentView.isSelectable = true
+        cell.postContentView.delegate = self
         
         return cell
     }
