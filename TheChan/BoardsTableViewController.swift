@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardsTableViewController: UITableViewController {
+class BoardsTableViewController: UITableViewController, UIGestureRecognizerDelegate {
 
     var groups = [BoardsGroup]()
     
@@ -33,6 +33,8 @@ class BoardsTableViewController: UITableViewController {
                 activityView.stopAnimating()
             }
         }
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -47,6 +49,10 @@ class BoardsTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return (self.navigationController?.viewControllers.count)! > 1
     }
 
     override func didReceiveMemoryWarning() {

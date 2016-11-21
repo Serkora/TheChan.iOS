@@ -72,6 +72,32 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             self.tableView.reloadData()
         }
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.setToolbarHidden(false, animated: false)
+        fixStatusBarScroll(view: self.view)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.setToolbarHidden(true, animated: true)
+        if (navigationController?.isNavigationBarHidden == true) {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
+    func fixStatusBarScroll(view: UIView){
+        for subview in view.subviews {
+            if let scrollView = subview as? UIScrollView {
+                scrollView.scrollsToTop = false
+            }
+            if (subview.subviews.count > 0) {
+                fixStatusBarScroll(view: subview)
+            }
+        }
+        self.tableView.scrollsToTop = true
+    }
     
     func configureStateController() {
         guard let toolbar = navigationController?.toolbar else { return }
@@ -124,11 +150,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         } catch {}
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.setToolbarHidden(false, animated: false)
-    }
-    
     func getTitleFrom(post: Post) -> String {
         if post.subject.isEmpty {
             let offset = post.text.characters.count >= 50 ? 50 : post.text.characters.count
@@ -141,11 +162,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
     func getTitleFrom(boardId: String, threadNumber: Int) -> String {
         return "/\(boardId)/ - \(threadNumber)"
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.hidesBarsOnSwipe = false
-        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func loadPosts(from: Int, onComplete: @escaping ([Post]?) -> Void) {
@@ -225,6 +241,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         cell.filesPreviewsCollectionView.dataSource = cell
         cell.filesPreviewsCollectionView.delegate = cell
         cell.filesPreviewsCollectionView.reloadData()
+        
+        for view in cell.subviews {
+            if let scrollView = view as? UIScrollView {
+                scrollView.scrollsToTop = false
+            }
+        }
         
         return cell
     }
@@ -312,8 +334,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
 
     @IBAction func titleTouched(_ sender: AnyObject) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        tableView.setContentOffset(CGPoint.init(x: 0, y: 0 - tableView.contentInset.top), animated: true)
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
