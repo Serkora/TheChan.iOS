@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardsTableViewController: UITableViewController, UIGestureRecognizerDelegate {
+class BoardsTableViewController: UITableViewController {
 
     var groups = [BoardsGroup]()
     
@@ -47,12 +47,6 @@ class BoardsTableViewController: UITableViewController, UIGestureRecognizerDeleg
                 }
             }
         }
-        
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return (self.navigationController?.viewControllers.count)! > 1
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,7 @@ import UIKit
 import MWPhotoBrowser
 import RealmSwift
 
-class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
+class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, UIGestureRecognizerDelegate {
     
     private enum ThreadRefreshingResult {
         case success, failure
@@ -32,6 +32,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private var favoriteThread: FavoriteThread? = nil
     private var isLoading: Bool! = false
     private var needsScrollToBottom: Bool! = false
+    private var gestureRecognizerDelegate: UIGestureRecognizerDelegate!
     
     private var isInFavorites = false {
         didSet {
@@ -81,6 +82,13 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             self.needsScrollToBottom = false
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        gestureRecognizerDelegate = self.navigationController!.interactivePopGestureRecognizer!.delegate!
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
@@ -91,10 +99,15 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
-//        if (navigationController?.isNavigationBarHidden)! {
-            navigationController?.setNavigationBarHidden(false, animated: true)
-//        }
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = gestureRecognizerDelegate
     }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return !isLoading!          // lol syntax
+    }
+
     
     func fixStatusBarScroll(view: UIView){
         for subview in view.subviews {

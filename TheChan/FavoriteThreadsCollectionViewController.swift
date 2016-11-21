@@ -12,7 +12,7 @@ import RealmSwift
 private let reuseIdentifier = "FavoriteThreadCollectionViewCell"
 private let minItemWidth = CGFloat(150.0)
 
-class FavoriteThreadsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class FavoriteThreadsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     private var uiRealm: Realm? = nil
     private var notificationToken: NotificationToken? = nil
@@ -45,12 +45,6 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
                 break
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     deinit {
