@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63555D451DE30A0B0024954A /* RepliesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63555D441DE30A0B0024954A /* RepliesTableViewController.swift */; };
 		6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369DB251DE0CA6F00139F07 /* WebmViewController.swift */; };
 		6B8AC87277C8CE01CD0E211F /* Pods_TheChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE570531390E34C301000CA6 /* Pods_TheChan.framework */; };
 		921E3D851DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.release.xcconfig"; sourceTree = "<group>"; };
+		63555D441DE30A0B0024954A /* RepliesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepliesTableViewController.swift; sourceTree = "<group>"; };
 		6369DB251DE0CA6F00139F07 /* WebmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebmViewController.swift; sourceTree = "<group>"; };
 		7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChan/Pods-TheChan.debug.xcconfig"; sourceTree = "<group>"; };
 		921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				92908A161DD7728B00B89A7F /* FavoriteThreadsCollectionViewController.swift */,
 				92ED146B1DDB83150009D8EC /* PostingViewController.swift */,
 				6369DB251DE0CA6F00139F07 /* WebmViewController.swift */,
+				63555D441DE30A0B0024954A /* RepliesTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				6369DB261DE0CA6F00139F07 /* WebmViewController.swift in Sources */,
 				92A0B9E91DAEC71D005D743F /* BoardsGroup.swift in Sources */,
 				92908A0F1DD6627200B89A7F /* FavoriteThread.swift in Sources */,
+				63555D451DE30A0B0024954A /* RepliesTableViewController.swift in Sources */,
 				92A0B9EB1DAEC7B5005D743F /* Facade.swift in Sources */,
 				92ED146C1DDB83150009D8EC /* PostingViewController.swift in Sources */,
 				92304F251DDE133D00240505 /* Captcha.swift in Sources */,
