@@ -30,6 +30,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private let stateController = ThreadStateViewController()
     private let uiRealm: Realm = RealmInstance.ui
     private var favoriteThread: FavoriteThread? = nil
+    private var isLoading: Bool! = false
+    private var needsScrollToBottom: Bool! = false
     
     private var isInFavorites = false {
         didSet {
@@ -38,7 +40,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return navigationController?.isNavigationBarHidden == true
+        return (navigationController?.isNavigationBarHidden)!
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -60,7 +62,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
+        isLoading = true
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
+            self.isLoading = false
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
@@ -70,6 +74,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
+            
+            if self.needsScrollToBottom! && self.posts.count > 0 {
+                self.scrollToBottom()
+            }
+            self.needsScrollToBottom = false
         }
     }
 
@@ -82,9 +91,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
-        if (navigationController?.isNavigationBarHidden == true) {
+//        if (navigationController?.isNavigationBarHidden)! {
             navigationController?.setNavigationBarHidden(false, animated: true)
-        }
+//        }
     }
     
     func fixStatusBarScroll(view: UIView){
@@ -92,7 +101,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             if let scrollView = subview as? UIScrollView {
                 scrollView.scrollsToTop = false
             }
-            if (subview.subviews.count > 0) {
+            if subview.subviews.count > 0 {
                 fixStatusBarScroll(view: subview)
             }
         }
@@ -333,13 +342,21 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
 
+    func scrollToBottom() {
+        let indexPath = IndexPath(row: posts.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
     @IBAction func titleTouched(_ sender: AnyObject) {
         tableView.setContentOffset(CGPoint.init(x: 0, y: 0 - tableView.contentInset.top), animated: true)
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
-        let indexPath = IndexPath(row: posts.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if isLoading! {
+            needsScrollToBottom = true
+        } else if posts.count > 0 {
+            scrollToBottom()
+        }
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {

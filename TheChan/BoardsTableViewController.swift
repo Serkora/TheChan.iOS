@@ -33,8 +33,6 @@ class BoardsTableViewController: UITableViewController, UIGestureRecognizerDeleg
                 activityView.stopAnimating()
             }
         }
-        
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -49,6 +47,8 @@ class BoardsTableViewController: UITableViewController, UIGestureRecognizerDeleg
                 }
             }
         }
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
