@@ -65,19 +65,17 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         isLoading = true
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
             self.isLoading = false
-            var hasPosts = false
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
                 self.updateFavoriteState(initialLoad: true)
                 self.updateThreadState(refreshingResult: .success)
-                hasPosts = true
             }
             
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
             
-            if (self.needsScrollToBottom! && hasPosts) {
+            if (self.needsScrollToBottom! && self.posts.count > 0) {
                 self.scrollToBottom()
             }
             self.needsScrollToBottom = false
@@ -354,9 +352,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
-        if (isLoading!){
+        if (isLoading!) {
             needsScrollToBottom = true
-        } else {
+        } else if (posts.count > 0) {
             scrollToBottom()
         }
     }
