@@ -30,6 +30,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private let stateController = ThreadStateViewController()
     private let uiRealm: Realm = RealmInstance.ui
     private var favoriteThread: FavoriteThread? = nil
+    private var isLoading: Bool! = false
+    private var needsScrollToBottom: Bool! = false
     
     private var isInFavorites = false {
         didSet {
@@ -60,16 +62,25 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
+        isLoading = true
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
+            self.isLoading = false
+            var hasPosts = false
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
                 self.updateFavoriteState(initialLoad: true)
                 self.updateThreadState(refreshingResult: .success)
+                hasPosts = true
             }
             
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
+            
+            if (self.needsScrollToBottom! && hasPosts) {
+                self.scrollToBottom()
+            }
+            self.needsScrollToBottom = false
         }
     }
 
@@ -333,13 +344,21 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
 
+    func scrollToBottom() {
+        let indexPath = IndexPath(row: posts.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
     @IBAction func titleTouched(_ sender: AnyObject) {
         tableView.setContentOffset(CGPoint.init(x: 0, y: 0 - tableView.contentInset.top), animated: true)
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
-        let indexPath = IndexPath(row: posts.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if (isLoading!){
+            needsScrollToBottom = true
+        } else {
+            scrollToBottom()
+        }
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
