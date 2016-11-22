@@ -18,4 +18,6 @@ class Post {
     var text = ""
     var attributedString = NSAttributedString()
     var attachments = [Attachment]()
+    var raw = [String: AnyObject]()
+    var processed = false
 }

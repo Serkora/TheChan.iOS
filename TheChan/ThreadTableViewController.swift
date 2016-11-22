@@ -31,6 +31,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private let uiRealm: Realm = RealmInstance.ui
     private var favoriteThread: FavoriteThread? = nil
     
+    private var didDisappear = false
+    
     private var isInFavorites = false {
         didSet {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
@@ -68,9 +70,29 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
                 self.updateThreadState(refreshingResult: .success)
             }
             
+            DispatchQueue.global().async {
+                for i in (max(0, self.posts.count - 15)...self.posts.count-1) {
+                    if !self.posts[i].processed {
+                        self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
+                    }
+                }
+                for i in (0...self.posts.count-1) {
+                    if !self.posts[i].processed {
+                        self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
+                    }
+                    if self.didDisappear {
+                        break
+                    }
+                }
+                NSLog("Processed all posts")
+            }
+            
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
         }
+        
+        NSLog("max(5, -10) = %d", max(5, -10))
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +107,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         if (navigationController?.isNavigationBarHidden == true) {
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        didDisappear = true
     }
     
     func fixStatusBarScroll(view: UIView){
@@ -222,7 +250,13 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-        let post = posts[indexPath.row]
+        var post = posts[indexPath.row]
+        
+        if !post.processed {
+            NSLog("Processing post #%d", indexPath.row)
+            post = EntityMapper.map(post: post.raw)
+            posts[indexPath.row] = post
+        }
         
         cell.subjectLabel.text = post.subject
         if post.subject.isEmpty {

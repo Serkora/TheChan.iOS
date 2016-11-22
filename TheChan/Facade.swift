@@ -40,7 +40,7 @@ class Facade {
         
         Alamofire.request(url).responseJSON { response in
             if let rawPosts = response.result.value as? [[String: AnyObject]] {
-                let posts = rawPosts.map { post in EntityMapper.map(post: post) }
+                let posts = rawPosts.map { post in EntityMapper.init_map(post: post) }
                 onComplete(posts)
             } else {
                 onComplete(nil)
@@ -124,6 +124,13 @@ class EntityMapper {
             return result
         }
     }
+
+    static func init_map(post raw: [String: AnyObject]) -> Post {
+        let post = Post()
+        post.raw = raw
+        return post
+    }
+
     
     static func map(post raw: [String: AnyObject]) -> Post {
         let post = Post()
@@ -143,6 +150,7 @@ class EntityMapper {
         
         let timestamp = (raw["timestamp"] as? NSNumber)?.int64Value ?? 0
         post.date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        post.processed = true
         return post
     }
     
