@@ -34,6 +34,8 @@ class ThreadsTableViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(ThreadsTableViewController.refresh(refreshControl:)), for: .valueChanged)
         
         loadPage(currentPage)
+        
+        NSLog("threads controller loaded")
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -120,6 +122,7 @@ class ThreadsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NSLog("returning %d threadcount", threads.count)
         return threads.count
     }
 
@@ -129,7 +132,8 @@ class ThreadsTableViewController: UITableViewController {
         let thread = threads[indexPath.row]
         cell.numberLabel.text = String(thread.opPost.number)
         cell.subjectLabel.text = thread.opPost.subject
-        cell.postTextLabel.attributedText = thread.opPost.attributedString
+//        cell.postTextLabel.attributedText = thread.opPost.attributedString
+        cell.postTextView.attributedText = thread.opPost.attributedString
         cell.nameLabel.text = thread.opPost.name
         cell.omittedPostsLabel.text = String(thread.omittedPosts)
         cell.omittedPostsNounLabel.text = NSString.localizedStringWithFormat(

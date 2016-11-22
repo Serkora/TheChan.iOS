@@ -12,7 +12,8 @@ class ThreadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var postTextLabel: UILabel!
+//    @IBOutlet weak var postTextLabel: UILabel!
+    @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
