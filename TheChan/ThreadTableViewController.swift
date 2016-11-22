@@ -65,7 +65,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         startLoading(indicator: progressIndicator)
         isLoading = true
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
-            self.isLoading = false
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
@@ -73,10 +72,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 self.updateThreadState(refreshingResult: .success)
             }
             
+            self.isLoading = false
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
             
-            if self.needsScrollToBottom! && self.posts.count > 0 {
+            if self.needsScrollToBottom! {
                 self.scrollToBottom()
             }
             self.needsScrollToBottom = false
@@ -356,8 +356,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     }
 
     func scrollToBottom() {
-        let indexPath = IndexPath(row: posts.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if posts.count > 0 {
+            let indexPath = IndexPath(row: posts.count - 1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     @IBAction func titleTouched(_ sender: AnyObject) {
@@ -367,9 +369,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     @IBAction func goDownButtonTapped(_ sender: Any) {
         if isLoading! {
             needsScrollToBottom = true
-        } else if posts.count > 0 {
-            scrollToBottom()
         }
+        scrollToBottom()
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
