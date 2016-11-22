@@ -24,7 +24,6 @@ class Facade {
     
     static func loadThreads(boardId: String, page: Int, onComplete: @escaping ([Thread]?) -> Void) {
         let pageStr = page == 0 ? "index" : String(page)
-
         Alamofire.request("https://2ch.hk/\(boardId)/\(pageStr).json").responseJSON { response in
             if let rawPage = response.result.value as? [String:AnyObject],
             let rawThreads = rawPage["threads"] as? [[String:AnyObject]]{
