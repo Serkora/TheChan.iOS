@@ -137,6 +137,8 @@ class ThreadsTableViewController: UITableViewController {
         cell.numberLabel.text = String(thread.opPost.number)
         cell.subjectLabel.text = thread.opPost.subject
 //        cell.postTextLabel.attributedText = thread.opPost.attributedString
+        cell.postTextView.textContainer.maximumNumberOfLines = 7
+        cell.postTextView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.postTextView.attributedText = thread.opPost.attributedString
         cell.nameLabel.text = thread.opPost.name
         cell.omittedPostsLabel.text = String(thread.omittedPosts)
