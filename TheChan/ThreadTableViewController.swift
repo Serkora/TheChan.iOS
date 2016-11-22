@@ -10,7 +10,7 @@ import UIKit
 import MWPhotoBrowser
 import RealmSwift
 
-class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
+class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, UIGestureRecognizerDelegate {
     
     private enum ThreadRefreshingResult {
         case success, failure
@@ -31,6 +31,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     private let uiRealm: Realm = RealmInstance.ui
     private var favoriteThread: FavoriteThread? = nil
     
+    private var isLoading = false
+    private var needsScrollToBottom = false
+    private var gestureRecognizerDelegate: UIGestureRecognizerDelegate!
+    
     private var isInFavorites = false {
         didSet {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
@@ -38,7 +42,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return navigationController?.isNavigationBarHidden == true
+        return (navigationController?.isNavigationBarHidden)!
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -60,6 +64,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
+        isLoading = true
         Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
@@ -68,31 +73,60 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
                 self.updateThreadState(refreshingResult: .success)
             }
             
+            self.isLoading = false
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
+            
+            if self.needsScrollToBottom {
+                self.scrollToBottom()
+            }
+            self.needsScrollToBottom = false
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        gestureRecognizerDelegate = navigationController!.interactivePopGestureRecognizer!.delegate!
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.setToolbarHidden(false, animated: false)
+        navigationItem.setHidesBackButton(false, animated: true)
         fixStatusBarScroll(view: self.view)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = gestureRecognizerDelegate
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
-        if (navigationController?.isNavigationBarHidden == true) {
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        }
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        navigationItem.hidesBackButton = false
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return !isLoading
+    }
+
     
     func fixStatusBarScroll(view: UIView){
         for subview in view.subviews {
             if let scrollView = subview as? UIScrollView {
                 scrollView.scrollsToTop = false
             }
-            if (subview.subviews.count > 0) {
+            if subview.subviews.count > 0 {
                 fixStatusBarScroll(view: subview)
             }
         }
@@ -333,13 +367,22 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
         }
     }
 
+    func scrollToBottom() {
+        if posts.count > 0 {
+            let indexPath = IndexPath(row: posts.count - 1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+    }
+    
     @IBAction func titleTouched(_ sender: AnyObject) {
         tableView.setContentOffset(CGPoint.init(x: 0, y: 0 - tableView.contentInset.top), animated: true)
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
-        let indexPath = IndexPath(row: posts.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if isLoading {
+            needsScrollToBottom = true
+        }
+        scrollToBottom()
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {

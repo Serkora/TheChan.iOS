@@ -50,6 +50,16 @@ class ThreadsTableViewController: UITableViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationItem.hidesBackButton = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     func refresh(refreshControl: UIRefreshControl) {
         if isLoading { return }
         isRefreshing = true
