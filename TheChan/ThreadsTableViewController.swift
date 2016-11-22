@@ -154,7 +154,7 @@ class ThreadsTableViewController: UITableViewController {
         } else {
             cell.imageWidthConstraint.constant = 0
             cell.imageHorizontalSpacingConstraint.constant = 0
-            cell.imageVerticalSpacingConstraint.constant = 0
+//            cell.imageVerticalSpacingConstraint.constant = 0
         }
         
         let formatter = DateFormatter()
