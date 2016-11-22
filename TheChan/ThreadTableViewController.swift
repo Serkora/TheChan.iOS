@@ -71,17 +71,19 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             }
             
             DispatchQueue.global().async {
-                for i in (max(0, self.posts.count - 15)...self.posts.count-1) {
-                    if !self.posts[i].processed {
-                        self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
+                if (self.posts.count > 0) {
+                    for i in (max(0, self.posts.count - 15)...self.posts.count-1) {
+                        if !self.posts[i].processed {
+                            self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
+                        }
                     }
-                }
-                for i in (0...self.posts.count-1) {
-                    if !self.posts[i].processed {
-                        self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
-                    }
-                    if self.didDisappear {
-                        break
+                    for i in (0...self.posts.count-1) {
+                        if !self.posts[i].processed {
+                            self.posts[i] = EntityMapper.map(post: self.posts[i].raw)
+                        }
+                        if self.didDisappear {
+                            break
+                        }
                     }
                 }
                 NSLog("Processed all posts")
@@ -90,9 +92,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
         }
-        
-        NSLog("max(5, -10) = %d", max(5, -10))
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -373,7 +372,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate {
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
         let indexPath = IndexPath(row: posts.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
