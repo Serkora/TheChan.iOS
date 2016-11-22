@@ -82,9 +82,13 @@ class ThreadsTableViewController: UITableViewController {
             self.startLoading(indicator: activityIndicator)
         }
         
+        NSLog("starting to load threads?")
         Facade.loadThreads(boardId: board.id, page: number) { threads in
+            NSLog("Some response received?")
             if let threads = threads {
+                NSLog("have threads?")
                 self.updateThreads(threads)
+                NSLog("reloading data?")
                 self.tableView.reloadData()
             }
             

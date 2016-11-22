@@ -59,7 +59,7 @@
                                 <connections>
                                     <outlet property="idLabel" destination="Z2S-d8-bPR" id="Ovj-Q6-6ce"/>
                                     <outlet property="nameLabel" destination="bMb-fj-Njo" id="QgP-ep-bzT"/>
-                                    <segue destination="ydy-33-hCU" kind="show" id="sol-2g-Q3c"/>
+                                    <segue destination="ydy-33-hCU" kind="show" identifier="OpenBoard" id="sol-2g-Q3c"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -914,7 +914,7 @@
                                                 <constraint firstAttribute="height" constant="100" id="nQ9-iF-PXH"/>
                                             </constraints>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-VA-8kw" userLabel="Post Text View">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-VA-8kw" userLabel="Post Text View">
                                             <rect key="frame" x="118" y="61" width="194" height="119"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -974,7 +974,7 @@
                                     <outlet property="opPostImageView" destination="1tW-ak-Cia" id="2ph-1E-XVm"/>
                                     <outlet property="postTextView" destination="CcL-VA-8kw" id="8cE-By-Bh2"/>
                                     <outlet property="subjectLabel" destination="l3D-dE-wWg" id="I9Z-v0-CUr"/>
-                                    <segue destination="Cgm-wW-qMz" kind="show" id="ffV-4X-NB4"/>
+                                    <segue destination="Cgm-wW-qMz" kind="show" identifier="OpenThread" id="ffV-4X-NB4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
