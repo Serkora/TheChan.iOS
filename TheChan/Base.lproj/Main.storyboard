@@ -241,7 +241,7 @@
                                 <connections>
                                     <outlet property="dateLabel" destination="2kg-JA-Yt2" id="SYu-zI-tf2"/>
                                     <outlet property="imageHorizontalSpacingConstraint" destination="pH4-gw-pNE" id="Uxq-7n-tb8"/>
-                                    <outlet property="imageVerticalSpacingConstraint" destination="p9E-OE-XhF" id="H4X-Ov-OJn"/>
+                                    <outlet property="imageVerticalSpacingConstraint" destination="cKd-LK-UsU" id="KGA-qn-Myj"/>
                                     <outlet property="imageWidthConstraint" destination="JCD-ia-Lmg" id="NaT-dA-0FS"/>
                                     <outlet property="nameLabel" destination="qVd-DD-DPN" id="PIX-Yc-86M"/>
                                     <outlet property="numberLabel" destination="Zmn-FQ-Y9B" id="GkC-ZE-zXV"/>
