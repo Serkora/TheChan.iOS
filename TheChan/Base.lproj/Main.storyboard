@@ -694,7 +694,7 @@
         <scene sceneID="fwA-8g-2wU">
             <objects>
                 <collectionViewController id="iIU-oA-ZMW" customClass="FavoriteThreadsCollectionViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" dataMode="prototypes" id="qBl-xJ-6wW">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" id="qBl-xJ-6wW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -914,7 +914,7 @@
                                                 <constraint firstAttribute="height" constant="100" id="nQ9-iF-PXH"/>
                                             </constraints>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-VA-8kw" userLabel="Post Text View">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CcL-VA-8kw" userLabel="Post Text View">
                                             <rect key="frame" x="118" y="61" width="194" height="119"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -938,6 +938,7 @@
                                         <constraint firstItem="l3D-dE-wWg" firstAttribute="trailing" secondItem="H73-Ha-Otc" secondAttribute="trailingMargin" id="KFt-vw-2zo"/>
                                         <constraint firstItem="D2Y-Fj-UA7" firstAttribute="top" secondItem="l3D-dE-wWg" secondAttribute="bottom" constant="6" id="Kg5-3M-M95"/>
                                         <constraint firstItem="3Zx-2w-4JZ" firstAttribute="top" secondItem="CcL-VA-8kw" secondAttribute="bottom" constant="10" id="L8E-df-xCo"/>
+                                        <constraint firstItem="uMr-yV-JW7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1tW-ak-Cia" secondAttribute="bottom" constant="10" id="OTa-nf-yc2"/>
                                         <constraint firstItem="D2Y-Fj-UA7" firstAttribute="leading" secondItem="rES-YL-cCe" secondAttribute="trailing" constant="6" id="QiS-z5-702"/>
                                         <constraint firstItem="uMr-yV-JW7" firstAttribute="top" secondItem="CcL-VA-8kw" secondAttribute="bottom" constant="10" id="QlT-Yl-d5G"/>
                                         <constraint firstItem="CcL-VA-8kw" firstAttribute="top" secondItem="D2Y-Fj-UA7" secondAttribute="bottom" constant="6" id="TRL-gH-8tD"/>
