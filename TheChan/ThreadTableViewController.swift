@@ -30,8 +30,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     private let stateController = ThreadStateViewController()
     private let uiRealm: Realm = RealmInstance.ui
     private var favoriteThread: FavoriteThread? = nil
-    private var isLoading: Bool! = false
-    private var needsScrollToBottom: Bool! = false
+    
+    private var isLoading = false
+    private var needsScrollToBottom = false
     private var gestureRecognizerDelegate: UIGestureRecognizerDelegate!
     
     private var isInFavorites = false {
@@ -76,7 +77,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
             self.stopLoading(indicator: self.progressIndicator)
             self.tableView.reloadData()
             
-            if self.needsScrollToBottom! {
+            if self.needsScrollToBottom {
                 self.scrollToBottom()
             }
             self.needsScrollToBottom = false
@@ -86,26 +87,37 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        gestureRecognizerDelegate = self.navigationController!.interactivePopGestureRecognizer!.delegate!
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        gestureRecognizerDelegate = navigationController!.interactivePopGestureRecognizer!.delegate!
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.setToolbarHidden(false, animated: false)
+        navigationItem.setHidesBackButton(false, animated: true)
         fixStatusBarScroll(view: self.view)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = gestureRecognizerDelegate
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = gestureRecognizerDelegate
+        navigationItem.hidesBackButton = false
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return !isLoading!          // lol syntax
+        return !isLoading
     }
 
     
@@ -367,7 +379,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     }
     
     @IBAction func goDownButtonTapped(_ sender: Any) {
-        if isLoading! {
+        if isLoading {
             needsScrollToBottom = true
         }
         scrollToBottom()
