@@ -24,7 +24,8 @@ class ThreadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var opPostImageView: UIImageView!
     @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageHorizontalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageVerticalSpacingConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()

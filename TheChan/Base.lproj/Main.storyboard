@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JbK-Zd-IUc">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JbK-Zd-IUc">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -140,7 +140,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmn-FQ-Y9B">
-                                            <rect key="frame" x="55" y="37" width="59" height="18"/>
+                                            <rect key="frame" x="55" y="37" width="59" height="37"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                             <color key="textColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -184,7 +184,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rt7-4B-RFM">
-                                            <rect key="frame" x="8" y="61" width="100" height="100"/>
+                                            <rect key="frame" x="8" y="80" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="JCD-ia-Lmg"/>
                                                 <constraint firstAttribute="height" constant="100" id="Ne5-uD-fHK"/>
@@ -217,6 +217,7 @@
                                         <constraint firstItem="gJ7-g6-p54" firstAttribute="top" secondItem="ppU-kR-xyA" secondAttribute="bottom" constant="10" id="ZIO-ji-RM4"/>
                                         <constraint firstItem="6qu-z3-9xj" firstAttribute="leading" secondItem="gJ7-g6-p54" secondAttribute="trailing" constant="4" id="ZJ4-rV-lNz"/>
                                         <constraint firstItem="Rt7-4B-RFM" firstAttribute="leading" secondItem="yab-nz-L3a" secondAttribute="leadingMargin" id="ak1-zv-cdA"/>
+                                        <constraint firstItem="gJ7-g6-p54" firstAttribute="top" secondItem="Rt7-4B-RFM" secondAttribute="bottom" constant="10" id="cKd-LK-UsU"/>
                                         <constraint firstItem="Kih-4b-eSD" firstAttribute="leading" secondItem="p2K-sM-4bK" secondAttribute="trailing" constant="10" id="dbh-D5-RR1"/>
                                         <constraint firstItem="Kih-4b-eSD" firstAttribute="top" secondItem="ppU-kR-xyA" secondAttribute="bottom" constant="10" id="gji-Te-Ge7"/>
                                         <constraint firstItem="gJ7-g6-p54" firstAttribute="leading" secondItem="yab-nz-L3a" secondAttribute="leadingMargin" id="i4Q-Za-zxx"/>
@@ -239,7 +240,8 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="2kg-JA-Yt2" id="SYu-zI-tf2"/>
-                                    <outlet property="imageSpacingConstraint" destination="pH4-gw-pNE" id="mTD-q0-IDN"/>
+                                    <outlet property="imageHorizontalSpacingConstraint" destination="pH4-gw-pNE" id="Uxq-7n-tb8"/>
+                                    <outlet property="imageVerticalSpacingConstraint" destination="p9E-OE-XhF" id="H4X-Ov-OJn"/>
                                     <outlet property="imageWidthConstraint" destination="JCD-ia-Lmg" id="NaT-dA-0FS"/>
                                     <outlet property="nameLabel" destination="qVd-DD-DPN" id="PIX-Yc-86M"/>
                                     <outlet property="numberLabel" destination="Zmn-FQ-Y9B" id="GkC-ZE-zXV"/>
@@ -456,7 +458,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="QDp-Ye-05L">
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="hUW-1p-SnM">
-                            <rect key="frame" x="124" y="7" width="128" height="30"/>
+                            <rect key="frame" x="96" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Button">
@@ -555,7 +557,7 @@
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="SUB">
                                                                             <attributes>
-                                                                                <font key="NSFont" size="11" name=".AppleSystemUIFont"/>
+                                                                                <font key="NSFont" metaFont="toolTip"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
@@ -568,7 +570,7 @@
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="SUP">
                                                                             <attributes>
-                                                                                <font key="NSFont" size="11" name=".AppleSystemUIFont"/>
+                                                                                <font key="NSFont" metaFont="toolTip"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
@@ -845,7 +847,7 @@
                     <tabBarItem key="tabBarItem" title="Boards" image="boardsIcon" id="9Oy-op-xsZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Dl7-ng-ysS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Dl7-ng-ysS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -869,7 +871,7 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Ajo-q9-Iu9"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Qnw-MD-zpG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Qnw-MD-zpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1002,7 +1004,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="whV-dW-GcX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="recents" id="wz1-CF-L2p"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zLb-eT-Ib9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zLb-eT-Ib9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1022,7 +1024,7 @@
         <image name="goDownIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Pa-XH-aCe"/>
+        <segue reference="f6r-G1-OBA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
