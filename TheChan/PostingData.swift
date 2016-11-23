@@ -17,6 +17,13 @@ class PostingData {
     var email = ""
     var isOp = false
     var captchaResult: CaptchaResult?
+    var attachments = [PostingAttachment]()
+}
+
+class PostingAttachment {
+    var name = ""
+    var mimeType = ""
+    var data = Data()
 }
 
 class CaptchaResult {

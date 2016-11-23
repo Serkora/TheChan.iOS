@@ -11,6 +11,9 @@ import Alamofire
 import Kanna
 
 class Facade {
+    
+    static let maxAttachments = 4
+    
     static func loadBoards(onComplete: @escaping ([BoardsGroup]?) -> Void) {
         Alamofire.request("https://2ch.hk/makaba/mobile.fcgi?task=get_boards").responseJSON { response in
             if let rawGroups = response.result.value as? [String:[[String:AnyObject]]] {
@@ -78,6 +81,9 @@ class Facade {
                 formData.append(value.data(using: .utf8)!, withName: key)
             }
             
+            for (index, attachment) in post.attachments.enumerated() {
+                formData.append(attachment.data, withName: "image\(index)", fileName: attachment.name, mimeType: attachment.mimeType)
+            }
         }, to: url) { encodingResult in
             switch encodingResult {
             case .success(let request, _, _):

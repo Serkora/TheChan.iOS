@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Photos
 
 enum PostingMode {
     case reply(threadNumber: Int)
@@ -92,6 +93,15 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         postingData.email = emailField.text ?? ""
         postingData.name = nameField.text ?? ""
         postingData.isOp = opSwitch.isOn
+        for attachment in attachments {
+            guard let data = UIImageJPEGRepresentation(attachment, 1.0) else { continue }
+            let postingAttachment = PostingAttachment()
+            postingAttachment.data = data
+            postingAttachment.mimeType = "image/jpeg"
+            postingAttachment.name = "image.jpeg"
+            postingData.attachments.append(postingAttachment)
+        }
+        
         if captcha != nil {
             let captchaResult = CaptchaResult()
             captchaResult.key = captcha!.key
@@ -133,6 +143,10 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         attachments.append(image)
+        if attachments.count >= Facade.maxAttachments {
+            attachButton.isEnabled = false
+        }
+        
         attachmentsCollectionView.reloadData()
         dismiss(animated: true, completion: nil)
     }
