@@ -964,6 +964,7 @@
                                 <connections>
                                     <outlet property="dateLabel" destination="D2Y-Fj-UA7" id="85o-PN-uEy"/>
                                     <outlet property="imageHorizontalSpacingConstraint" destination="9F9-RZ-yeP" id="QXF-Na-2NN"/>
+                                    <outlet property="imageVerticalSpacingConstraint" destination="OTa-nf-yc2" id="rrO-Pq-Fdl"/>
                                     <outlet property="imageWidthConstraint" destination="ma5-Mh-qfV" id="HI3-ZV-ffv"/>
                                     <outlet property="nameLabel" destination="3jh-Wf-jBN" id="6sc-7P-Wjz"/>
                                     <outlet property="numberLabel" destination="rES-YL-cCe" id="ZPy-7L-cMR"/>
