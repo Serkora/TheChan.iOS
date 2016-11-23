@@ -25,7 +25,7 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="jf7-TY-Qd6">
                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="z19-Bu-h2O"/>
+                        <constraint firstAttribute="width" priority="999" constant="36" id="z19-Bu-h2O"/>
                     </constraints>
                 </activityIndicatorView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="igD-Gd-1UO">
