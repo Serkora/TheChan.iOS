@@ -259,9 +259,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         let post = posts[indexPath.row]
         
         cell.subjectLabel.text = post.subject
-        if post.subject.isEmpty {
-            cell.subjectLabel.isHidden = true
-        }
+        cell.subjectLabel.isHidden = post.subject.isEmpty
         
         cell.positionLabel.text = String(indexPath.row + 1)
         cell.nameLabel.text = post.name
