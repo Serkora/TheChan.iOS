@@ -129,7 +129,9 @@ class ThreadsTableViewController: UITableViewController {
         let thread = threads[indexPath.row]
         cell.numberLabel.text = String(thread.opPost.number)
         cell.subjectLabel.text = thread.opPost.subject
-        cell.postTextLabel.text = thread.opPost.text
+        cell.postTextView.textContainer.maximumNumberOfLines = 7
+        cell.postTextView.textContainer.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.postTextView.attributedText = thread.opPost.attributedString
         cell.nameLabel.text = thread.opPost.name
         cell.omittedPostsLabel.text = String(thread.omittedPosts)
         cell.omittedPostsNounLabel.text = NSString.localizedStringWithFormat(
@@ -143,7 +145,8 @@ class ThreadsTableViewController: UITableViewController {
             cell.opPostImageView.kf.setImage(with: firstImage, options: [.transition(.fade(0.2)), .processor(imageProcessor)])
         } else {
             cell.imageWidthConstraint.constant = 0
-            cell.imageSpacingConstraint.constant = 0
+            cell.imageHorizontalSpacingConstraint.constant = 0
+            cell.imageVerticalSpacingConstraint.constant = 0
         }
         
         let formatter = DateFormatter()
