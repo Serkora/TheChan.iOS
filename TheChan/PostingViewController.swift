@@ -22,6 +22,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var captchaField: UITextField!
+    @IBOutlet weak var opSwitch: UISwitch!
     @IBOutlet weak var captchaView: UIView!
     @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var captchaImageView: UIImageView!
@@ -87,6 +88,10 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         let postingData = PostingData()
         postingData.text = postTextView.text
         postingData.boardId = boardId
+        postingData.subject = subjectField.text ?? ""
+        postingData.email = emailField.text ?? ""
+        postingData.name = nameField.text ?? ""
+        postingData.isOp = opSwitch.isOn
         if captcha != nil {
             let captchaResult = CaptchaResult()
             captchaResult.key = captcha!.key

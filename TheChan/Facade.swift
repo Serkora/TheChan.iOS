@@ -174,7 +174,11 @@ class EntityMapper {
             "task": "post",
             "board": post.boardId,
             "thread": String(post.threadNumber),
-            "comment": post.text
+            "comment": post.text,
+            "op_mark": post.isOp ? "1" : "0",
+            "subject": post.subject,
+            "email": post.email,
+            "name": post.name
         ]
         
         if post.captchaResult != nil {

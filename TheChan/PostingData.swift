@@ -12,6 +12,10 @@ class PostingData {
     var boardId = ""
     var threadNumber = 0
     var text = ""
+    var subject = ""
+    var name = ""
+    var email = ""
+    var isOp = false
     var captchaResult: CaptchaResult?
 }
 
