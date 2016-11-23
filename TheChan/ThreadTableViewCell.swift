@@ -12,7 +12,7 @@ class ThreadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var postTextLabel: UILabel!
+    @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -24,7 +24,8 @@ class ThreadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var opPostImageView: UIImageView!
     @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageHorizontalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageVerticalSpacingConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
