@@ -106,7 +106,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         navigationController?.interactivePopGestureRecognizer?.delegate = gestureRecognizerDelegate
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setToolbarHidden(true, animated: true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.setHidesBackButton(true, animated: true)
     }
     
@@ -117,6 +116,9 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if !isLoading && navigationController!.isNavigationBarHidden {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
         return !isLoading
     }
 
