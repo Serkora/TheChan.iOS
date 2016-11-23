@@ -144,7 +144,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         }
         
         stateController.primaryState = getUnreadPostsString()
-        stateController.secondaryState = NSLocalizedString("THREAD_LAST_UPDATE", comment: "Last update time") + "14:88"
+        setLastRefreshTime()
         
         toolbar.addSubview(stateView)
         
@@ -233,6 +233,17 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         default:
             stateController.endLoading(with: getUnreadPostsString())
         }
+        
+        setLastRefreshTime()
+    }
+    
+    private func setLastRefreshTime() {
+        let time = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        let timeString = formatter.string(from: time)
+        stateController.secondaryState = NSLocalizedString("THREAD_LAST_UPDATE", comment: "Last update time") + timeString
     }
     
     private func getUnreadPostsString() -> String {
