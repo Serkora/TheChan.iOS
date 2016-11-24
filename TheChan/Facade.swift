@@ -123,8 +123,12 @@ class EntityMapper {
             let result = Thread()
             result.omittedPosts = thread["posts_count"] as? Int ?? 0
             result.omittedFiles = thread["files_count"] as? Int ?? 0
-            if let opPost = (thread["posts"] as? [[String: AnyObject]])?[0] {
-                result.opPost = map(post: opPost)
+            var posts = (thread["posts"] as? [[String: AnyObject]] ?? []).map { post in map(post: post) }
+            if posts.count > 0 {
+                result.opPost = posts[0]
+                posts.remove(at: 0)
+                result.omittedPosts += posts.count
+                result.omittedFiles += posts.reduce(0) { count, post in count + post.attachments.count }
             }
             
             return result
