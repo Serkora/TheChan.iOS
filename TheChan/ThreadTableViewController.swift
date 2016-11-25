@@ -213,6 +213,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 return
             }
             
+            self.updateUnreadPostsState()
             self.posts += posts
             self.unreadPosts += posts.count
             self.updateThreadState(refreshingResult: .success)
@@ -224,6 +225,14 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     @IBAction private func refreshButtonTapped(_ sender: UIBarButtonItem) {
         stateController.startLoading(with: NSLocalizedString("THREAD_REFRESHING", comment: "Refreshing"))
         refresh()
+    }
+    
+    private func updateUnreadPostsState() {
+        guard let pathsForVisibleRows = tableView.indexPathsForVisibleRows else { return }
+        guard let lastVisibleRow = pathsForVisibleRows.last else { return }
+        if lastVisibleRow.row >= posts.count - 1 {
+            unreadPosts = 0
+        }
     }
     
     private func updateThreadState(refreshingResult: ThreadRefreshingResult) {
