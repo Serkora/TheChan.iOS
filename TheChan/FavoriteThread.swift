@@ -15,7 +15,6 @@ class FavoriteThread: Object {
     dynamic var name = ""
     dynamic var unreadPosts = 0
     dynamic var lastLoadedPost = 0
-    dynamic var lastReadedPost = 0
     dynamic var thumbnailUrl = ""
     
     private static func getNameFrom(post: Post) -> String {
@@ -29,13 +28,13 @@ class FavoriteThread: Object {
     }
 
     
-    static func create(boardId: String, threadNumber: Int, opPost: Post, postsCount: Int) -> FavoriteThread {
+    static func create(boardId: String, threadNumber: Int, opPost: Post, postsCount: Int, unreadPosts: Int) -> FavoriteThread {
         let thread = FavoriteThread()
         thread.board = boardId
         thread.number = threadNumber
         thread.name = getNameFrom(post: opPost)
         thread.lastLoadedPost = postsCount
-        thread.lastReadedPost = postsCount
+        thread.unreadPosts = unreadPosts
         if opPost.attachments.count > 0 {
             thread.thumbnailUrl = opPost.attachments[0].thumbnailUrl.absoluteString
         }

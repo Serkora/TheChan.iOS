@@ -164,23 +164,18 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     func updateFavoriteState(initialLoad: Bool) {
         guard let thread = favoriteThread else { return }
         let newLastLoadedPosts = posts.count
-        var newLastReadedPost = 0
+        let lastReadPost = thread.lastLoadedPost - thread.unreadPosts
         if initialLoad {
-            if posts.count > thread.lastReadedPost {
-                unreadPosts = posts.count - thread.lastReadedPost
-                newLastReadedPost = posts.count - unreadPosts
+            if posts.count > lastReadPost {
+                unreadPosts = posts.count - lastReadPost
             } else {
                 unreadPosts = 0
-                newLastReadedPost = posts.count
             }
-        } else {
-            newLastReadedPost = posts.count - unreadPosts
         }
         
         do {
             try uiRealm.write {
                 thread.unreadPosts = unreadPosts
-                thread.lastReadedPost = newLastReadedPost
                 thread.lastLoadedPost = newLastLoadedPosts
             }
         } catch {}
@@ -413,7 +408,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                     
                     isInFavorites = !isInFavorites
                 } else if posts.count > 0 {
-                    uiRealm.add(FavoriteThread.create(boardId: info.boardId, threadNumber: info.threadNumber, opPost: posts.first!, postsCount: posts.count))
+                    uiRealm.add(FavoriteThread.create(boardId: info.boardId, threadNumber: info.threadNumber, opPost: posts.first!, postsCount: posts.count, unreadPosts: unreadPosts))
                     
                     isInFavorites = !isInFavorites
                 }
