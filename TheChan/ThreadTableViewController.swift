@@ -225,7 +225,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     private func updateUnreadPostsState() {
         guard let pathsForVisibleRows = tableView.indexPathsForVisibleRows else { return }
         guard let lastVisibleRow = pathsForVisibleRows.last else { return }
-        if lastVisibleRow.row >= posts.count - 1 {
+        if lastVisibleRow.row >= posts.count - unreadPosts {
             unreadPosts = 0
         }
     }
