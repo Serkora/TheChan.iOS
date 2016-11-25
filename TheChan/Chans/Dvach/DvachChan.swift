@@ -61,7 +61,7 @@ class Dvach: Chan {
     }
     
     func send(post: PostingData, onComplete: @escaping (Bool, String?) -> ()) {
-        let data = EntityMapper.map(postingData: post)
+        let data = mapper.map(postingData: post)
         let url = "https://2ch.hk/makaba/posting.fcgi"
         Alamofire.upload(multipartFormData: { formData in
             for (key, value) in data {
