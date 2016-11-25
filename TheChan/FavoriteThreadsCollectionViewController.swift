@@ -16,6 +16,7 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
 
     private var uiRealm: Realm? = nil
     private var notificationToken: NotificationToken? = nil
+    private let chanManager = ChanManager()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -62,11 +63,13 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "OpenThread" {
+            let chan = chanManager.currentChan
             guard let threadController = segue.destination as? ThreadTableViewController else { return }
             guard let cell = sender as? UICollectionViewCell else { return }
             guard let indexPath = self.collectionView?.indexPath(for: cell) else { return }
             guard let thread = uiRealm?.objects(FavoriteThread.self)[indexPath.item] else { return }
             threadController.info = (boardId: thread.board, threadNumber: thread.number)
+            threadController.chan = chan
         }
     }
 
@@ -135,7 +138,7 @@ class FavoriteThreadsCollectionViewController: UICollectionViewController, UICol
     
     func update(thread: FavoriteThread, onFinished: @escaping () -> Void) {
         guard let realm = uiRealm else { return }
-        Facade.loadThread(boardId: thread.board, number: thread.number, from: thread.lastLoadedPost + 1) { posts in
+        chanManager.currentChan.loadThread(boardId: thread.board, number: thread.number, from: thread.lastLoadedPost + 1) { posts in
             if let posts = posts {
                 do {
                     try realm.write {

@@ -11,6 +11,7 @@ import Kingfisher
 
 class ThreadsTableViewController: UITableViewController {
 
+    lazy var chan: Chan! = nil
     private var threads = [Thread]()
     private var currentPage = 0
     private var isLoading = false
@@ -80,7 +81,7 @@ class ThreadsTableViewController: UITableViewController {
             self.startLoading(indicator: activityIndicator)
         }
         
-        Facade.loadThreads(boardId: board.id, page: number) { threads in
+        chan.loadThreads(boardId: board.id, page: number) { threads in
             if let threads = threads {
                 self.updateThreads(threads)
                 self.tableView.reloadData()
@@ -225,6 +226,7 @@ class ThreadsTableViewController: UITableViewController {
         if segue.identifier == "OpenThread" {
             let threadView = segue.destination as! ThreadTableViewController
             let thread = threads[tableView.indexPathForSelectedRow!.row]
+            threadView.chan = chan
             threadView.info = (boardId: board.id, threadNumber: thread.opPost.number)
         }
     }

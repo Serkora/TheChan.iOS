@@ -30,6 +30,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var attachButton: UIButton!
     @IBOutlet weak var attachmentsCollectionView: UICollectionView!
     
+    lazy var chan: Chan! = nil
     var boardId: String = ""
     var captcha: Captcha?
     var mode: PostingMode = .newThread
@@ -47,10 +48,10 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     func setupCaptcha() {
         captchaImageView.kf.indicatorType = .activity
         
-        Facade.isCaptchaEnabled(in: boardId) { isCaptchaEnabled in
+        chan.isCaptchaEnabled(in: boardId) { isCaptchaEnabled in
             self.captchaActivityIndicator.stopAnimating()
             if isCaptchaEnabled {
-                Facade.getCaptcha { captcha in
+                self.chan.getCaptcha { captcha in
                     self.captchaView.isHidden = false
                     guard let imageCaptcha = captcha as? ImageCaptcha else { return }
                     self.captcha = imageCaptcha
@@ -114,7 +115,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             postingData.threadNumber = threadNumber
         }
         
-        Facade.send(post: postingData) { isSuccessful, error in
+        chan.send(post: postingData) { isSuccessful, error in
             if !isSuccessful {
                 let error = error ?? NSLocalizedString("UNKNOWN_ERROR", comment: "Unknown error")
                 let alert = UIAlertController(title: NSLocalizedString("POSTING_ERROR", comment: "Error"), message: error, preferredStyle: .alert)
@@ -143,7 +144,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         attachments.append(image)
-        if attachments.count >= Facade.maxAttachments {
+        if attachments.count >= chan.maxAttachments {
             attachButton.isEnabled = false
             attachButton.layer.borderColor = attachButton.currentTitleColor.cgColor
         }

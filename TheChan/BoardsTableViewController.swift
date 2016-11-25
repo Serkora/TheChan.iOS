@@ -12,6 +12,7 @@ class BoardsTableViewController: UITableViewController {
 
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     var groups = [BoardsGroup]()
+    private let chanManager = ChanManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class BoardsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         startLoading(indicator: activityView)
-        Facade.loadBoards { groups in
+        chanManager.currentChan.loadBoards { groups in
             if let groups = groups {
                 self.groups = groups
                 self.tableView.reloadData()
@@ -123,6 +124,7 @@ class BoardsTableViewController: UITableViewController {
             let selectedBoardPath = tableView.indexPathForSelectedRow!
             let selectedBoard = groups[selectedBoardPath.section].boards[selectedBoardPath.row]
             threadsTableViewController.board = selectedBoard
+            threadsTableViewController.chan = chanManager.currentChan
         }
     }
 

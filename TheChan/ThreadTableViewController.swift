@@ -23,6 +23,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     var info: (boardId: String, threadNumber: Int) = ("", 0)
     var posts = [Post]()
     let dateFormatter = DateFormatter()
+    lazy var chan: Chan! = nil
     
     private var unreadPosts = 0
     private var allFiles = [MWPhoto]()
@@ -65,7 +66,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         self.titleButton.setTitle(self.getTitleFrom(boardId: info.boardId, threadNumber: info.threadNumber), for: .normal)
         startLoading(indicator: progressIndicator)
         isLoading = true
-        Facade.loadThread(boardId: info.boardId, number: info.threadNumber) { posts in
+        chan.loadThread(boardId: info.boardId, number: info.threadNumber, from: 0) { posts in
             if let posts = posts {
                 self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
                 self.posts += posts
@@ -196,7 +197,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     }
 
     func loadPosts(from: Int, onComplete: @escaping ([Post]?) -> Void) {
-        Facade.loadThread(boardId: info.boardId, number: info.threadNumber, from: from) { posts in
+        chan.loadThread(boardId: info.boardId, number: info.threadNumber, from: from) { posts in
             onComplete(posts)
         }
     }
@@ -378,6 +379,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         if segue.identifier == "Reply" {
             guard let controller = segue.destination as? PostingViewController else { return }
             controller.boardId = info.boardId
+            controller.chan = chan
             controller.mode = .reply(threadNumber: info.threadNumber)
         }
     }
