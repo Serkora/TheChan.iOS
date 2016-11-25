@@ -145,6 +145,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         attachments.append(image)
         if attachments.count >= Facade.maxAttachments {
             attachButton.isEnabled = false
+            attachButton.layer.borderColor = attachButton.currentTitleColor.cgColor
         }
         
         attachmentsCollectionView.reloadData()

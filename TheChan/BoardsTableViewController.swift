@@ -10,6 +10,7 @@ import UIKit
 
 class BoardsTableViewController: UITableViewController {
 
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     var groups = [BoardsGroup]()
     
     override func viewDidLoad() {
@@ -22,15 +23,12 @@ class BoardsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityView.center = view.center
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
+        startLoading(indicator: activityView)
         Facade.loadBoards { groups in
             if let groups = groups {
                 self.groups = groups
                 self.tableView.reloadData()
-                activityView.stopAnimating()
+                self.stopLoading(indicator: self.activityView)
             }
         }
     }
