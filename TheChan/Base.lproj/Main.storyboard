@@ -490,6 +490,10 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IpZ-nx-6BD">
                                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="85"/>
                                                                 <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <gestureRecognizers/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="200" id="NVW-Lo-Yjg"/>
                                                                     <constraint firstAttribute="height" constant="85" id="c7w-tQ-87x"/>
@@ -499,6 +503,9 @@
                                                                         <integer key="value" value="5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="z54-8Q-dvN" appends="YES" id="HxN-ia-KrZ"/>
+                                                                </connections>
                                                             </imageView>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6XQ-2J-VcI">
                                                                 <rect key="frame" x="208" y="27" width="96" height="30"/>
@@ -635,6 +642,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t72-9w-7BE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sMX-8E-rJc" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="z54-8Q-dvN">
+                    <connections>
+                        <action selector="captchaTapped:" destination="ScS-x9-wRx" id="Wsi-EM-ggF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6178" y="138"/>
         </scene>

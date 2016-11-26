@@ -59,6 +59,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     func setupCaptcha() {
         captchaImageView.kf.indicatorType = .activity
+        captchaImageView.isUserInteractionEnabled = true
         
         chan.isCaptchaEnabled(in: boardId) { isCaptchaEnabled in
             self.captchaActivityIndicator.stopAnimating()
@@ -72,6 +73,10 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 }
             }
         }
+    }
+    
+    @IBAction func captchaTapped(_ sender: UITapGestureRecognizer) {
+        setupCaptcha()
     }
     
     func setupFields() {
