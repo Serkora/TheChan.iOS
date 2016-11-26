@@ -39,10 +39,22 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFields()
+        setupTitle()
         setupCaptcha()
         attachButton.layer.borderColor = view.tintColor.cgColor
         attachmentsCollectionView.dataSource = self
         attachmentsCollectionView.reloadData()
+    }
+    
+    func setupTitle() {
+        switch mode {
+        case .reply(_):
+            title = NSLocalizedString("POSTING_REPLY_MODE_TITLE", comment: "Reply")
+            break
+        case .newThread:
+            title = NSLocalizedString("POSTING_NEW_THREAD_MODE_TITLE", comment: "New thread")
+            break
+        }
     }
     
     func setupCaptcha() {

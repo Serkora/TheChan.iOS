@@ -10,3 +10,5 @@ THREAD_LAST_UPDATE="Обновлен в ";
 THREAD_REFRESHING="Обновление";
 UNKNOWN_ERROR="Неизвестная ошибка";
 POSTING_ERROR="Ошибка";
+POSTING_REPLY_MODE_TITLE="Ответить";
+POSTING_NEW_THREAD_MODE_TITLE="Новый тред";
