@@ -553,6 +553,9 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                                                        <connections>
+                                                                            <action selector="emailChanged:" destination="ScS-x9-wRx" eventType="editingChanged" id="qK0-Ex-ebP"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -588,6 +591,9 @@
                                                                                 <rect key="frame" x="0.0" y="20.5" width="51" height="31"/>
                                                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <color key="onTintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <connections>
+                                                                                    <action selector="sageSwitchValueChanged:" destination="ScS-x9-wRx" eventType="valueChanged" id="IbE-Ou-ZhI"/>
+                                                                                </connections>
                                                                             </switch>
                                                                         </subviews>
                                                                     </stackView>
@@ -636,6 +642,7 @@
                         <outlet property="nameField" destination="XXN-iq-xaL" id="6Gh-Py-UpK"/>
                         <outlet property="opSwitch" destination="seU-Wb-ahF" id="vV7-UU-iGp"/>
                         <outlet property="postTextView" destination="WWS-9j-lnf" id="16E-7p-Vyb"/>
+                        <outlet property="sageSwitch" destination="ZzS-zf-uq5" id="UzA-c3-GUZ"/>
                         <outlet property="subjectField" destination="qgf-FG-DCf" id="ujY-of-jSL"/>
                         <segue destination="sMX-8E-rJc" kind="unwind" identifier="UnwindToThread" unwindAction="unwindToThreadWithSegue:" id="sGQ-qt-y7b"/>
                     </connections>

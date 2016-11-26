@@ -24,6 +24,7 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var captchaField: UITextField!
     @IBOutlet weak var opSwitch: UISwitch!
+    @IBOutlet weak var sageSwitch: UISwitch!
     @IBOutlet weak var captchaView: UIView!
     @IBOutlet weak var captchaActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var captchaImageView: UIImageView!
@@ -100,6 +101,14 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func emailChanged(_ sender: UITextField) {
+        sageSwitch.setOn(sender.text?.lowercased() == "sage", animated: true)
+    }
+    
+    @IBAction func sageSwitchValueChanged(_ sender: UISwitch) {
+        emailField.text = sender.isOn ? "sage" : nil
     }
     
     @IBAction func sendButtonTapped(_ sender: UIBarButtonItem) {
