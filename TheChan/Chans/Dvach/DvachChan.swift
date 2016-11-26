@@ -60,7 +60,7 @@ class Dvach: Chan {
         }, onComplete: onComplete)
     }
     
-    func send(post: PostingData, onComplete: @escaping (Bool, String?) -> ()) {
+    func send(post: PostingData, onComplete: @escaping (Bool, String?, Int?) -> ()) {
         let data = mapper.map(postingData: post)
         let url = "https://2ch.hk/makaba/posting.fcgi"
         Alamofire.upload(multipartFormData: { formData in
@@ -77,17 +77,18 @@ class Dvach: Chan {
                 request.responseJSON { response in
                     if let result = response.result.value as? [String: Any] {
                         let error = result["Reason"] as? String
+                        let num = result["Num"] as? Int ?? result["Target"] as? Int
                         if error != nil {
-                            onComplete(false, error)
+                            onComplete(false, error, nil)
                         } else {
-                            onComplete(true, nil)
+                            onComplete(true, nil, num)
                         }
                     } else {
-                        onComplete(false, String(response.response?.statusCode ?? 404))
+                        onComplete(false, String(response.response?.statusCode ?? 404), nil)
                     }
                 }
             default:
-                onComplete(false, nil)
+                onComplete(false, nil, nil)
             }
         }
     }

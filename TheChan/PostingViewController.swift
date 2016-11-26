@@ -115,19 +115,31 @@ class PostingViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             postingData.threadNumber = threadNumber
         }
         
-        chan.send(post: postingData) { isSuccessful, error in
+        chan.send(post: postingData) { isSuccessful, error, postNumber in
             if !isSuccessful {
                 let error = error ?? NSLocalizedString("UNKNOWN_ERROR", comment: "Unknown error")
                 let alert = UIAlertController(title: NSLocalizedString("POSTING_ERROR", comment: "Error"), message: error, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
                 sender.isEnabled = true
-            } else {
+            } else if case .reply(_) = self.mode {
                 self.performSegue(withIdentifier: "UnwindToThread", sender: self)
+            } else if case .newThread = self.mode {
+                self.navigateToThread(by: postNumber ?? 0)
             }
         }
         
         postTextView.resignFirstResponder()
+    }
+    
+    func navigateToThread(by number: Int) {
+        guard var viewControllers = navigationController?.viewControllers else { return }
+        guard let threadController = storyboard?.instantiateViewController(withIdentifier: "ThreadVC") as? ThreadTableViewController else { return }
+        threadController.chan = chan
+        threadController.info = (boardId: boardId, threadNumber: number)
+        viewControllers.removeLast()
+        viewControllers.append(threadController)
+        navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
     @IBAction func attachButtonTapped(_ sender: UIButton) {

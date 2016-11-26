@@ -116,7 +116,7 @@
         <!--Thread Table View Controller-->
         <scene sceneID="fmw-Q9-DG3">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Cgm-wW-qMz" customClass="ThreadTableViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ThreadVC" hidesBottomBarWhenPushed="YES" id="Cgm-wW-qMz" customClass="ThreadTableViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" id="kdl-js-jvx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1016,6 +1016,11 @@
                                 <action selector="titleTouched:" destination="ydy-33-hCU" eventType="touchUpInside" id="vmK-KQ-SgZ"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EAv-Ky-e9s">
+                            <connections>
+                                <segue destination="ScS-x9-wRx" kind="show" identifier="NewThread" id="nEF-OL-3cj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="PBG-PY-UZd">
@@ -1044,6 +1049,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ffV-4X-NB4"/>
+        <segue reference="YuX-Bm-upW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

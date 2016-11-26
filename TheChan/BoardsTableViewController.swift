@@ -27,7 +27,7 @@ class BoardsTableViewController: UITableViewController {
         startLoading(indicator: activityView)
         chanManager.currentChan.loadBoards { groups in
             if let groups = groups {
-                self.groups = groups
+                self.groups = [BoardsGroup(name: "test", boards: [Board(id: "test", name: "test")])] + groups
                 self.tableView.reloadData()
                 self.stopLoading(indicator: self.activityView)
             }

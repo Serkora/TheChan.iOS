@@ -228,6 +228,11 @@ class ThreadsTableViewController: UITableViewController {
             let thread = threads[tableView.indexPathForSelectedRow!.row]
             threadView.chan = chan
             threadView.info = (boardId: board.id, threadNumber: thread.opPost.number)
+        } else if segue.identifier == "NewThread" {
+            let postingController = segue.destination as! PostingViewController
+            postingController.mode = .newThread
+            postingController.boardId = board.id
+            postingController.chan = chan
         }
     }
 

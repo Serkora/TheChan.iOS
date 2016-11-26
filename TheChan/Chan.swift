@@ -16,7 +16,7 @@ protocol Chan {
     func loadThread(boardId: String, number: Int, from: Int, onComplete: @escaping ([Post]?) -> ())
     func isCaptchaEnabled(in board: String, onComplete: @escaping (Bool) -> ())
     func getCaptcha(onComplete: @escaping (Captcha?) -> ())
-    func send(post: PostingData, onComplete: @escaping (Bool, String?) -> ())
+    func send(post: PostingData, onComplete: @escaping (Bool, String?, Int?) -> ())
 }
 
 extension Chan {
