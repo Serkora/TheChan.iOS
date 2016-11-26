@@ -1,48 +1,18 @@
 
-/* Class = "UILabel"; text = "0 sec ago"; ObjectID = "2kg-JA-Yt2"; */
-"2kg-JA-Yt2.text" = "0 sec ago";
-
-/* Class = "UILabel"; text = "POSTS"; ObjectID = "6qu-z3-9xj"; */
-"6qu-z3-9xj.text" = "ПРОПУЩЕНО";
-
 /* Class = "UITabBarItem"; title = "Boards"; ObjectID = "9Oy-op-xsZ"; */
 "9Oy-op-xsZ.title" = "Доски";
-
-/* Class = "UILabel"; text = "FILES"; ObjectID = "G0V-Fe-bKh"; */
-"G0V-Fe-bKh.text" = "ФАЙЛОВ";
-
-/* Class = "UILabel"; text = "10"; ObjectID = "Kih-4b-eSD"; */
-"Kih-4b-eSD.text" = "10";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "Lsw-Co-SBt"; */
 "Lsw-Co-SBt.title" = "Item";
 
-/* Class = "UILabel"; text = "Subject"; ObjectID = "Oag-5v-DNr"; */
-"Oag-5v-DNr.text" = "Тема";
-
 /* Class = "UILabel"; text = "boardid"; ObjectID = "Z2S-d8-bPR"; */
 "Z2S-d8-bPR.text" = "boardid";
-
-/* Class = "UILabel"; text = "000000"; ObjectID = "Zmn-FQ-Y9B"; */
-"Zmn-FQ-Y9B.text" = "000000";
 
 /* Class = "UILabel"; text = "Board Name"; ObjectID = "bMb-fj-Njo"; */
 "bMb-fj-Njo.text" = "Имя доски";
 
-/* Class = "UILabel"; text = "10"; ObjectID = "gJ7-g6-p54"; */
-"gJ7-g6-p54.text" = "10";
-
 /* Class = "UINavigationItem"; title = "Boards"; ObjectID = "kmE-ae-2hV"; */
 "kmE-ae-2hV.title" = "Доски";
-
-/* Class = "UILabel"; text = "Post content"; ObjectID = "ppU-kR-xyA"; */
-"ppU-kR-xyA.text" = "Содержание поста";
-
-/* Class = "UILabel"; text = "Name"; ObjectID = "qVd-DD-DPN"; */
-"qVd-DD-DPN.text" = "Имя";
-
-/* Class = "UIButton"; normalTitle = "Board"; ObjectID = "beY-y0-Frw"; */
-"beY-y0-Frw.normalTitle" = "Доска";
 
 /* Class = "UITextView"; text = "Post markup"; ObjectID = "JgZ-Nq-VYF"; */
 "JgZ-Nq-VYF.text" = "";
@@ -89,3 +59,5 @@
 /* Class = "UITextField"; placeholder = "Subject"; ObjectID = "qgf-FG-DCf"; */
 "qgf-FG-DCf.placeholder" = "Тема";
 
+/* Class = "UINavigationItem"; title = "Recents"; ObjectID = "GhT-pz-9nK"; */
+"GhT-pz-9nK.title" = "Последние";
