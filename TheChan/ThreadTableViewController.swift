@@ -68,7 +68,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         isLoading = true
         chan.loadThread(boardId: info.boardId, number: info.threadNumber, from: 0) { posts in
             if let posts = posts {
-                self.titleButton.setTitle(self.getTitleFrom(post: posts.first!), for: .normal)
+                self.titleButton.setTitle(posts.first!.getTitle(), for: .normal)
                 self.posts += posts
                 self.updateFavoriteState(initialLoad: true)
                 self.updateThreadState(refreshingResult: .success)
@@ -180,16 +180,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 thread.lastLoadedPost = newLastLoadedPosts
             }
         } catch {}
-    }
-    
-    func getTitleFrom(post: Post) -> String {
-        if post.subject.isEmpty {
-            let offset = post.text.characters.count >= 50 ? 50 : post.text.characters.count
-            let subject = post.text.substring(to: post.text.index(post.text.startIndex, offsetBy: offset))
-            return String(htmlEncodedString: subject)
-        }
-        
-        return post.subject
     }
     
     func getTitleFrom(boardId: String, threadNumber: Int) -> String {

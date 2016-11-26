@@ -18,4 +18,16 @@ class Post {
     var text = ""
     var attributedString = NSAttributedString()
     var attachments = [Attachment]()
+    
+    func getTitle() -> String {
+        if !text.isEmpty {
+            let offset = text.characters.count >= 50 ? 50 : text.characters.count
+            let subject = text.substring(to: text.index(text.startIndex, offsetBy: offset))
+            return String(htmlEncodedString: subject)
+        } else if !subject.isEmpty {
+            return subject
+        } else {
+            return "\(number)"
+        }
+    }
 }
