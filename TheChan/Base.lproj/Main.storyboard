@@ -668,7 +668,7 @@
                     <tabBarItem key="tabBarItem" title="Boards" image="boardsIcon" id="9Oy-op-xsZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Dl7-ng-ysS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Dl7-ng-ysS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -692,7 +692,7 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Ajo-q9-Iu9"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Qnw-MD-zpG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Qnw-MD-zpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -714,7 +714,7 @@
         <scene sceneID="fwA-8g-2wU">
             <objects>
                 <collectionViewController id="iIU-oA-ZMW" customClass="FavoriteThreadsCollectionViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" dataMode="prototypes" id="qBl-xJ-6wW">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" id="qBl-xJ-6wW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
@@ -825,7 +825,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="whV-dW-GcX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="recents" id="wz1-CF-L2p"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zLb-eT-Ib9">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="zLb-eT-Ib9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -838,17 +839,17 @@
             </objects>
             <point key="canvasLocation" x="2230" y="1635"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Recents-->
         <scene sceneID="hX1-fu-RpU">
             <objects>
-                <tableViewController id="FUn-G2-cQe" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8jb-aP-cLF">
+                <tableViewController id="FUn-G2-cQe" customClass="RecentThreadsTableViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" id="8jb-aP-cLF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="cCt-zI-ynZ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecentThreadTableViewCell" rowHeight="60" id="cCt-zI-ynZ" customClass="RecentThreadTableViewCell" customModule="TheChan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cCt-zI-ynZ" id="b3f-e7-a6d">
@@ -883,7 +884,11 @@
                                         <constraint firstItem="kI4-Ds-YBZ" firstAttribute="leading" secondItem="b3f-e7-a6d" secondAttribute="leadingMargin" constant="8" id="Ve0-va-cuM"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="boardIdLabel" destination="fTV-Co-HVg" id="PfC-3q-8P6"/>
+                                    <outlet property="threadNameLabel" destination="RfR-kT-bZg" id="eds-Br-oCB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -891,7 +896,7 @@
                             <outlet property="delegate" destination="FUn-G2-cQe" id="zjb-GP-zDj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="GhT-pz-9nK"/>
+                    <navigationItem key="navigationItem" title="Recents" id="GhT-pz-9nK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sKh-sG-gbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
