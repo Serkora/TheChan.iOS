@@ -72,6 +72,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 self.posts += posts
                 self.updateFavoriteState(initialLoad: true)
                 self.updateThreadState(refreshingResult: .success)
+                self.updateHistoryItem()
             }
             
             self.isLoading = false
@@ -82,6 +83,25 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 self.scrollToBottom()
             }
             self.needsScrollToBottom = false
+        }
+    }
+    
+    func updateHistoryItem() {
+        let existingItem = uiRealm.objects(HistoryItem.self).first { item in
+            item.board == info.boardId && item.number == info.threadNumber
+        }
+        
+        try? uiRealm.write {
+            if let item = existingItem {
+                item.lastVisit = Date()
+            } else {
+                let newItem = HistoryItem()
+                newItem.board = info.boardId
+                newItem.name = posts[0].getTitle()
+                newItem.number = info.threadNumber
+                newItem.lastVisit = Date()
+                uiRealm.add(newItem)
+            }
         }
     }
     
