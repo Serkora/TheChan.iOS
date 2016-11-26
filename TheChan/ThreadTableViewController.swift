@@ -59,6 +59,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        navigationController?.toolbar.barStyle = .blackTranslucent
+        navigationController?.toolbar.tintColor = view.tintColor
         
         configureStateController()
         configureFavoritesState()

@@ -259,7 +259,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="QDp-Ye-05L">
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="hUW-1p-SnM">
-                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <rect key="frame" x="124" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Button">
@@ -825,7 +825,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="whV-dW-GcX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="recents" id="wz1-CF-L2p"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="zLb-eT-Ib9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -888,6 +888,7 @@
                                 <connections>
                                     <outlet property="boardIdLabel" destination="fTV-Co-HVg" id="PfC-3q-8P6"/>
                                     <outlet property="threadNameLabel" destination="RfR-kT-bZg" id="eds-Br-oCB"/>
+                                    <segue destination="Cgm-wW-qMz" kind="show" identifier="OpenThread" id="6nD-ae-08M"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -898,6 +899,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Recents" id="GhT-pz-9nK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sKh-sG-gbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1071,7 +1073,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="l34-xd-hy4">
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="HDo-KE-mzS">
-                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <rect key="frame" x="124" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <state key="normal" title="Board">
@@ -1113,7 +1115,7 @@
         <image name="goDownIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ffV-4X-NB4"/>
+        <segue reference="6nD-ae-08M"/>
         <segue reference="YuX-Bm-upW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

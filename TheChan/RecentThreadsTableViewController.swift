@@ -108,14 +108,18 @@ class RecentThreadsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "OpenThread",
+            let controller = segue.destination as? ThreadTableViewController,
+            let index = tableView.indexPathForSelectedRow {
+            let item = getItems()[index.row]
+            controller.chan = ChanManager().currentChan
+            controller.info = (boardId: item.board, threadNumber: item.number)
+        }
     }
-    */
 
 }
