@@ -1,5 +1,5 @@
 //
-//  HistoryThreadItem.swift
+//  HistoryItem.swift
 //  TheChan
 //
 //  Created by Вадим Новосельцев on 26.11.16.

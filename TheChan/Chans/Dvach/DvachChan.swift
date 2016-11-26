@@ -1,5 +1,5 @@
 //
-//  Chan.swift
+//  DvachChan.swift
 //  TheChan
 //
 //  Created by Вадим Новосельцев on 25.11.16.
