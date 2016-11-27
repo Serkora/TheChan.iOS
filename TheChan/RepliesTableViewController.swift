@@ -79,6 +79,7 @@ class RepliesTableViewController: UITableViewController {
         cell.layer.cornerRadius = 10
         cell.layer.borderColor = UIColor.clear.cgColor
         cell.layer.borderWidth = 8.0
+        cell.isOpaque = true
         
         let repliesCount = 1
         cell.repliesButton.isHidden = repliesCount == 0
