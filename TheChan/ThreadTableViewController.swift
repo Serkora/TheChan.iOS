@@ -36,6 +36,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     private var needsScrollToBottom = false
     private var gestureRecognizerDelegate: UIGestureRecognizerDelegate!
     
+    private var replies: [Int: [Post]] = [:]
+    
     private var isInFavorites = false {
         didSet {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
@@ -303,6 +305,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         cell.filesPreviewsCollectionView.dataSource = cell
         cell.filesPreviewsCollectionView.delegate = cell
         cell.filesPreviewsCollectionView.reloadData()
+        
+        let isRepliesButtonHidden = false
+        cell.repliesButton.isOpaque = isRepliesButtonHidden
+        cell.repliesButton.isEnabled = !isRepliesButtonHidden
+        let title = String(localizedFormat: "%d replies", argument: 2)
+        cell.repliesButton.setTitle(title, for: .normal)
         
         for view in cell.subviews {
             if let scrollView = view as? UIScrollView {

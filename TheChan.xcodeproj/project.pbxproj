@@ -21,6 +21,7 @@
 		92304F231DDCA67D00240505 /* PostingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F221DDCA67D00240505 /* PostingData.swift */; };
 		92304F251DDE133D00240505 /* Captcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F241DDE133D00240505 /* Captcha.swift */; };
 		92304F271DDE140500240505 /* ImageCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92304F261DDE140500240505 /* ImageCaptcha.swift */; };
+		925BDBED1DEACFD100A098BA /* LocalizedStringWithFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925BDBEC1DEACFD100A098BA /* LocalizedStringWithFormat.swift */; };
 		925E94651DBAA3330009932E /* UITableViewLoadingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E94641DBAA3330009932E /* UITableViewLoadingExtension.swift */; };
 		92802B491DE89F5C00407C9E /* Chan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92802B481DE89F5C00407C9E /* Chan.swift */; };
 		92802B4B1DE89F7200407C9E /* DvachChan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92802B4A1DE89F7200407C9E /* DvachChan.swift */; };
@@ -79,6 +80,7 @@
 		92304F221DDCA67D00240505 /* PostingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingData.swift; sourceTree = "<group>"; };
 		92304F241DDE133D00240505 /* Captcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Captcha.swift; sourceTree = "<group>"; };
 		92304F261DDE140500240505 /* ImageCaptcha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCaptcha.swift; sourceTree = "<group>"; };
+		925BDBEC1DEACFD100A098BA /* LocalizedStringWithFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringWithFormat.swift; sourceTree = "<group>"; };
 		925E94641DBAA3330009932E /* UITableViewLoadingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewLoadingExtension.swift; sourceTree = "<group>"; };
 		92802B481DE89F5C00407C9E /* Chan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chan.swift; sourceTree = "<group>"; };
 		92802B4A1DE89F7200407C9E /* DvachChan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DvachChan.swift; path = Chans/Dvach/DvachChan.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				92908A121DD724A300B89A7F /* RealmInstance.swift */,
 				92802B481DE89F5C00407C9E /* Chan.swift */,
 				92802B4C1DE89FF200407C9E /* ChanManager.swift */,
+				925BDBEC1DEACFD100A098BA /* LocalizedStringWithFormat.swift */,
 			);
 			path = TheChan;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				92802B4D1DE89FF200407C9E /* ChanManager.swift in Sources */,
 				92802B511DE8A37C00407C9E /* Markup.swift in Sources */,
 				92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */,
+				925BDBED1DEACFD100A098BA /* LocalizedStringWithFormat.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
 				922751A21DE9D66F000D905D /* RecentThreadsTableViewController.swift in Sources */,
 				92908A151DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift in Sources */,

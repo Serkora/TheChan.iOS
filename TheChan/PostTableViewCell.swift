@@ -21,6 +21,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var filesPreviewsCollectionView: UICollectionView!
     @IBOutlet weak var postContentView: UITextView!
     @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var repliesButton: UIButton!
     var attachments = [Attachment]()
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
