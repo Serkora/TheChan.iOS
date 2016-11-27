@@ -20,8 +20,8 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var filesPreviewsCollectionView: UICollectionView!
     @IBOutlet weak var postContentView: UITextView!
-    @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var repliesButton: UIButton!
+    @IBOutlet weak var bottomMarginConstraint: NSLayoutConstraint!
     var attachments = [Attachment]()
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
@@ -33,9 +33,6 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             -postContentView.textContainer.lineFragmentPadding,
             0,
             -postContentView.textContainer.lineFragmentPadding)
-        
-        let image = #imageLiteral(resourceName: "replyIcon")
-        replyButton.setImage(image.withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

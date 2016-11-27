@@ -36,6 +36,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     private var needsScrollToBottom = false
     private var gestureRecognizerDelegate: UIGestureRecognizerDelegate!
     
+    private let repliesMapFormer = RepliesMapFormer()
     private var replies: [Int: [Post]] = [:]
     
     private var isInFavorites = false {
@@ -77,6 +78,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
                 self.updateFavoriteState(initialLoad: true)
                 self.updateThreadState(refreshingResult: .success)
                 self.updateHistoryItem()
+                self.replies = self.repliesMapFormer.createMapFrom(newPosts: posts, existingMap: self.replies)
             }
             
             self.isLoading = false
@@ -225,6 +227,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
             
             self.updateUnreadPostsState()
             self.posts += posts
+            self.replies = self.repliesMapFormer.createMapFrom(newPosts: posts, existingMap: self.replies)
             self.unreadPosts += posts.count
             self.updateThreadState(refreshingResult: .success)
             self.updateFavoriteState(initialLoad: false)
@@ -306,11 +309,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         cell.filesPreviewsCollectionView.delegate = cell
         cell.filesPreviewsCollectionView.reloadData()
         
-        let isRepliesButtonHidden = false
-        cell.repliesButton.isOpaque = isRepliesButtonHidden
-        cell.repliesButton.isEnabled = !isRepliesButtonHidden
-        let title = String(localizedFormat: "%d replies", argument: 2)
+        let repliesCount = replies[post.number]?.count ?? 0
+        cell.repliesButton.isHidden = repliesCount == 0
+        let title = String(localizedFormat: "%d replies", argument: repliesCount)
         cell.repliesButton.setTitle(title, for: .normal)
+        cell.bottomMarginConstraint.constant = repliesCount == 0 ? 8.0 : 0.0
         
         for view in cell.subviews {
             if let scrollView = view as? UIScrollView {
