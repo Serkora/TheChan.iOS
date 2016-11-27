@@ -294,6 +294,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
         let post = posts[indexPath.row]
         
+        cell.post = post
         cell.subjectLabel.text = post.subject
         cell.subjectLabel.isHidden = post.subject.isEmpty
         
@@ -327,10 +328,11 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         return cell
     }
     
-    func repliesButtonTapped() {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") else { return }
+    func repliesButtonTapped(sender: PostTableViewCell) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
         viewController.modalTransitionStyle = .coverVertical
         viewController.modalPresentationStyle = .overCurrentContext
+        viewController.posts = replies[sender.post.number]!
         navigationController?.present(viewController, animated: true, completion: nil)
     }
     
@@ -339,6 +341,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         let index = indexPath.row
         if index == posts.count - unreadPosts {
             cell.backgroundColor = UIColor(red: 255/255.0, green: 149/255.0, blue: 0.0, alpha: 0.2)
+        } else {
+            cell.backgroundColor = UIColor.clear
         }
     }
     

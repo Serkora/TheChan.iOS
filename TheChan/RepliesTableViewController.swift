@@ -9,14 +9,26 @@
 import UIKit
 
 class RepliesTableViewController: UITableViewController {
-        
+    
+    var posts = [Post]()
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        
+        tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
 
         tableView.backgroundColor = UIColor.clear
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         tableView.backgroundView = blurEffectView
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,24 +39,59 @@ class RepliesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return posts.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
+        let post = posts[indexPath.section]
+        
+        cell.subjectLabel.text = post.subject
+        cell.subjectLabel.isHidden = post.subject.isEmpty
+        
+        cell.positionLabel.text = String(indexPath.row + 1)
+        cell.nameLabel.text = post.name
+        cell.numberLabel.text = String(post.number)
+        cell.dateLabel.text = dateFormatter.string(from: post.date)
+        cell.postContentView.attributedText = post.attributedString
+        cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
+        cell.attachments = post.attachments
+//        cell.onAttachmentSelected = onAttachmentSelected
+        
+        cell.filesPreviewsCollectionView.dataSource = cell
+        cell.filesPreviewsCollectionView.delegate = cell
+        cell.filesPreviewsCollectionView.reloadData()
+        
+        cell.layer.cornerRadius = 10
+        cell.layer.borderColor = UIColor.clear.cgColor
+        cell.layer.borderWidth = 8.0
+        
+        let repliesCount = 1
+        cell.repliesButton.isHidden = repliesCount == 0
+        let title = String(localizedFormat: "%d replies", argument: repliesCount)
+        cell.repliesButton.setTitle(title, for: .normal)
+        cell.bottomMarginConstraint.constant = repliesCount == 0 ? 8.0 : 0.0
+        
+        cell.layoutMargins = UIEdgeInsetsMake(0, 20, 0, 20)
+        
+        //cell.delegate = self
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

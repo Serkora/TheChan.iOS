@@ -24,6 +24,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var bottomMarginConstraint: NSLayoutConstraint!
     var delegate: PostTableViewCellDelegate? = nil
     var attachments = [Attachment]()
+    var post = Post()
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
     override func awakeFromNib() {
@@ -42,10 +43,6 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-    }
-    
-    override func prepareForReuse() {
-        backgroundColor = UIColor.clear
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,15 +68,16 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         onAttachmentSelected(selectedAttachment)
     }
     
+    
     @IBAction func repliesButtonTapped(_ sender: Any) {
-        delegate?.repliesButtonTapped()
+        delegate?.repliesButtonTapped(sender: self)
     }
 }
 
 protocol PostTableViewCellDelegate {
-    func repliesButtonTapped()
+    func repliesButtonTapped(sender: PostTableViewCell)
 }
 
 extension PostTableViewCellDelegate {
-    func repliesButtonTapped() {}
+    func repliesButtonTapped(sender: PostTableViewCell) {}
 }
