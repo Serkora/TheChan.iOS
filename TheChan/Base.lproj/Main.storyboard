@@ -98,13 +98,13 @@
         <scene sceneID="fmw-Q9-DG3">
             <objects>
                 <tableViewController storyboardIdentifier="ThreadVC" hidesBottomBarWhenPushed="YES" id="Cgm-wW-qMz" customClass="ThreadTableViewController" customModule="TheChan" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" id="kdl-js-jvx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="281" sectionHeaderHeight="28" sectionFooterHeight="28" id="kdl-js-jvx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="syF-nV-8w4">
-                            <rect key="frame" x="0.0" y="329" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="373" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="50E-EV-cfo">
@@ -120,15 +120,15 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="237" id="kk5-eU-lFz" customClass="PostTableViewCell" customModule="TheChan" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="237"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="281" id="kk5-eU-lFz" customClass="PostTableViewCell" customModule="TheChan" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="281"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kk5-eU-lFz" id="bBT-NE-Fop">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fzv-Bg-ZL7">
-                                            <rect key="frame" x="14" y="14" width="347" height="208"/>
+                                            <rect key="frame" x="14" y="14" width="347" height="258.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS4-Fr-WQm">
                                                     <rect key="frame" x="0.0" y="0.0" width="347" height="19.5"/>
@@ -203,16 +203,41 @@
                                                     </cells>
                                                 </collectionView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" scrollEnabled="NO" editable="NO" text="Post markup" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JgZ-Nq-VYF">
-                                                    <rect key="frame" x="0.0" y="167.5" width="347" height="40.5"/>
+                                                    <rect key="frame" x="0.0" y="167.5" width="347" height="51"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="250" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ljI-nc-chM">
+                                                    <rect key="frame" x="0.0" y="228.5" width="347" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYD-on-Up6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="309" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <state key="normal" title="1 REPLY">
+                                                                <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                            </state>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-BB-oEM">
+                                                            <rect key="frame" x="317" y="0.0" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="9mJ-5j-Zpp"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" image="replyIcon">
+                                                                <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="MZz-FY-dB2"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Fzv-Bg-ZL7" secondAttribute="bottom" constant="6" id="UyT-n4-5DH"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Fzv-Bg-ZL7" secondAttribute="bottom" id="UyT-n4-5DH"/>
                                         <constraint firstItem="Fzv-Bg-ZL7" firstAttribute="top" secondItem="bBT-NE-Fop" secondAttribute="topMargin" constant="6" id="VQY-nr-Wsf"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Fzv-Bg-ZL7" secondAttribute="trailing" constant="6" id="k9P-47-Xj9"/>
                                         <constraint firstItem="Fzv-Bg-ZL7" firstAttribute="leading" secondItem="bBT-NE-Fop" secondAttribute="leadingMargin" constant="6" id="t4P-ik-vkE"/>
@@ -227,6 +252,7 @@
                                     <outlet property="numberLabel" destination="jjs-Xr-AJn" id="ppI-fW-o63"/>
                                     <outlet property="positionLabel" destination="n5h-ms-uYw" id="cbV-cI-zyi"/>
                                     <outlet property="postContentView" destination="JgZ-Nq-VYF" id="DB4-Kn-CUP"/>
+                                    <outlet property="replyButton" destination="qLO-BB-oEM" id="odo-6A-Bmw"/>
                                     <outlet property="subjectLabel" destination="eS4-Fr-WQm" id="CXr-xe-Q76"/>
                                 </connections>
                             </tableViewCell>
@@ -284,7 +310,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OZ-VR-mHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5199" y="138"/>
+            <point key="canvasLocation" x="5197.6000000000004" y="137.18140929535232"/>
         </scene>
         <!--Reply-->
         <scene sceneID="fjw-mo-FnF">
@@ -1113,6 +1139,7 @@
         <image name="boardsIcon" width="25" height="25"/>
         <image name="favoriteIconBordered" width="25" height="25"/>
         <image name="goDownIcon" width="25" height="25"/>
+        <image name="replyIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6nD-ae-08M"/>
