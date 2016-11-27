@@ -60,6 +60,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         dateFormatter.timeStyle = .short
         tableView.allowsSelection = false
         
+        tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         navigationController?.toolbar.barStyle = .blackTranslucent

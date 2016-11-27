@@ -9,10 +9,10 @@
 import UIKit
 import Kingfisher
 
-private let previewReuseIdentifier = "PostFilePreviewsCollectionViewCell"
+private let previewReuseIdentifier = "PostFilesPreviewsCollectionViewCell"
 
 class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
@@ -26,7 +26,9 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
+        filesPreviewsCollectionView.register(UINib(nibName: previewReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: previewReuseIdentifier)
         
         postContentView.textContainerInset = UIEdgeInsetsMake(
             0,
@@ -34,17 +36,17 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             0,
             -postContentView.textContainer.lineFragmentPadding)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     override func prepareForReuse() {
         backgroundColor = UIColor.clear
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
