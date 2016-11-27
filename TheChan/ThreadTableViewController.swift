@@ -10,7 +10,7 @@ import UIKit
 import MWPhotoBrowser
 import RealmSwift
 
-class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, UIGestureRecognizerDelegate {
+class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, UIGestureRecognizerDelegate, PostTableViewCellDelegate {
     
     private enum ThreadRefreshingResult {
         case success, failure
@@ -316,6 +316,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         cell.repliesButton.setTitle(title, for: .normal)
         cell.bottomMarginConstraint.constant = repliesCount == 0 ? 8.0 : 0.0
         
+        cell.delegate = self
+        
         for view in cell.subviews {
             if let scrollView = view as? UIScrollView {
                 scrollView.scrollsToTop = false
@@ -323,6 +325,13 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         }
         
         return cell
+    }
+    
+    func repliesButtonTapped() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") else { return }
+        viewController.modalTransitionStyle = .coverVertical
+        viewController.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

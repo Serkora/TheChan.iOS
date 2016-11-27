@@ -86,6 +86,9 @@
                                 <state key="normal" title="1 REPLY">
                                     <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="repliesButtonTapped:" destination="EJX-7w-wOR" eventType="touchUpInside" id="2Pa-3M-tuS"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>

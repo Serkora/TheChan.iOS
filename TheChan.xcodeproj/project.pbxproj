@@ -26,6 +26,7 @@
 		927A580C1DEAF91F00CEBDA0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A580A1DEAF91F00CEBDA0 /* PostTableViewCell.swift */; };
 		927A580D1DEAF91F00CEBDA0 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 927A580B1DEAF91F00CEBDA0 /* PostTableViewCell.xib */; };
 		927A580F1DEAFF2700CEBDA0 /* PostFilesPreviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 927A580E1DEAFF2700CEBDA0 /* PostFilesPreviewsCollectionViewCell.xib */; };
+		927A58121DEB035B00CEBDA0 /* RepliesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A58101DEB035B00CEBDA0 /* RepliesTableViewController.swift */; };
 		92802B491DE89F5C00407C9E /* Chan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92802B481DE89F5C00407C9E /* Chan.swift */; };
 		92802B4B1DE89F7200407C9E /* DvachChan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92802B4A1DE89F7200407C9E /* DvachChan.swift */; };
 		92802B4D1DE89FF200407C9E /* ChanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92802B4C1DE89FF200407C9E /* ChanManager.swift */; };
@@ -88,6 +89,7 @@
 		927A580A1DEAF91F00CEBDA0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		927A580B1DEAF91F00CEBDA0 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		927A580E1DEAFF2700CEBDA0 /* PostFilesPreviewsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilesPreviewsCollectionViewCell.xib; sourceTree = "<group>"; };
+		927A58101DEB035B00CEBDA0 /* RepliesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepliesTableViewController.swift; sourceTree = "<group>"; };
 		92802B481DE89F5C00407C9E /* Chan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chan.swift; sourceTree = "<group>"; };
 		92802B4A1DE89F7200407C9E /* DvachChan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DvachChan.swift; path = Chans/Dvach/DvachChan.swift; sourceTree = "<group>"; };
 		92802B4C1DE89FF200407C9E /* ChanManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChanManager.swift; sourceTree = "<group>"; };
@@ -165,7 +167,8 @@
 		92269B4A1DCF4E93001235E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */,
+				927A580E1DEAFF2700CEBDA0 /* PostFilesPreviewsCollectionViewCell.xib */,
+				927A580B1DEAF91F00CEBDA0 /* PostTableViewCell.xib */,
 				92269B4C1DCF4EAC001235E9 /* ThreadStateViewController.xib */,
 			);
 			name = Views;
@@ -265,6 +268,8 @@
 		92A0B9F21DB02091005D743F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				927A58101DEB035B00CEBDA0 /* RepliesTableViewController.swift */,
+				92269B4B1DCF4EAC001235E9 /* ThreadStateViewController.swift */,
 				92A0B9E31DAEC573005D743F /* BoardsTableViewController.swift */,
 				92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */,
 				92289B5C1DB369CB00F5BE09 /* ThreadTableViewController.swift */,
@@ -286,8 +291,6 @@
 				921E3D841DE1DFCC00E930FF /* AttachmentCollectionViewCell.swift */,
 				922751A31DE9D68F000D905D /* RecentThreadTableViewCell.swift */,
 				927A580A1DEAF91F00CEBDA0 /* PostTableViewCell.swift */,
-				927A580B1DEAF91F00CEBDA0 /* PostTableViewCell.xib */,
-				927A580E1DEAFF2700CEBDA0 /* PostFilesPreviewsCollectionViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				92802B4B1DE89F7200407C9E /* DvachChan.swift in Sources */,
 				92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */,
 				92802B4D1DE89FF200407C9E /* ChanManager.swift in Sources */,
+				927A58121DEB035B00CEBDA0 /* RepliesTableViewController.swift in Sources */,
 				92802B511DE8A37C00407C9E /* Markup.swift in Sources */,
 				92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */,
 				925BDBED1DEACFD100A098BA /* LocalizedStringWithFormat.swift in Sources */,

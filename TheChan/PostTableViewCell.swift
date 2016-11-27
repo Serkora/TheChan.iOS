@@ -22,6 +22,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var postContentView: UITextView!
     @IBOutlet weak var repliesButton: UIButton!
     @IBOutlet weak var bottomMarginConstraint: NSLayoutConstraint!
+    var delegate: PostTableViewCellDelegate? = nil
     var attachments = [Attachment]()
     var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
@@ -69,4 +70,16 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         let selectedAttachment = attachments[indexPath.item]
         onAttachmentSelected(selectedAttachment)
     }
+    
+    @IBAction func repliesButtonTapped(_ sender: Any) {
+        delegate?.repliesButtonTapped()
+    }
+}
+
+protocol PostTableViewCellDelegate {
+    func repliesButtonTapped()
+}
+
+extension PostTableViewCellDelegate {
+    func repliesButtonTapped() {}
 }
