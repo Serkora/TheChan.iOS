@@ -11,7 +11,7 @@ target 'TheChan' do
     pod 'Alamofire', '~> 4.0'
     pod 'Kingfisher'
     pod 'MWPhotoBrowser'
-    pod 'Kanna'
+    pod 'Fuzi', '~> 1.0.0'
     pod 'RealmSwift'
     pod 'IQKeyboardManagerSwift'
     pod 'OGVKit', '0.5pre'
