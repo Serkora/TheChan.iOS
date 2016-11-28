@@ -5,7 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 # This line is needed until OGVKit is fully published to CocoaPods
 # Remove once packages published:
-source 'https://github.com/brion/OGVKit-Specs.git'
+source 'https://github.com/Serkora/OGVKit-Specs.git'
 
 target 'TheChan' do
     pod 'Alamofire', '~> 4.0'
