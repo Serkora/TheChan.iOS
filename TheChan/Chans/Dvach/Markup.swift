@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Kanna
+import Fuzi
 
 class DvachMarkup {
     
@@ -38,8 +38,8 @@ class DvachMarkup {
     private let document: HTMLDocument
     
     init?(from html: String) {
-        self.html = html.replacingOccurrences(of: "<br>", with: "\n")
-        guard let document = HTML(html: self.html, encoding: .utf8) else { return nil }
+        self.html = html.replacingOccurrences(of: "<br>", with: "\n").replacingOccurrences(of: "\\r\\n", with: "\n").replacingOccurrences(of: "\\t", with: "\t")
+        let document = try! HTMLDocument(string: self.html) //, encoding: .utf8) // else { return nil }
         self.document = document
     }
     
@@ -47,8 +47,13 @@ class DvachMarkup {
         var textOffset = 0
         guard let body = document.body else { return }
         for node in body.xpath("/*//.") {
-            let nodeName = node.tagName ?? ""
-            let nodeText = node.text ?? ""
+            let nodeName = node.tag ?? ""
+            let nodeText = node.stringValue
+            /*NSLog("name = %@, text = %@", nodeName, nodeText)
+            let nodeAttrs = node.attributes
+            for (key, value) in nodeAttrs {
+                NSLog("Key = %@, value = %@", key, value)
+            }*/
             
             if nodeName == "text" {
                 textOffset += nodeText.characters.count
