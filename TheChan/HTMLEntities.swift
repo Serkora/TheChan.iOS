@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import Kanna
+import Fuzi
 
 extension String {
     init(htmlEncodedString: String) {
         self.init()
-        let document = HTML(html: htmlEncodedString, encoding: .utf8)
-        let text = document?.body?.text ?? htmlEncodedString
+        let document = try! HTMLDocument(string: htmlEncodedString, encoding: .utf8)
+        let text = document.body?.stringValue ?? htmlEncodedString
         self = text
     }
 }
