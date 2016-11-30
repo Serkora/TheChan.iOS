@@ -8,9 +8,10 @@
 
 import UIKit
 
-class RepliesTableViewController: UITableViewController {
+class RepliesTableViewController: UITableViewController, PostTableViewCellDelegate {
     
-    var posts = [Post]()
+    var allReplies = [Int: [Post]]()
+    var postsStack = [[Post]]()
     let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -39,7 +40,7 @@ class RepliesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return posts.count
+        return postsStack.last?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +59,8 @@ class RepliesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-        let post = posts[indexPath.section]
+        guard let post = postsStack.last?[indexPath.section] else { return cell }
+        cell.post = post
         
         cell.subjectLabel.text = post.subject
         cell.subjectLabel.isHidden = post.subject.isEmpty
@@ -81,7 +83,7 @@ class RepliesTableViewController: UITableViewController {
         cell.layer.borderWidth = 8.0
         cell.isOpaque = true
         
-        let repliesCount = 1
+        let repliesCount = allReplies[post.number]?.count ?? 0
         cell.repliesButton.isHidden = repliesCount == 0
         let title = String(localizedFormat: "%d replies", argument: repliesCount)
         cell.repliesButton.setTitle(title, for: .normal)
@@ -89,11 +91,18 @@ class RepliesTableViewController: UITableViewController {
         
         cell.layoutMargins = UIEdgeInsetsMake(0, 20, 0, 20)
         
-        //cell.delegate = self
+        cell.delegate = self
 
         return cell
     }
-
+    
+    func repliesButtonTapped(sender: PostTableViewCell) {
+        let number = sender.post.number
+        let replies = allReplies[number]!
+        postsStack.append(replies)
+        tableView.reloadData()
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

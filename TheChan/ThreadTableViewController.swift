@@ -332,7 +332,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
         viewController.modalTransitionStyle = .coverVertical
         viewController.modalPresentationStyle = .overCurrentContext
-        viewController.posts = replies[sender.post.number]!
+        viewController.postsStack.append(replies[sender.post.number]!)
+        viewController.allReplies = replies
         navigationController?.present(viewController, animated: true, completion: nil)
     }
     
