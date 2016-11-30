@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RepliesTableViewController: UITableViewController, PostTableViewCellDelegate {
+class RepliesTableViewController: UITableViewController, PostTableViewCellDelegate, UIGestureRecognizerDelegate {
     
     var allReplies = [Int: [Post]]()
     var postsStack = [[Post]]()
@@ -59,6 +59,7 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
+        addGestureRecognizer(to: cell)
         guard let post = postsStack.last?[indexPath.section] else { return cell }
         cell.post = post
         
@@ -101,6 +102,37 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         let replies = allReplies[number]!
         postsStack.append(replies)
         tableView.reloadData()
+    }
+    
+    func addGestureRecognizer(to view: UIView) {
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+        view.addGestureRecognizer(recognizer)
+        recognizer.delegate = self
+    }
+    
+    func panGesture(_ sender: UIPanGestureRecognizer) {
+        guard let sourceCell = sender.view as? PostTableViewCell else { return }
+        guard let sourceRow = tableView.indexPath(for: sourceCell)?.section else { return }
+        guard let visibleRows = tableView.indexPathsForVisibleRows?.map({ $0.section }) else { return }
+        let xOffset = sender.translation(in: sourceCell).x
+        for row in visibleRows {
+            let distance = CGFloat(abs(sourceRow - row))
+            let movingThreshold = distance * 50
+            let offsetModification = abs(xOffset) < movingThreshold ? -abs(xOffset) : -movingThreshold
+            let offset = xOffset > 0 ? xOffset + offsetModification : xOffset - offsetModification
+            guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: row)) else { continue }
+            cell.frame.origin.x = offset
+        }
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let pan = gestureRecognizer as? UIPanGestureRecognizer {
+            let velocity = pan.velocity(in: view)
+            return fabs(velocity.y) < fabs(velocity.x)
+        }
+        
+        return true
+        
     }
     
     /*
