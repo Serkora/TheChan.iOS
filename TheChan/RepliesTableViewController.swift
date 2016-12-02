@@ -12,7 +12,7 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
     
     var allReplies = [Int: [Post]]()
     var postsStack = [[Post]]()
-    let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,19 +112,44 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
     
     func panGesture(_ sender: UIPanGestureRecognizer) {
         guard let sourceCell = sender.view as? PostTableViewCell else { return }
-        guard let sourceRow = tableView.indexPath(for: sourceCell)?.section else { return }
         guard let visibleRows = tableView.indexPathsForVisibleRows?.map({ $0.section }) else { return }
-        let xOffset = sender.translation(in: sourceCell).x
-        for row in visibleRows {
-            let distance = CGFloat(abs(sourceRow - row))
-            let movingThreshold = distance * 50
-            let offsetModification = abs(xOffset) < movingThreshold ? -abs(xOffset) : -movingThreshold
-            let offset = xOffset > 0 ? xOffset + offsetModification : xOffset - offsetModification
-            let alpha = calculateAlpha(value: abs(xOffset) * (distance + 1), fullyTransparentValue: 300, minimum: 0.1)
-            guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: row)) else { continue }
-            cell.frame.origin.x = offset
-            cell.alpha = alpha
+        let translation = sender.translation(in: sourceCell).x
+        let xVelocity = sender.velocity(in: sourceCell).x
+        
+        let minimumOffset = CGFloat(150.0)
+        let minimumVelocity = CGFloat(500.0)
+        
+        if sender.state == .ended && (abs(translation) > minimumOffset || abs(xVelocity) > minimumVelocity) {
+            animateClosing(rows: visibleRows, velocity: xVelocity)
+        } else {
+            guard let sourceRow = tableView.indexPath(for: sourceCell)?.section else { return }
+            handleMovementOrReturning(
+                rows: visibleRows,
+                sourceRow: sourceRow,
+                translation: translation,
+                hasEnded: sender.state == .ended)
         }
+    }
+    
+    func handleMovementOrReturning(rows: [Int], sourceRow: Int, translation: CGFloat, hasEnded: Bool) {
+        for row in rows {
+            guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: row)) else { continue }
+            if hasEnded {
+                animateReturning(view: cell)
+            } else {
+                let distance = CGFloat(abs(sourceRow - row))
+                calculateOffsetFor(cell: cell, distance: distance, translation: translation)
+            }
+        }
+    }
+    
+    func calculateOffsetFor(cell: UITableViewCell, distance: CGFloat, translation: CGFloat) {
+        let movingThreshold = distance * 50
+        let offsetModification = abs(translation) < movingThreshold ? -abs(translation) : -movingThreshold
+        let offset = translation > 0 ? translation + offsetModification : translation - offsetModification
+        let alpha = calculateAlpha(value: abs(translation) * (distance + 1), fullyTransparentValue: 300, minimum: 0.1)
+        cell.frame.origin.x = offset
+        cell.alpha = alpha
     }
     
     func calculateAlpha(value: CGFloat, fullyTransparentValue: CGFloat, minimum: CGFloat) -> CGFloat {
@@ -139,6 +164,36 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         
         return true
         
+    }
+    
+    
+    func animateReturning(view: UIView) {
+        UIView.animate(withDuration: 0.25) {
+            view.frame.origin.x = 0
+            view.alpha = 1
+        }
+    }
+    
+    func animateClosing(rows: [Int], velocity: CGFloat) {
+        UIView.animate(withDuration: 0.25, animations: {
+            for row in rows {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: row)) else { continue }
+                cell.frame.origin.x = velocity > 0 ? cell.frame.width : -cell.frame.width
+            }
+        }, completion: { isFinished in
+            if isFinished {
+                self.goBack()
+            }
+        })
+    }
+    
+    func goBack() {
+        postsStack.removeLast()
+        if postsStack.count > 0 {
+            tableView.reloadData()
+        } else {
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     /*
