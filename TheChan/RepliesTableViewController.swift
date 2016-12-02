@@ -120,9 +120,15 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
             let movingThreshold = distance * 50
             let offsetModification = abs(xOffset) < movingThreshold ? -abs(xOffset) : -movingThreshold
             let offset = xOffset > 0 ? xOffset + offsetModification : xOffset - offsetModification
+            let alpha = calculateAlpha(value: abs(xOffset) * (distance + 1), fullyTransparentValue: 300, minimum: 0.1)
             guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: row)) else { continue }
             cell.frame.origin.x = offset
+            cell.alpha = alpha
         }
+    }
+    
+    func calculateAlpha(value: CGFloat, fullyTransparentValue: CGFloat, minimum: CGFloat) -> CGFloat {
+        return max(0, (1 - (value / fullyTransparentValue))) + minimum
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
