@@ -308,6 +308,7 @@
 				92A0B9BE1DAEC304005D743F /* Resources */,
 				1BC4F84CF4E2B91320683307 /* [CP] Embed Pods Frameworks */,
 				C93E475CDED2DFAADD9FB835 /* [CP] Copy Pods Resources */,
+				920D0B1F1DF1D22800B0E373 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -434,6 +435,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		920D0B1F1DF1D22800B0E373 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 913a67265141a993e4911fa93b3a5f855caec834 4f7b3b7d1ec74f1ebe807a8192e9163d46feb627208639d811a6d43c0a69f42a";
 		};
 		C93E475CDED2DFAADD9FB835 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -660,14 +674,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7742CA22650DDF071EDD171B /* Pods-TheChan.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = QQNTMQ5VM7;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
+				PRODUCT_BUNDLE_IDENTIFIER = io.acedened.TheChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -677,14 +690,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CFE6C7DCB3189918F28A90F /* Pods-TheChan.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = QQNTMQ5VM7;
 				INFOPLIST_FILE = TheChan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.test.TheChan;
+				PRODUCT_BUNDLE_IDENTIFIER = io.acedened.TheChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

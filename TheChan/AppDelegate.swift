@@ -8,6 +8,8 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let _ = RealmInstance.initialize()
         IQKeyboardManager.sharedManager().enable = true
         debugPrint("Realm database path: \(RealmInstance.ui.configuration.fileURL?.absoluteString ?? "unknown")")
+        Fabric.with([Crashlytics.self])
         return true
     }
 

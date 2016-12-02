@@ -15,6 +15,8 @@ target 'TheChan' do
     pod 'RealmSwift'
     pod 'IQKeyboardManagerSwift'
     pod 'OGVKit', '0.5pre'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 post_install do |installer|
