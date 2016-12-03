@@ -25,7 +25,6 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     var delegate: PostTableViewCellDelegate? = nil
     var attachments = [Attachment]()
     var post = Post()
-    var onAttachmentSelected: (Attachment) -> Void = {_ in}
     
     override func awakeFromNib() {
         
@@ -65,7 +64,7 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedAttachment = attachments[indexPath.item]
-        onAttachmentSelected(selectedAttachment)
+        delegate?.attachmentSelected(sender: self, attachment: selectedAttachment)
     }
     
     
@@ -76,8 +75,10 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
 
 protocol PostTableViewCellDelegate {
     func repliesButtonTapped(sender: PostTableViewCell)
+    func attachmentSelected(sender: PostTableViewCell, attachment: Attachment)
 }
 
 extension PostTableViewCellDelegate {
     func repliesButtonTapped(sender: PostTableViewCell) {}
+    func attachmentSelected(sender: PostTableViewCell, attachment: Attachment) {}
 }

@@ -305,7 +305,6 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         cell.postContentView.attributedText = post.attributedString
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
         cell.attachments = post.attachments
-        cell.onAttachmentSelected = onAttachmentSelected
         
         cell.filesPreviewsCollectionView.dataSource = cell
         cell.filesPreviewsCollectionView.delegate = cell
@@ -347,7 +346,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         }
     }
     
-    func onAttachmentSelected(attachment: Attachment) {
+    func attachmentSelected(sender: PostTableViewCell, attachment: Attachment) {
         if attachment.type == .video {
             let videoController = WebmViewController(url: attachment.url)
             
