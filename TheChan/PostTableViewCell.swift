@@ -11,7 +11,7 @@ import Kingfisher
 
 private let previewReuseIdentifier = "PostFilesPreviewsCollectionViewCell"
 
-class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -36,12 +36,21 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             -postContentView.textContainer.lineFragmentPadding,
             0,
             -postContentView.textContainer.lineFragmentPadding)
+        
+        postContentView.delegate = self
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @available(iOS 10, *)
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.scheme != "post" {
+            return true
+        }
         
-        // Configure the view for the selected state
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        return URL.scheme != "post"
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

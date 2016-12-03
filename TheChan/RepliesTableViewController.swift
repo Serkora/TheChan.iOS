@@ -29,8 +29,6 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         tableView.backgroundView = blurEffectView
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

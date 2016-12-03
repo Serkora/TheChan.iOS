@@ -101,11 +101,18 @@ class DvachMarkup {
             ]
         }
         
-        if node.name == "a" {
+        if node.name == "a", let postNum = Int(node["data-num"] ?? "") {
             return [
-                NSLinkAttributeName: "link",
+                NSLinkAttributeName: "post://\(postNum)",
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: fontSize),
                 NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
+            ]
+        }
+        
+        if node.name == "a", let url = node["href"] {
+            return [
+                NSLinkAttributeName: url,
+                NSFontAttributeName: UIFont.systemFont(ofSize: fontSize)
             ]
         }
         
