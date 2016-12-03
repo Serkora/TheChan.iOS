@@ -336,6 +336,16 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         navigationController?.present(viewController, animated: true, completion: nil)
     }
     
+    func postPreviewRequested(sender: PostTableViewCell, postNumber: Int, type: PostPreviewType) {
+        guard let post = posts.first(where: { $0.number == postNumber }) else { return }
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
+        viewController.modalTransitionStyle = .coverVertical
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.postsStack.append([post])
+        viewController.allReplies = replies
+        navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! PostTableViewCell
         let index = indexPath.row

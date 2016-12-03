@@ -42,15 +42,22 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     @available(iOS 10, *)
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if URL.scheme != "post" {
-            return true
-        }
-        
-        return false
+        return handleURLForPostPreview(URL, type: (interaction == .preview) ? .peekAndPop : .regular)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        return URL.scheme != "post"
+        return handleURLForPostPreview(URL, type: .regular)
+    }
+    
+    func handleURLForPostPreview(_ url: URL, type: PostPreviewType) -> Bool {
+        if url.scheme != "post" {
+            return true
+        }
+        
+        
+        let number = Int(url.host ?? "0")!
+        delegate?.postPreviewRequested(sender: self, postNumber: number, type: type)
+        return false
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -82,12 +89,18 @@ class PostTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     }
 }
 
+enum PostPreviewType {
+    case regular, peekAndPop
+}
+
 protocol PostTableViewCellDelegate {
     func repliesButtonTapped(sender: PostTableViewCell)
     func attachmentSelected(sender: PostTableViewCell, attachment: Attachment)
+    func postPreviewRequested(sender: PostTableViewCell, postNumber: Int, type: PostPreviewType)
 }
 
 extension PostTableViewCellDelegate {
     func repliesButtonTapped(sender: PostTableViewCell) {}
     func attachmentSelected(sender: PostTableViewCell, attachment: Attachment) {}
+    func postPreviewRequested(sender: PostTableViewCell, postNumber: Int, type: PostPreviewType) {}
 }
