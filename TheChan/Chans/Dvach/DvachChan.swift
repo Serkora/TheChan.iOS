@@ -13,6 +13,13 @@ class Dvach: Chan {
     
     private let mapper = DvachMapper()
     var maxAttachments: Int { return 4 }
+    let publicKey = ""
+    var salt = ""
+    var privateKey = ""
+    
+    init() {
+        
+    }
     
     func loadBoards(onComplete: @escaping ([BoardsGroup]?) -> ()) {
         getAndMapDictionary("https://2ch.hk/makaba/mobile.fcgi?task=get_boards", mapping: { (groups) -> [BoardsGroup]? in

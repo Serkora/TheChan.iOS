@@ -50,6 +50,7 @@
 		92A0B9F41DB02106005D743F /* ThreadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */; };
 		92C533371DB163310075277E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533361DB163300075277E /* ThreadTableViewCell.swift */; };
 		92C533391DB171220075277E /* HTMLEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C533381DB171220075277E /* HTMLEntities.swift */; };
+		92C94AC01DF35DA3005183A1 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C94ABF1DF35DA3005183A1 /* ApiKeys.swift */; };
 		92CC49421DD6101E00FF5B85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC49441DD6101E00FF5B85 /* Localizable.strings */; };
 		92E9E16D1DB149F600FA0380 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16C1DB149F600FA0380 /* Post.swift */; };
 		92E9E16F1DB14AA700FA0380 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9E16E1DB14AA600FA0380 /* Thread.swift */; };
@@ -117,6 +118,7 @@
 		92A0B9F31DB02106005D743F /* ThreadsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsTableViewController.swift; sourceTree = "<group>"; };
 		92C533361DB163300075277E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		92C533381DB171220075277E /* HTMLEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLEntities.swift; sourceTree = "<group>"; };
+		92C94ABF1DF35DA3005183A1 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiKeys.swift; path = Chans/Dvach/ApiKeys.swift; sourceTree = "<group>"; };
 		92CC49431DD6101E00FF5B85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92CC49451DD6101F00FF5B85 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92CF03F31DB2A9C900AA8073 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				92802B4A1DE89F7200407C9E /* DvachChan.swift */,
 				92802B4E1DE8A2EE00407C9E /* Mapper.swift */,
 				92802B501DE8A37C00407C9E /* Markup.swift */,
+				92C94ABF1DF35DA3005183A1 /* ApiKeys.swift */,
 			);
 			name = Dvach;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				92802B511DE8A37C00407C9E /* Markup.swift in Sources */,
 				92269B4D1DCF4EAC001235E9 /* ThreadStateViewController.swift in Sources */,
 				925BDBED1DEACFD100A098BA /* LocalizedStringWithFormat.swift in Sources */,
+				92C94AC01DF35DA3005183A1 /* ApiKeys.swift in Sources */,
 				92A0B9F11DAFF5E5005D743F /* BoardTableViewCell.swift in Sources */,
 				922751A21DE9D66F000D905D /* RecentThreadsTableViewController.swift in Sources */,
 				92908A151DD7714C00B89A7F /* FavoriteThreadCollectionViewCell.swift in Sources */,
