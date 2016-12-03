@@ -11,7 +11,9 @@ import UIKit
 class RepliesTableViewController: UITableViewController, PostTableViewCellDelegate, UIGestureRecognizerDelegate {
     
     var allReplies = [Int: [Post]]()
+    var allPosts = [Post]()
     var postsStack = [[Post]]()
+    var postDelegate: PostTableViewCellDelegate?
     private var sourcePostsIndexPathsStack = [IndexPath]() // Used for restoring scroll position
     private let dateFormatter = DateFormatter()
     
@@ -102,6 +104,19 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         sourcePostsIndexPathsStack.append(tableView.indexPath(for: sender)!)
         tableView.reloadData()
         tableView.reloadSections(IndexSet(integersIn: 0..<tableView.numberOfSections), with: .bottom)
+    }
+    
+    func postPreviewRequested(sender: PostTableViewCell, postNumber: Int, type: PostPreviewType) {
+        guard let post = allPosts.first(where: { $0.number == postNumber }) else { return }
+        guard let senderIndexPath = tableView.indexPath(for: sender) else { return }
+        postsStack.append([post])
+        sourcePostsIndexPathsStack.append(senderIndexPath)
+        tableView.reloadData()
+        tableView.reloadSections(IndexSet(integersIn: 0..<tableView.numberOfSections), with: .bottom)
+    }
+    
+    func attachmentSelected(sender: PostTableViewCell, attachment: Attachment) {
+        postDelegate?.attachmentSelected(sender: sender, attachment: attachment)
     }
     
     func addGestureRecognizer(to view: UIView) {

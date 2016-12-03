@@ -39,6 +39,8 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     private let repliesMapFormer = RepliesMapFormer()
     private var replies: [Int: [Post]] = [:]
     
+    private var lastPresentedViewController: UIViewController?
+    
     private var isInFavorites = false {
         didSet {
             favoriteButton.image = isInFavorites ? #imageLiteral(resourceName: "favoriteIconFilled") : #imageLiteral(resourceName: "favoriteIconBordered")
@@ -117,6 +119,10 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         
         gestureRecognizerDelegate = navigationController!.interactivePopGestureRecognizer!.delegate!
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        if lastPresentedViewController != nil {
+            present(lastPresentedViewController!, animated: false, completion: nil)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -327,23 +333,26 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         return cell
     }
     
-    func repliesButtonTapped(sender: PostTableViewCell) {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
+    func showRepliesViewController(_ viewController: RepliesTableViewController) {
         viewController.modalTransitionStyle = .coverVertical
         viewController.modalPresentationStyle = .overCurrentContext
-        viewController.postsStack.append(replies[sender.post.number]!)
         viewController.allReplies = replies
+        viewController.allPosts = posts
+        viewController.postDelegate = self
         navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func repliesButtonTapped(sender: PostTableViewCell) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
+        viewController.postsStack.append(replies[sender.post.number]!)
+        showRepliesViewController(viewController)
     }
     
     func postPreviewRequested(sender: PostTableViewCell, postNumber: Int, type: PostPreviewType) {
         guard let post = posts.first(where: { $0.number == postNumber }) else { return }
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "RepliesVC") as? RepliesTableViewController else { return }
-        viewController.modalTransitionStyle = .coverVertical
-        viewController.modalPresentationStyle = .overCurrentContext
         viewController.postsStack.append([post])
-        viewController.allReplies = replies
-        navigationController?.present(viewController, animated: true, completion: nil)
+        showRepliesViewController(viewController)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -357,10 +366,12 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
     }
     
     func attachmentSelected(sender: PostTableViewCell, attachment: Attachment) {
+        lastPresentedViewController = presentedViewController
         if attachment.type == .video {
             let videoController = WebmViewController(url: attachment.url)
             
             self.navigationController!.pushViewController(videoController, animated: true)
+            dismiss(animated: false, completion: nil)
             return
         }
         
@@ -373,6 +384,7 @@ class ThreadTableViewController: UITableViewController, MWPhotoBrowserDelegate, 
         browser.setCurrentPhotoIndex(UInt(allAttachments.index(of: attachment)!))
         browser.displayNavArrows = true
         navigationController?.pushViewController(browser, animated: true)
+        dismiss(animated: false, completion: nil)
     }
     
     func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
