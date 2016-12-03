@@ -12,6 +12,7 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
     
     var allReplies = [Int: [Post]]()
     var postsStack = [[Post]]()
+    private var sourcePostsIndexPathsStack = [IndexPath]() // Used for restoring scroll position
     private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -73,7 +74,6 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         cell.postContentView.attributedText = post.attributedString
         cell.filesPreviewsCollectionView.isHidden = post.attachments.count == 0
         cell.attachments = post.attachments
-//        cell.onAttachmentSelected = onAttachmentSelected
         
         cell.filesPreviewsCollectionView.dataSource = cell
         cell.filesPreviewsCollectionView.delegate = cell
@@ -101,7 +101,9 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         let number = sender.post.number
         let replies = allReplies[number]!
         postsStack.append(replies)
+        sourcePostsIndexPathsStack.append(tableView.indexPath(for: sender)!)
         tableView.reloadData()
+        tableView.reloadSections(IndexSet(integersIn: 0..<tableView.numberOfSections), with: .bottom)
     }
     
     func addGestureRecognizer(to view: UIView) {
@@ -191,6 +193,9 @@ class RepliesTableViewController: UITableViewController, PostTableViewCellDelega
         postsStack.removeLast()
         if postsStack.count > 0 {
             tableView.reloadData()
+            let indexPath = sourcePostsIndexPathsStack.removeLast()
+            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            tableView.reloadSections(IndexSet(integersIn: 0..<tableView.numberOfSections), with: .top)
         } else {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
